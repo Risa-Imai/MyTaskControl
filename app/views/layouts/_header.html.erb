@@ -1,0 +1,73 @@
+<header>
+  <nav class="navbar navbar-expand-lg navbar-dark" style="background-color: #9966FF">
+    <div class="container-fluid">
+      <a class="navbar-brand" href="/"><strong>MyTask<br>Control</strong></a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNavDropdown">
+        <ul class="navbar-nav ml-auto">
+        <% if customer_signed_in? %>
+          <li>
+            <%= link_to root_path, class: "nav-link text-light" do %>
+              <button type="button" class="btn btn-outline-light">マイページ</button>
+            <% end %>
+          </li>
+          <li>
+            <%= link_to root_path, class: "nav-link text-light" do %>
+              <button type="button" class="btn btn-outline-light">タスク一覧</button>
+            <% end %>
+          </li>
+          <li>
+            <%= link_to root_path, class: 'nav-link text-light' do %>
+              <button type="button" class="btn btn-outline-light">会員一覧</button>
+            <% end %>
+          </li>
+          <li>
+            <%= link_to root_path, method: :delete, class: 'nav-link text-light' do %>
+              <button type="button" class="btn btn-outline-light">ログアウト</button>
+            <% end %>
+          </li>
+        <% elsif admin_signed_in? %>
+           <li>
+            <%= link_to root_path, class: "nav-link text-light" do %>
+              <button type="button" class="btn btn-outline-light">タスク一覧</button>
+            <% end %>
+          </li>
+          <li>
+            <%= link_to root_path, class: "nav-link text-light" do %>
+              <button type="button" class="btn btn-outline-light">会員一覧</button>
+            <% end %>
+          </li>
+          <li>
+            <%= link_to root_path, method: :delete,class: "nav-link text-light" do %>
+              <button type="button" class="btn btn-outline-light">ログアウト</button>
+            <% end %>
+          </li>
+        <% else %>
+          <li>
+            <%= link_to about_path, class: "nav-link text-light" do %>
+              <button type="button" class="btn btn-outline-light">About</button>
+            <% end %>
+          </li>
+          <li>
+            <%= link_to root_path, class: "nav-link text-light" do %>
+              <button type="button" class="btn btn-outline-light">商品一覧</button>
+            <% end %>
+          </li>
+          <li>
+            <%= link_to new_customer_registration_path, class: "nav-link text-light" do %>
+              <button type="button" class="btn btn-outline-light">新規登録</button>
+            <% end %>
+          </li>
+          <li>
+            <%= link_to new_customer_session_path, class: "nav-link text-light" do %>
+              <button type="button" class="btn btn-outline-light">ログイン</button>
+            <% end %>
+          </li>
+        <% end %>
+        </ul>
+      </div>
+    </div>
+  </nav>
+</header>

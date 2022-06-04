@@ -38,4 +38,5 @@ https://docs.google.com/spreadsheets/d/1InfBQjmryNwUS11olB_9l6PfwO-YuYUFObsVhKvZ
 - IDE：Cloud9
 
 ## 使用素材
+トップページ画像
 https://o-dan.net/ja/

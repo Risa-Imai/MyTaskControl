@@ -16,7 +16,7 @@ Rails.application.routes.draw do
   get "/about" => "public/homes#about"
 
   scope module: :public do
-    resource :customers do
+    resources :customers do
       #退会確認画面
       get "unsubscribe" => "customers#unsubscribe"
       #退会処理 is_deleteをtrueに変更
