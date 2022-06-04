@@ -26,9 +26,9 @@
 
 ## 設計書
 - ER図
-- https://app.diagrams.net/#G1lVOmljxnVcKm8I_Xvr1dtAdRbXwmScr2
+https://app.diagrams.net/#G1lVOmljxnVcKm8I_Xvr1dtAdRbXwmScr2
 - テーブル定義書
-- https://docs.google.com/spreadsheets/d/1InfBQjmryNwUS11olB_9l6PfwO-YuYUFObsVhKvZ3BM/edit#gid=1373217982
+https://docs.google.com/spreadsheets/d/1InfBQjmryNwUS11olB_9l6PfwO-YuYUFObsVhKvZ3BM/edit#gid=1373217982
 
 ## 開発環境
 - OS：Linux(CentOS)
@@ -38,4 +38,4 @@
 - IDE：Cloud9
 
 ## 使用素材
-未定
+https://o-dan.net/ja/

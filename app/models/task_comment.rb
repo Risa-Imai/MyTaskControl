@@ -1,0 +1,2 @@
+class TaskComment < ApplicationRecord
+end
