@@ -9,7 +9,7 @@ class Public::CustomersController < ApplicationController
 
   def edit
     @customer = Customer.find(params[:id])
-    # 他人の編集画面には飛べない記述　
+    # 他人の編集画面には飛べない記述
     if @customer == current_customer
       render :edit
     else
