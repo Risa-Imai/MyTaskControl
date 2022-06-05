@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
   # 顧客用
   # URL /customers/dign_in ...
-  devise_for :customers,skip: [:passwords], controllers: {
+  devise_for :customers, skip: [:passwords], controllers: {
     registrations: "public/registrations",
     sessions: "public/sessions"
   }
@@ -25,7 +25,8 @@ Rails.application.routes.draw do
 
     resources :tasks
   end
-
+  
+  ##　管理者用
   namespace :admin do
     resources :customers, only: [:index, :show, :edit, :update]
   end

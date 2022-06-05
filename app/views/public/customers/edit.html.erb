@@ -1,0 +1,29 @@
+<div class="container">
+  <div class="row">
+    <div class="col-sm-12 col-md-8 col-lg-5 px-5 px-sm-0 mx-auto">
+    <%= render "layouts/errors", obj: @customer %>
+    <h2>プロフィール編集</h2>
+    <%= form_with model: @customer, local: true do |f| %>
+      <%= render "layouts/errors", obj: @customer %>
+      <div class="form-group">
+        <%= f.label "姓" %>
+        <%= f.text_field :last_name, class: "form-control last_name" %>
+      </div>
+      <div class="form-group">
+        <%= f.label "名" %>
+        <%= f.text_field :first_name, class: "form-control first_name" %>
+      </div>
+      <div class="form-group">
+        <%= f.label "プロフィール画像" %>
+        <%= f.file_field :customer_image, class: "form-control-file user_image", accept: "image/*" %>
+      </div>
+      <div class="form-group">
+        <%= f.label "自己紹介" %>
+        <%= f.text_area :introduction, class: "form-control introduction" %>
+      </div>
+      <div class="form-group">
+        <%= f.submit class: "btn btn-outline-secondary" %>
+      </div>
+    <% end %>
+  </div>
+</div>
