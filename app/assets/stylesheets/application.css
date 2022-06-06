@@ -13,3 +13,19 @@
  *= require_tree .
  *= require_self
  */
+
+ .notReady {
+     color: #C0C0C0;
+ }
+
+ .Ready {
+     color: #DC143C;
+ }
+
+ .Doing {
+     color: #1E90FF;
+ }
+
+ .Done {
+     color: #00CC66;
+ }
