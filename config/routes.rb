@@ -12,6 +12,11 @@ Rails.application.routes.draw do
     sessions: "admin/sessions"
   }
 
+  # ゲストユーザー機能
+  devise_scope :customer do
+    post "customers/guest_sign_in", to: "guest/sessions#guest_sign_in"
+  end
+
   root to: "public/homes#top"
   get "/about" => "public/homes#about"
 
@@ -25,7 +30,7 @@ Rails.application.routes.draw do
 
     resources :tasks
   end
-  
+
   ##　管理者用
   namespace :admin do
     resources :customers, only: [:index, :show, :edit, :update]

@@ -27,7 +27,7 @@ class Public::SessionsController < Devise::SessionsController
   end
 
   protected
-  
+
   # 退会済みか確認するメソッド
   def customer_state
     ## 処理1 入力されたemailからアカウントを1件取得

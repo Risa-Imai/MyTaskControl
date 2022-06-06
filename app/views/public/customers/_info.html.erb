@@ -11,9 +11,10 @@
     <th><%= customer.introduction %></th>
   </tr>
 </table>
-
-<div class="row">
-  <%= link_to edit_customer_path(customer), class: "btn btn-outline-secondary btn-block" do %>
-    <i class="fas fa-user-cog"></i>
-  <% end %>
-</div>
+<% if customer.email != "guest@example.com" %>
+  <div class="row">
+    <%= link_to edit_customer_path(customer), class: "btn btn-outline-secondary btn-block" do %>
+      <i class="fas fa-user-cog"></i>
+    <% end %>
+  </div>
+<% end %>

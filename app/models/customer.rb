@@ -7,6 +7,9 @@ class Customer < ApplicationRecord
   validates :last_name, presence: true
   validates :first_name, presence: true
 
+  has_many :tasks, dependent: :destroy
+  has_many :task_comments, dependent: :destroy
+
   has_one_attached :customer_image
 
   # 画像サイズを指定できるように
@@ -21,5 +24,15 @@ class Customer < ApplicationRecord
   # 会員のフルネーム
   def full_name
     last_name + " " + first_name
+  end
+
+  # ゲストログイン用メソッド
+  def self.guest
+    #存在するかしないかを判断し名前とメールアドレスとパスワードの作成
+    find_or_create_by!(first_name: "customer", last_name: "guest", email: "guest@example.com") do |customer|
+      # 今回必要なログインの情報はメールアドレスとパスワード
+      customer.password = SecureRandom.urlsafe_base64
+      customer.email = "guest@example.com"
+    end
   end
 end
