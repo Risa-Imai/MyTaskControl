@@ -1,0 +1,11 @@
+<div class="text-center mb-4">
+  <h5><b>本当に退会しますか？</b><h5>
+  <p>
+    退会すると、会員登録情報や<br>
+    これまでのタスクやコメントが閲覧できなくなります<br>
+    あらかじめご了承ください。<br>
+    退会する場合は、「退会する」をクリックしてください。
+  </p>
+  <%= link_to "戻る", customer_path(@customer), class: "btn btn-outline-primary col-2" %>
+  <%= link_to "退会する", customer_withdraw_path(@customer), method: :patch, data: { confilm: "本当に退会しますか？" }, class: "btn btn-outline-danger col-2" %>
+</div>

@@ -35,4 +35,9 @@ class Customer < ApplicationRecord
       customer.email = "guest@example.com"
     end
   end
+
+  #正規ユーザーのみを認める記述
+  def active_for_authentication?
+    super && (is_delete == false)
+  end
 end
