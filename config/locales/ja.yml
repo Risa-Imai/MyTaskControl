@@ -1,0 +1,8 @@
+ja:
+  enums:
+    task:
+      progress_status:
+        notReady: "着手不可"
+        Ready: "未着手"
+        Doing: "着手中"
+        Done: "完了"

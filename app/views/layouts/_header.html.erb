@@ -18,7 +18,7 @@
             <% end %>
           </li>
           <li>
-            <%= link_to root_path, class: "nav-link text-light" do %>
+            <%= link_to tasks_path, class: "nav-link text-light" do %>
               <button type="button" class="btn btn-outline-light">タスク一覧</button>
             <% end %>
           </li>
@@ -34,7 +34,7 @@
           </li>
         <% elsif admin_signed_in? %>
            <li>
-            <%= link_to root_path, class: "nav-link text-light" do %>
+            <%= link_to tasks_path, class: "nav-link text-light" do %>
               <button type="button" class="btn btn-outline-light">タスク一覧</button>
             <% end %>
           </li>

@@ -1,0 +1,15 @@
+<h1>新規タスク</h1>
+<%= form_with model: @task do |f| %>
+  <h4>やること</h4>
+  <%= f.text_field :title %>
+
+  <h4>進捗</h4>
+  <%= f.select :progress_status, Task.progress_statuses_i18n.invert, {prompt: false} %>
+  <%= f.submit %>
+
+<% end %>
+
+<% @tasks.each do |task| %>
+<%= task.title %>
+<%= task.progress_status %>
+<% end %>
