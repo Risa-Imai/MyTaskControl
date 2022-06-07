@@ -18,6 +18,11 @@
             <% end %>
           </li>
           <li>
+            <%= link_to customer_path(current_customer.id), class: "nav-link text-light" do %>
+              <button type="button" class="btn btn-outline-light">タスク投稿</button>
+            <% end %>
+          </li>
+          <li>
             <%= link_to tasks_path, class: "nav-link text-light" do %>
               <button type="button" class="btn btn-outline-light">タスク一覧</button>
             <% end %>

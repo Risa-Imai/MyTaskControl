@@ -1,4 +1,5 @@
 class Public::CustomersController < ApplicationController
+  before_action :authenticate_customer!
   # 他ユーザーの編集・退会は行えない
   before_action :ensure_guest_to_customer, only: [:edit, :update]
   before_action :collect_guest_to_customer, only: [:unsubscribe, :withdraw]
@@ -9,6 +10,9 @@ class Public::CustomersController < ApplicationController
 
   def show
     @customer = Customer.find(params[:id])
+    @task = Task.new
+    # 詳細を表示しているユーザーの投稿全てを取得
+    @tasks = @customer.tasks
   end
 
   def edit
@@ -39,6 +43,10 @@ class Public::CustomersController < ApplicationController
   end
 
   private
+  
+  def customer_params
+    params.require(:customer).permit(:first_name, :last_name, :customer_image, :introduction)
+  end
 
   def ensure_guest_to_customer
     @customer = Customer.find(params[:id])
@@ -60,7 +68,4 @@ class Public::CustomersController < ApplicationController
     end
   end
 
-  def customer_params
-    params.require(:customer).permit(:first_name, :last_name, :customer_image, :introduction)
-  end
 end

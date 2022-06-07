@@ -1,10 +1,12 @@
 class Public::TasksController < ApplicationController
+  before_action :authenticate_customer!
+  before_action :ensure_correct_customer, only: [:edit, :update, :destroy]
 
   def create
     @task = Task.new(task_params)
     @task.customer_id = current_customer.id
     @task.save
-    redirect_to request.referer, notice: "タスクを投稿しました！頑張りましょう！"
+    redirect_to customer_path(current_customer), notice: "タスクを投稿しました！頑張りましょう！"
   end
 
   def index
@@ -37,7 +39,7 @@ class Public::TasksController < ApplicationController
   def destroy
     @task = Task.find(params[:id])
     if @task.destroy
-      redirect_to tasks_path, notice: "タスクを削除しました"
+      redirect_to customer_path(current_customer), notice: "タスクを削除しました"
     end
   end
 
@@ -46,4 +48,12 @@ class Public::TasksController < ApplicationController
   def task_params
     params.require(:task).permit(:title, :progress_status)
   end
+
+  def ensure_correct_customer
+    @task = Task.find(params[:id])
+    if @task.customer != current_customer
+      redirect_to customer_path(current_customer), notice: "他ユーザーのタスクは編集できません"
+    end
+  end
+
 end
