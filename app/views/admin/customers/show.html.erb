@@ -1,24 +1,22 @@
 <div class="container px-5 px-sm-0">
   <div class="row">
-    <table class="table">
-      <tr>
-        <%= image_tag @customer.get_customer_image(200,200) %>
-      </tr>
-      <tr>
-        <th>名前</th>
-        <th><%= @customer.full_name %></th>
-      </tr>
-      <tr>
-        <th>自己紹介</th>
-        <th><%= @customer.introduction %></th>
-      </tr>
-    </table>
-    <% if @customer.email != "guest@example.com" %>
-      <div class="row">
+    <div class="mx-auto">
+      <table class="table">
+        <tr>
+          <%= image_tag @customer.get_customer_image(200,200) %>
+        </tr>
+        <tr>
+          <th>名前</th>
+          <th><%= @customer.full_name %></th>
+        </tr>
+        <tr>
+          <th>自己紹介</th>
+          <th><%= @customer.introduction %></th>
+        </tr>
+      </table>
         <%= link_to edit_admin_customer_path(@customer), class: "btn btn-outline-secondary btn-block" do %>
           <i class="fas fa-user-cog"></i>
         <% end %>
-      </div>
-    <% end %>
+    </div>
   </div>
 </div>

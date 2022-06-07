@@ -34,5 +34,6 @@ Rails.application.routes.draw do
   ## 管理者用
   namespace :admin do
     resources :customers, only: [:index, :show, :edit, :update]
+    resources :tasks, only: [:index, :show, :destroy]
   end
 end

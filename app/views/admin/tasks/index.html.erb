@@ -1,0 +1,24 @@
+<div class="container">
+  <table class='table table-hover table-inverse'>
+    <thead>
+      <tr>
+        <th></th>
+        <th>タスク</th>
+        <th>進捗</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @tasks.each do |task| %>
+        <tr>
+          <td>
+            <%= link_to (task.customer) do %>
+            <%= image_tag task.customer.get_customer_image(100, 100) %>
+            <% end %>
+          </td>
+          <td><h4><strong><%= link_to task.title, admin_task_path(task.id) %></strong></h4></td>
+          <td class=<%= task.progress_status %>><%= task.progress_status_i18n %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>
