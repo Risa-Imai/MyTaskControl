@@ -31,6 +31,9 @@ Rails.application.routes.draw do
     end
 
     resources :tasks do
+      #タスクにコメント機能
+      resources :task_comments, only: [:create, :destroy]
+      #タスクにいいね機能
       resource :favorites, only: [:create, :destroy]
     end
   end

@@ -10,6 +10,7 @@ class Public::CustomersController < ApplicationController
 
   def show
     @customer = Customer.find(params[:id])
+    # Task.new(task_params)を持ってくる方法が分からない
     @task = Task.new
     # 詳細を表示しているユーザーの投稿全てを取得
     @tasks = @customer.tasks

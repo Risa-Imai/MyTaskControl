@@ -12,22 +12,34 @@
           <% end %>
           <td><%= @task.created_at.strftime('%Y/%m/%d %H:%M') %></td>
           <td>
-          <% if @task.favorited_by?(current_customer) %>
-            <p>
-              <%= link_to task_favorites_path(@task), method: :delete do %>
-                <i class="fas fa-heart" style="color: #FF367F"></i> <%= @task.favorites.count %>いいね
-              <% end %>
-            </p>
-          <% else %>
-            <p>
-              <%= link_to task_favorites_path(@task), method: :post do %>
-                <i class="far fa-heart" style="color: #FF367F"></i> <%= @task.favorites.count %>いいね
-              <% end %>
-            </p>
-          <% end %>
+            <% if @task.favorited_by?(current_customer) %>
+              <p>
+                <%= link_to task_favorites_path(@task), method: :delete do %>
+                  <i class="fas fa-heart" style="color: #FF367F"></i> <%= @task.favorites.count %>いいね
+                <% end %>
+              </p>
+            <% else %>
+              <p>
+                <%= link_to task_favorites_path(@task), method: :post do %>
+                  <i class="far fa-heart" style="color: #FF367F"></i> <%= @task.favorites.count %>いいね
+                <% end %>
+              </p>
+            <% end %>
           </td>
         </tr>
       </table>
     </div>
   </div>
 </div>
+<% @task.task_comments.each do |task_comment| %>
+  <% image_tag task_comment.customer.get_customer_image(100,100) %>
+  <%= task_comment.customer.full_name %>
+  <%= task_comment.created_at.strftime("%Y/%m/%d") %><%= task_comment.comment %>
+  <%= link_to "削除", task_task_comment_path(task_comment.task, task_comment), method: :delete, class: "btn btn-sm btn-outline-danger" %>
+<% end %>
+
+
+<%= form_with model: [@task, @task_comment] do |f| %>
+  <%= f.text_area :comment, rows: "5", placeholder: "コメント" %>
+  <%= f.submit "送信", class: "btn btn-outline-success" %>
+<% end %>

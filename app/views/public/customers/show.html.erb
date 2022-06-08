@@ -16,16 +16,16 @@
       <% if @customer == current_customer %>
         <% if @customer.email != "guest@example.com" %>
           <div class="row">
-            <%= link_to edit_customer_path(@customer), class: "btn btn-outline-secondary btn-block" do %>
+            <%= link_to edit_customer_path(id: @customer), class: "btn btn-outline-secondary btn-block" do %>
               <i class="fas fa-user-cog"></i>
             <% end %>
           </div>
         <% end %>
       <% end %>
-      <p><%= link_to "いいね一覧", customer_favorites_path(@customer), class: "btn btn-outline-success" %></p>
+      <p><%= link_to "いいね一覧", customer_favorites_path(customer_id: @customer), class: "btn btn-outline-success" %></p>
     </div>
 
-    <div class="col-md-6 offset-md-1">
+    <div class="col-md-6">
       <%= form_with model: @task do |f| %>
         <div class="form-group">
           <h3>新しいタスク</h3>

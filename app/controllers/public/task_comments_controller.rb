@@ -1,2 +1,27 @@
 class Public::TaskCommentsController < ApplicationController
+  def create
+    task = Task.find(params[:task_id])
+    comment = TaskComment.new(task_comment_params)
+    comment.customer_id = current_customer.id
+    # comment = current_customer.task_comments.new(task_comment_params)
+    comment.task_id = task.id
+    if comment.save
+      redirect_to request.referer, notice: "コメントしました"
+    else
+      redirect_to request.referer, notice: "コメントが入力されていません"
+    end
+  end
+
+  def destroy
+    task_comment = TaskComment.find_by(id: params[:id], task_id: params[:task_id])
+    task_comment.destroy
+    redirect_to request.referer
+  end
+
+  private
+
+  def task_comment_params
+    params.require(:task_comment).permit(:comment)
+  end
+
 end

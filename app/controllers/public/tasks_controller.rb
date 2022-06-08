@@ -22,6 +22,7 @@ class Public::TasksController < ApplicationController
 
   def show
     @task = Task.find(params[:id])
+    @task_comment = TaskComment.new
     # ステータス毎に文字色を変更する為のクラスをあてがう
     @status = @task.progress_status
     # 日本語化の表記
