@@ -15,17 +15,25 @@
  */
 
  .notReady {
-     color: #C0C0C0;
+  color: #C0C0C0;
  }
 
  .Ready {
-     color: #DC143C;
+  color: #DC143C;
  }
 
  .Doing {
-     color: #1E90FF;
+  color: #1E90FF;
  }
 
  .Done {
-     color: #00CC66;
+  color: #00CC66;
+ }
+
+ .footer-mb {
+  margin-bottom: 250px;
+ }
+
+ body {
+  font-family: cursive;
  }

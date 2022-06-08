@@ -10,9 +10,9 @@
         </thead>
         <tbody>
           <tr>
-            <td><%= image_tag customer.get_customer_image(200,200) %></td>
-            <td><%= customer.full_name %></td>
-            <td><%= link_to "詳細", customer_path(customer.id) %></td>
+            <td class="col-3 offset-1"><%= image_tag customer.get_customer_image(100,100) %></td>
+            <td class="col-3"><%= customer.full_name %></td>
+            <td class="col-3"><%= link_to "詳細", customer_path(customer.id) %></td>
           </tr>
         </tbody>
       </table>

@@ -26,9 +26,13 @@ Rails.application.routes.draw do
       get "unsubscribe" => "customers#unsubscribe"
       #退会処理 is_deleteをtrueに変更
       patch "withdraw" => "customers#withdraw"
+      #会員がいいねした一覧を表示
+      get "favorites" => "customers#favorites"
     end
 
-    resources :tasks
+    resources :tasks do
+      resource :favorites, only: [:create, :destroy]
+    end
   end
 
   ## 管理者用

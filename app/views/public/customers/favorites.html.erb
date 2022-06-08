@@ -1,0 +1,6 @@
+<h3>いいねしたタスク一覧</h3>
+<% @favorite_tasks.each do |task| %>
+  <i class="fas fa-heart" style="color: #FF367F"></i>
+  <%= task.favorites.length %>
+  <%= link_to task.title, task_path(task.id) %>
+<% end %>

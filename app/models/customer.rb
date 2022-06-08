@@ -9,6 +9,7 @@ class Customer < ApplicationRecord
 
   has_many :tasks, dependent: :destroy
   has_many :task_comments, dependent: :destroy
+  has_many :favorites, dependent: :destroy
 
   has_one_attached :customer_image
 
@@ -16,9 +17,11 @@ class Customer < ApplicationRecord
   def get_customer_image(width, height)
     unless customer_image.attached?
       file_path = Rails.root.join("app/assets/images/no_image.jpg")
-      customer_image.attach(io: File.open(file_path), filename: "default-imae.jpg", content_type: "image/jpeg")
+      customer_image.attach(io: File.open(file_path), filename: "default-image.jpg", content_type: "image/jpeg")
     end
     customer_image.variant(resize_to_limit: [width, height]).processed
+    #質問した際に教えていただいた内容
+    #customer_image.variant(resize: "#{width}x#{height}").processed
   end
 
   # 会員のフルネーム

@@ -42,8 +42,14 @@ class Public::CustomersController < ApplicationController
     redirect_to root_path
   end
 
+  def favorites
+    @customer = Customer.find(params[:customer_id])
+    favorites = Favorite.where(customer_id: @customer.id).pluck(:task_id)
+    @favorite_tasks = Task.find(favorites)
+  end
+
   private
-  
+
   def customer_params
     params.require(:customer).permit(:first_name, :last_name, :customer_image, :introduction)
   end
