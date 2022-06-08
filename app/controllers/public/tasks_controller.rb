@@ -5,12 +5,17 @@ class Public::TasksController < ApplicationController
   def create
     @task = Task.new(task_params)
     @task.customer_id = current_customer.id
-    @task.save
-    redirect_to customer_path(current_customer), notice: "タスクを投稿しました！頑張りましょう！"
+    if @task.save
+      redirect_to customer_path(current_customer), notice: "タスクを投稿しました！頑張りましょう！"
+    else
+      redirect_to request.referer, notice: "タスクとステータスを入力してください"
+      #@customer = current_customer
+      #@tasks = current_customer.tasks
+      #render "public/customers/show", notice: "タスクとステータスを入力してください"
+    end
   end
 
   def index
-    @task = Task.new
     @customer = current_customer
     @tasks = Task.all
   end

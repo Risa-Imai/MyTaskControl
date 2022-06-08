@@ -14,9 +14,11 @@
   <body>
     <%= render "layouts/header" %>
     <main class="footer-mb">
-      <div class="text-center mx-auto", style="background-color: #ccccff">
-        <p id="notice"><%= notice %></p>
-      </div>
+    <% if notice %>
+      <p id="notice" class="text-center mx-auto", style="background-color: #ccccff"><%= notice %></p>
+    <% else %>
+      <p id="alert" class="text-center mx-auto", style="background-color: #ccccff"><%= alert %></p>
+    <% end %>
       <%= yield %>
     </main>
     <%= render "layouts/footer" %>
