@@ -36,6 +36,7 @@
 
  body {
   font-family: cursive;
+  word-break: break-all;
  }
 
 .field_with_errors {

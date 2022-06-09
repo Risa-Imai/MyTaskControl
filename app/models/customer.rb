@@ -4,8 +4,8 @@ class Customer < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
 
-  validates :last_name, presence: true
-  validates :first_name, presence: true
+  validates :last_name, presence: true, length: { minimum: 1, maximum: 10 }
+  validates :first_name, presence: true, length: { minimum: 1, maximum: 10 }
 
   has_many :tasks, dependent: :destroy
   has_many :task_comments, dependent: :destroy

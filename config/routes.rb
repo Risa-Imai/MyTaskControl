@@ -17,6 +17,7 @@ Rails.application.routes.draw do
     post "customers/guest_sign_in", to: "guest/sessions#guest_sign_in"
   end
 
+  ## 会員用
   root to: "public/homes#top"
   get "/about" => "public/homes#about"
 
@@ -41,6 +42,9 @@ Rails.application.routes.draw do
   ## 管理者用
   namespace :admin do
     resources :customers, only: [:index, :show, :edit, :update]
-    resources :tasks, only: [:index, :show, :destroy]
+
+    resources :tasks, only: [:index, :show, :destroy] do
+      resources :task_comments, only: [:destroy]
+    end
   end
 end

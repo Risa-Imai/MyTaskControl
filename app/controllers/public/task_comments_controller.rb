@@ -1,4 +1,6 @@
 class Public::TaskCommentsController < ApplicationController
+  before_action :authenticate_customer!
+
   def create
     task = Task.find(params[:task_id])
     comment = TaskComment.new(task_comment_params)
@@ -8,7 +10,7 @@ class Public::TaskCommentsController < ApplicationController
     if comment.save
       redirect_to request.referer, notice: "コメントしました"
     else
-      redirect_to request.referer, notice: "コメントが入力されていません"
+      redirect_to request.referer, alert: "2~140文字で入力してください"
     end
   end
 

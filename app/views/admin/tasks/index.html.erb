@@ -2,9 +2,11 @@
   <table class="table table-hover table-inverse">
     <thead>
       <tr>
-        <th></th>
+        <th>投稿者</th>
         <th>タスク</th>
         <th>進捗</th>
+        <th>登録日</th>
+        <th>コメント数</th>
         <th></th>
       </tr>
     </thead>
@@ -14,15 +16,18 @@
           <td>
             <%= link_to (task.customer) do %>
             <%= image_tag task.customer.get_customer_image(100, 100) %>
+            <%= task.customer.full_name %>
             <% end %>
           </td>
           <td><h5><strong><%= link_to task.title, admin_task_path(task.id) %></strong></h5></td>
           <td class=<%= task.progress_status %>><%= task.progress_status_i18n %></td>
+          <td><%= task.created_at.strftime('%Y/%m/%d %H:%M') %></td>
+          <td><%= task.task_comments.count %></td>
           <td>
             <% unless task.favorites.count == 0 %>
-              <p><i class="fas fa-heart" style="color: #FF367F"></i> <%= task.favorites.count %>いいね</p>
+              <p><i class="fas fa-heart" style="color: #FF367F"></i> <%= task.favorites.count %></p>
             <% else %>
-              <p><i class="far fa-heart" style="color: #FF367F"></i> <%= task.favorites.count %>いいね</p>
+              <p><i class="far fa-heart" style="color: #FF367F"></i> <%= task.favorites.count %></p>
             <% end %>
           </td>
         </tr>

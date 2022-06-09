@@ -43,6 +43,7 @@
             <th>タスク</th>
             <th>進捗</th>
             <th>登録日</th>
+            <th>コメント数</th>
             <th></th>
           </tr>
         </thead>
@@ -51,18 +52,19 @@
             <tr>
               <td><strong><%= link_to task.title, task_path(task.id) %></strong></td>
               <td class=<%= task.progress_status %>><%= task.progress_status_i18n %></td>
-              <td><%= task.created_at.strftime('%Y/%m/%d %H:%M') %></td>
+              <td><%= task.created_at.strftime("%Y/%m/%d %H:%M") %></td>
+              <td><%= task.task_comments.count %></td>
               <td>
                 <% if task.favorited_by?(current_customer) %>
                   <p>
                     <%= link_to task_favorites_path(task), method: :delete do %>
-                      <i class="fas fa-heart" style="color: #FF367F"></i> <%= task.favorites.count %>いいね
+                      <i class="fas fa-heart" style="color: #FF367F"></i> <%= task.favorites.count %>
                     <% end %>
                   </p>
                 <% else %>
                   <p>
                     <%= link_to task_favorites_path(task), method: :post do %>
-                      <i class="far fa-heart" style="color: #FF367F"></i> <%= task.favorites.count %>いいね
+                      <i class="far fa-heart" style="color: #FF367F"></i> <%= task.favorites.count %>
                     <% end %>
                   </p>
                 <% end %>

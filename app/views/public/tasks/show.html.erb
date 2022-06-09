@@ -1,7 +1,7 @@
 <div class="container">
   <div class="row">
     <div class="col-md-8 offset-md-1">
-      <h2><%= @task.customer.full_name %>さんのタスク詳細</h2>
+      <h2 class="text-center"><%= @task.customer.full_name %>さんのタスク詳細</h2>
       <table class="table">
         <tr>
           <td><h4><strong><%= @task.title %></strong></h4></td>
@@ -30,16 +30,25 @@
       </table>
     </div>
   </div>
+  <div class="row">
+    <% @task.task_comments.each do |task_comment| %>
+    <div class="col-md-2">
+      <% image_tag task_comment.customer.get_customer_image(100,100) %>
+      <%= task_comment.customer.full_name %>
+      <%= task_comment.created_at.strftime('%Y/%m/%d %H:%M') %>
+    </div>
+    <div class="col-md-8">
+      <%= task_comment.comment %>
+    </div>
+    <div class="col-md-2">
+      <%= link_to "削除", task_task_comment_path(task_comment.task, task_comment), method: :delete, class: "btn btn-sm btn-outline-danger" %>
+    </div>
+    <% end %>
+  </div>
+    <%= form_with model: [@task, @task_comment] do |f| %>
+      <div class="form-group row">
+        <%= f.text_area :comment, rows: "5", placeholder: "コメント", class: "justify-content-center form-control col-md-8" %>
+      </div>
+        <%= f.submit "送信", class: "btn btn-outline-success col-md-2 text-center" %>
+    <% end %>
 </div>
-<% @task.task_comments.each do |task_comment| %>
-  <% image_tag task_comment.customer.get_customer_image(100,100) %>
-  <%= task_comment.customer.full_name %>
-  <%= task_comment.created_at.strftime("%Y/%m/%d") %><%= task_comment.comment %>
-  <%= link_to "削除", task_task_comment_path(task_comment.task, task_comment), method: :delete, class: "btn btn-sm btn-outline-danger" %>
-<% end %>
-
-
-<%= form_with model: [@task, @task_comment] do |f| %>
-  <%= f.text_area :comment, rows: "5", placeholder: "コメント" %>
-  <%= f.submit "送信", class: "btn btn-outline-success" %>
-<% end %>

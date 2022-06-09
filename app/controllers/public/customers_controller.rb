@@ -38,13 +38,14 @@ class Public::CustomersController < ApplicationController
   def withdraw
     @customer = Customer.find(params[:customer_id])
     @customer.update(is_delete: true)
-    #ログアウトさせる
+    # ログアウトさせる
     reset_session
     redirect_to root_path
   end
 
   def favorites
     @customer = Customer.find(params[:customer_id])
+    # pluckは指定したカラムを配列で取得する
     favorites = Favorite.where(customer_id: @customer.id).pluck(:task_id)
     @favorite_tasks = Task.find(favorites)
   end
