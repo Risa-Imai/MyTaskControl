@@ -52,7 +52,7 @@
             <tr>
               <td><strong><%= link_to task.title, task_path(task.id) %></strong></td>
               <td class=<%= task.progress_status %>><%= task.progress_status_i18n %></td>
-              <td><%= task.created_at.strftime("%Y/%m/%d %H:%M") %></td>
+              <td><%= task.created_at.to_s(:datetime_jp) %></td>
               <td><%= task.task_comments.count %></td>
               <td>
                 <% if task.favorited_by?(current_customer) %>

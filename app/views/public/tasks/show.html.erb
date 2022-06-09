@@ -35,7 +35,7 @@
     <div class="col-md-2">
       <% image_tag task_comment.customer.get_customer_image(100,100) %>
       <%= task_comment.customer.full_name %>
-      <%= task_comment.created_at.strftime('%Y/%m/%d %H:%M') %>
+      <%= task_comment.created_at.to_s(:datetime_jp) %>
     </div>
     <div class="col-md-8">
       <%= task_comment.comment %>

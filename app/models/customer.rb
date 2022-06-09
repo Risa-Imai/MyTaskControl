@@ -20,8 +20,8 @@ class Customer < ApplicationRecord
       customer_image.attach(io: File.open(file_path), filename: "default-image.jpg", content_type: "image/jpeg")
     end
     customer_image.variant(resize_to_limit: [width, height]).processed
-    #質問した際に教えていただいた内容
-    #customer_image.variant(resize: "#{width}x#{height}").processed
+    # 質問した際に教えていただいた内容
+    # customer_image.variant(resize: "#{width}x#{height}").processed
   end
 
   # 会員のフルネーム
@@ -31,7 +31,7 @@ class Customer < ApplicationRecord
 
   # ゲストログイン用メソッド
   def self.guest
-    #存在するかしないかを判断し名前とメールアドレスとパスワードの作成
+    # 存在するかしないかを判断し名前とメールアドレスとパスワードの作成
     find_or_create_by!(first_name: "customer", last_name: "guest", email: "guest@example.com") do |customer|
       # 今回必要なログインの情報はメールアドレスとパスワード
       customer.password = SecureRandom.urlsafe_base64
@@ -39,8 +39,15 @@ class Customer < ApplicationRecord
     end
   end
 
-  #正規ユーザーのみを認める記述
+  # 正規ユーザーのみを認める記述
   def active_for_authentication?
     super && (is_delete == false)
+  end
+
+  def self.search(keyword)
+    # whereだと完全一致 likeだとあいまいな検索が出来る
+    # ORはどちらか一方にでも検索キーワードが部分一致すれば出力する
+    # ANDを用いる時は両方にヒットした場合のみ
+    where(["first_name like? OR last_name like?", "%#{keyword}%", "%#{keyword}"])
   end
 end

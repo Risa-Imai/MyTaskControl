@@ -49,6 +49,12 @@ class Public::TasksController < ApplicationController
     end
   end
 
+  def search
+    @tasks =Task.search(params[:keyword])
+    @keyword = params[:keyword]
+    render :index
+  end
+
   private
 
   def task_params

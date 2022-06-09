@@ -21,7 +21,7 @@
           </td>
           <td><h5><strong><%= link_to task.title, admin_task_path(task.id) %></strong></h5></td>
           <td class=<%= task.progress_status %>><%= task.progress_status_i18n %></td>
-          <td><%= task.created_at.strftime('%Y/%m/%d %H:%M') %></td>
+          <td><%= task.created_at.to_s(:datetime_jp) %></td>
           <td><%= task.task_comments.count %></td>
           <td>
             <% unless task.favorites.count == 0 %>

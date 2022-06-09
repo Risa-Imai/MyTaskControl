@@ -1,4 +1,11 @@
 <div class="container px-5 px-sm-0">
+  <div class="form-group">
+    <%= form_with url: customer_search_path, method: :get do |f| %>
+      <%= f.text_field :keyword, class: "form-control col-md-3", placeholder: "#{@keyword}" %>
+      <%= f.submit "Search", class: "btn btn-outline-dark" %>
+    <% end %>
+    <%= @keyword %> で検索中
+  </div>
   <div class="row">
     <h2>会員一覧</h2>
       <table class="table">

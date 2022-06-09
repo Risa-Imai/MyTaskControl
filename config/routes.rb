@@ -22,6 +22,7 @@ Rails.application.routes.draw do
   get "/about" => "public/homes#about"
 
   scope module: :public do
+  get "customer_search" => "customers#search"
     resources :customers, only: [:index, :show, :edit, :update] do
       #退会確認画面
       get "unsubscribe" => "customers#unsubscribe"
@@ -31,6 +32,7 @@ Rails.application.routes.draw do
       get "favorites" => "customers#favorites"
     end
 
+  get "task_search" => "tasks#search"
     resources :tasks do
       #タスクにコメント機能
       resources :task_comments, only: [:create, :destroy]
