@@ -43,6 +43,7 @@ Rails.application.routes.draw do
 
   ## 管理者用
   namespace :admin do
+  get "customer_search" => "customers#search"
     resources :customers, only: [:index, :show, :edit, :update]
 
     resources :tasks, only: [:index, :show, :destroy] do
