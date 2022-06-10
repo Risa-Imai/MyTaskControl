@@ -4,7 +4,6 @@
     <%= render "layouts/errors", model: @customer %>
     <h2>プロフィール編集</h2>
     <%= form_with model: @customer, method: :patch do |f| %>
-      <%= render "layouts/errors", model: @customer %>
       <div class="form-group">
         <%= f.label "姓" %>
         <%= f.text_field :last_name, class: "form-control last_name" %>
