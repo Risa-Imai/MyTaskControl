@@ -1,10 +1,10 @@
 <div class="container">
   <div class="row">
     <div class="col-sm-12 col-md-8 col-lg-5 px-5 px-sm-0 mx-auto">
-    <%= render "layouts/errors", obj: @customer %>
+    <%= render "layouts/errors", model: @customer %>
     <h2>プロフィール編集</h2>
     <%= form_with model: @customer, method: :patch do |f| %>
-      <%= render "layouts/errors", obj: @customer %>
+      <%= render "layouts/errors", model: @customer %>
       <div class="form-group">
         <%= f.label "姓" %>
         <%= f.text_field :last_name, class: "form-control last_name" %>
