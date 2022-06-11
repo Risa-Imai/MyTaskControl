@@ -7,9 +7,9 @@
   <% end %>
   <span><%= @keyword %> で検索中</span>
   <h1 class="text-center mb-5">Members Tasks</h1>
-  <div class="row d-flex justify-content-around flex-wrap">
+  <div class="row d-flex flex-wrap">
     <% @tasks.each do |task| %>
-      <div class="card" style="width: 18rem">
+      <div class="card col-md-3" style="width: 16rem">
         <div class="card-body">
           <%= link_to (task.customer) do %>
           <%= image_tag task.customer.get_customer_image(50, 50), class: "card-link" %>
