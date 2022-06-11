@@ -2,10 +2,6 @@
   <nav class="navbar navbar-expand-lg navbar-dark" style="background-color: #9966FF">
     <div class="container-fluid">
       <a class="navbar-brand" href="/"><strong>MyTask<br>Control</strong></a>
-      <form class="form-inline my-2 my-lg-0">
-        <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-        <button class="btn btn-outline-light my-2 my-sm-0" type="submit">Search</button>
-      </form>
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
@@ -14,43 +10,43 @@
         <% if customer_signed_in? %>
           <li>
             <%= link_to customer_path(current_customer.id), class: "nav-link text-light" do %>
-              <button type="button" class="btn btn-outline-light">マイページ</button>
+              <button type="button" class="btn btn-outline-light">My page</button>
             <% end %>
           </li>
           <li>
             <%= link_to customer_path(current_customer.id), class: "nav-link text-light" do %>
-              <button type="button" class="btn btn-outline-light">タスク投稿</button>
+              <button type="button" class="btn btn-outline-light">New task</button>
             <% end %>
           </li>
           <li>
             <%= link_to tasks_path, class: "nav-link text-light" do %>
-              <button type="button" class="btn btn-outline-light">タスク一覧</button>
+              <button type="button" class="btn btn-outline-light">Tasks</button>
             <% end %>
           </li>
           <li>
             <%= link_to customers_path, class: 'nav-link text-light' do %>
-              <button type="button" class="btn btn-outline-light">会員一覧</button>
+              <button type="button" class="btn btn-outline-light">Members</button>
             <% end %>
           </li>
           <li>
             <%= link_to destroy_customer_session_path, method: :delete, class: 'nav-link text-light' do %>
-              <button type="button" class="btn btn-outline-light">ログアウト</button>
+              <button type="button" class="btn btn-outline-light">Log out</button>
             <% end %>
           </li>
         <% elsif admin_signed_in? %>
            <li>
             <%= link_to admin_tasks_path, class: "nav-link text-light" do %>
-              <button type="button" class="btn btn-outline-light">タスク一覧</button>
+              <button type="button" class="btn btn-outline-light">Tasks</button>
             <% end %>
           </li>
           <li>
             <%= link_to admin_customers_path, class: "nav-link text-light" do %>
-              <button type="button" class="btn btn-outline-light">会員一覧</button>
+              <button type="button" class="btn btn-outline-light">Members</button>
             <% end %>
           </li>
           <li>
             <%= link_to destroy_customer_session_path, method: :delete, class: "nav-link text-light" do %>
-              <button type="button" class="btn btn-outline-light">ログアウト</button>
+              <button type="button" class="btn btn-outline-light">Log out</button>
             <% end %>
           </li>
         <% else %>
@@ -66,12 +62,12 @@
           </li>
           <li>
             <%= link_to new_customer_registration_path, class: "nav-link text-light" do %>
-              <button type="button" class="btn btn-outline-light">アカウント作成</button>
+              <button type="button" class="btn btn-outline-light">Create an account</button>
             <% end %>
           </li>
           <li>
             <%= link_to new_customer_session_path, class: "nav-link text-light" do %>
-              <button type="button" class="btn btn-outline-light">ログイン</button>
+              <button type="button" class="btn btn-outline-light">Log in</button>
             <% end %>
           </li>
         <% end %>

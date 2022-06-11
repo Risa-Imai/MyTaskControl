@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_06_07_054551) do
+ActiveRecord::Schema.define(version: 2022_06_11_105928) do
 
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
@@ -75,12 +75,27 @@ ActiveRecord::Schema.define(version: 2022_06_07_054551) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
+  create_table "tags", force: :cascade do |t|
+    t.string "name"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
   create_table "task_comments", force: :cascade do |t|
     t.integer "customer_id"
     t.integer "task_id"
     t.text "comment"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "task_tags", force: :cascade do |t|
+    t.integer "task_id", null: false
+    t.integer "tag_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["tag_id"], name: "index_task_tags_on_tag_id"
+    t.index ["task_id"], name: "index_task_tags_on_task_id"
   end
 
   create_table "tasks", force: :cascade do |t|
@@ -93,4 +108,6 @@ ActiveRecord::Schema.define(version: 2022_06_07_054551) do
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
+  add_foreign_key "task_tags", "tags"
+  add_foreign_key "task_tags", "tasks"
 end

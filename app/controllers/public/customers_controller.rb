@@ -5,7 +5,7 @@ class Public::CustomersController < ApplicationController
   before_action :collect_guest_to_customer, only: [:unsubscribe, :withdraw]
 
   def index
-    @customers = Customer.all
+    @customers = Customer.page(params[:page])
   end
 
   def show
@@ -13,7 +13,7 @@ class Public::CustomersController < ApplicationController
     # Task.new(task_params)を持ってくる方法が分からない
     @task = Task.new
     # 詳細を表示しているユーザーの投稿全てを取得
-    @tasks = @customer.tasks
+    @tasks = @customer.tasks.page(params[:page])
   end
 
   def edit
@@ -46,8 +46,13 @@ class Public::CustomersController < ApplicationController
   def favorites
     @customer = Customer.find(params[:customer_id])
     # pluckは指定したカラムを配列で取得する
-    favorites = Favorite.where(customer_id: @customer.id).pluck(:task_id)
-    @favorite_tasks = Task.find(favorites)
+    @favorites = @customer.favorites.page(params[:page])
+    # whereはカラムの中が一致してるものを探してる
+    # @favorites = Favorite.where(customer_id: @customer.id).page(params[:page])
+    # ページネーションの変数は@favorites
+    @favorite_tasks = Task.find(@favorites.pluck(:task_id))
+    # favorites = Favorite.where(customer_id: @customer.id).pluck(:task_id)
+    # @favorite_tasks = Task.find(favorites)
   end
 
   def search

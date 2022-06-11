@@ -1,52 +1,50 @@
 <div class="container">
-  <div class="form-group">
   <%= form_with url: task_search_path, method: :get do |f| %>
+  <div class="form-group">
     <%= f.text_field :keyword, class: "form-control col-md-3", placeholder: "#{@keyword}" %>
-    <%= f.submit "Search", class: "btn btn-outline-dark" %>
-  <% end %>
-  <%= @keyword %> で検索中
   </div>
-  <h1 class="text-center">会員のタスク一覧</h1>
-  <table class="table table-hover table-inverse">
-    <thead>
-      <tr>
-        <th></th>
-        <th>タスク</th>
-        <th>進捗</th>
-        <th>登録日</th>
-        <th>コメント数</th>
-        <th></th>
-      </tr>
-    </thead>
-    <tbody>
-      <% @tasks.each do |task| %>
-        <tr>
-          <td>
-            <%= link_to (task.customer) do %>
-            <%= image_tag task.customer.get_customer_image(100, 100) %>
-            <% end %>
-          </td>
-          <td><h5><strong><%= link_to task.title, task_path(task.id) %></strong></h5></td>
-          <td class=<%= task.progress_status %>><%= task.progress_status_i18n %></td>
-          <td><%= task.created_at.to_s(:datetime_jp) %></td>
-          <td><%= task.task_comments.count %></td>
-          <td>
+  <%= f.submit "Search", class: "btn btn-outline-dark" %>
+  <% end %>
+  <span><%= @keyword %> で検索中</span>
+  <h1 class="text-center mb-5">Members Tasks</h1>
+  <div class="row d-flex justify-content-around flex-wrap">
+    <% @tasks.each do |task| %>
+      <div class="card" style="width: 18rem">
+        <div class="card-body">
+          <%= link_to (task.customer) do %>
+          <%= image_tag task.customer.get_customer_image(50, 50), class: "card-link" %>
+          <%= task.customer.full_name %>
+          <% end %>
+          <div>
+            <strong>title:<%= link_to task.title, task_path(task.id) %></strong>
+          </div>
+          <div>
+            <span class=<%= task.progress_status %>><%= task.progress_status_i18n %></span>
+          </div>
+          <div>
+            <%= task.created_at.to_s(:datetime_jp) %>
+          </div>
+          <div>
+            <span><%= task.task_comments.count %>comments</span>
+          </div>
+          <div>
             <% if task.favorited_by?(current_customer) %>
-              <p>
+              <span>
                 <%= link_to task_favorites_path(task), method: :delete do %>
                   <i class="fas fa-heart" style="color: #FF367F"></i> <%= task.favorites.count %>
                 <% end %>
-              </p>
+              </span>
             <% else %>
-              <p>
+              <span>
                 <%= link_to task_favorites_path(task), method: :post do %>
                   <i class="far fa-heart" style="color: #FF367F"></i> <%= task.favorites.count %>
                 <% end %>
-              </p>
+              </span>
             <% end %>
-          </td>
-        </tr>
-      <% end %>
-    </tbody>
-  </table>
+          </div>
+        </div>
+      </div>
+    <% end %>
+  </div>
 </div>
+<%= paginate @tasks %>

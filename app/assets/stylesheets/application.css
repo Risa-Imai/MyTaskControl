@@ -51,15 +51,11 @@
   padding: 12px;
 }
 
-#error_explanation {
- color: #262626;
- background: #FFEBE8;
- border: 2px solid #990000;
- padding: 12px;
- margin: 12px;
- font-weight: 850;
-}
-
 ul {
   list-style: none;
+}
+
+.pagination {
+  margin-top: 2rem;
+  justify-content: center;
 }

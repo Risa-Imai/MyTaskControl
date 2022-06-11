@@ -17,7 +17,8 @@ class Public::TasksController < ApplicationController
 
   def index
     @customer = current_customer
-    @tasks = Task.all
+    @tasks = Task.page(params[:page])
+    # @tasks = Task.all
   end
 
   def show
@@ -34,6 +35,8 @@ class Public::TasksController < ApplicationController
   end
 
   def update
+    # コンソールでparamsの中身が見られるようになる
+    p params
     @task = Task.find(params[:id])
     if @task.update(task_params)
       redirect_to task_path(@task), notice: "進捗を更新しました"
@@ -50,8 +53,11 @@ class Public::TasksController < ApplicationController
   end
 
   def search
-    @tasks =Task.search(params[:keyword])
+    @tasks = Task.search(params[:keyword])
+    # renderしているのでpageメソッドを渡している
+    @tasks = @tasks.page(params[:page])
     @keyword = params[:keyword]
+    # binding.pry
     render :index
   end
 

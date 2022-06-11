@@ -2,6 +2,7 @@ class Task < ApplicationRecord
   belongs_to :customer
   has_many :task_comments, dependent: :destroy
   has_many :favorites, dependent: :destroy
+  has_many :task_tags, dependent: :destroy
 
   validates :title, presence: true
   validates :progress_status, presence: true
