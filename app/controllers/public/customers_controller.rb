@@ -14,8 +14,9 @@ class Public::CustomersController < ApplicationController
     @task = Task.new
     # 詳細を表示しているユーザーの投稿全てを取得
     @tasks = @customer.tasks.page(params[:page])
-    @tag_list = Tag.all
-    # @task_tags = @tasks.task_tags
+    @customer_tasks = @customer.tasks
+    # @tag_list = Tag.all
+    # @tag_list = @customer.tasks.pluck
   end
 
   def edit

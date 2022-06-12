@@ -33,6 +33,7 @@ Rails.application.routes.draw do
     end
 
   get "task_search" => "tasks#search"
+  get "tag_search" => "tasks#tag_search"
     resources :tasks do
       #タスクにコメント機能
       resources :task_comments, only: [:create, :destroy]

@@ -7,10 +7,14 @@
   <% end %>
   <span><%= @keyword %> で検索中</span>
   <h1 class="text-center mb-5">Members Tasks</h1>
+
   <% @tag_list.each do |tag| %>
-    <%= tag.name %>
-    (<%= tag.task_tags.count %>)
+    <%= link_to tag_search_path(tag_id: tag.id), class: "btn btn-outline-primary" do %>
+      <%= tag.name %>
+      (<%= tag.task_tags.count %>)
+    <% end %>
   <% end %>
+
   <div class="d-flex flex-wrap">
     <% @tasks.each do |task| %>
       <div class="card col-md-3" style="width: 16rem">

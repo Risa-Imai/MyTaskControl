@@ -72,6 +72,14 @@ class Public::TasksController < ApplicationController
     render :index
   end
 
+  def tag_search
+    @tag_list = Tag.all
+    @tag = Tag.find(params[:tag_id])
+    @tasks = @tag.tasks.page(params[:page])
+    # @tasks = Task.includes(:tags).where(tags: {id: @tag}).page(params[:page])
+    render :index
+  end
+
   private
 
   def task_params
