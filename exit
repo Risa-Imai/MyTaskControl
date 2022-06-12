@@ -1,0 +1,15 @@
+
+[1mFrom:[0m /home/ec2-user/environment/task_pf/app/views/public/customers/show.html.erb:84 #<Class:0x00007f7320cc1bf0>#_app_views_public_customers_show_html_erb__2259241882120076522_70066224107580:
+
+    [1;34m79[0m:               </td>
+    [1;34m80[0m:               <td>
+    [1;34m81[0m:                 <% task.tags.each do |tag| %>
+    [1;34m82[0m:                   <% tag.name %>
+    [1;34m83[0m:                   <% byebug %>
+ => [1;34m84[0m:                 <% end %>
+    [1;34m85[0m:               </td>
+    [1;34m86[0m:             </tr>
+    [1;34m87[0m:           <% end %>
+    [1;34m88[0m:         </tbody>
+    [1;34m89[0m:       </table>
+

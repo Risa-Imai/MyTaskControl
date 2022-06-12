@@ -14,6 +14,8 @@ class Public::CustomersController < ApplicationController
     @task = Task.new
     # 詳細を表示しているユーザーの投稿全てを取得
     @tasks = @customer.tasks.page(params[:page])
+    @tag_list = Tag.all
+    # @task_tags = @tasks.task_tags
   end
 
   def edit
@@ -56,7 +58,7 @@ class Public::CustomersController < ApplicationController
   end
 
   def search
-    @customers = Customer.search(params[:keyword])
+    @customers = Customer.search(params[:keyword]).page(params[:page])
     @keyword = params[:keyword]
     render :index
   end

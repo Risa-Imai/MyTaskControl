@@ -20,4 +20,25 @@ class Task < ApplicationRecord
   def self.search(keyword)
     where(["title like?", "%#{keyword}%"])
   end
+  
+  # タグ機能について
+  def save_tasks(tags)
+    # createアクションで保存した@taskに紐付くタグが存在する場合
+    # 「タグの名前を配列として」全て取得する
+    current_tags = self.tags.pluck(:name) unless self.tags.nil?
+    # 現在取得した@taskに存在するタグから、送信されてきたタグを除いたタグをold_tags
+    old_tags = current_tags - tags
+    # 送信されてきたタグから、現在存在するタグを除いたタグをnew_tags
+    new_tags = tags - current_tags
+    # 古いタグを削除処理
+    old_tags.each do |old_name|
+      self.tags.delete Tag.find_by(name: old_name)
+    end
+    # 新しいタグをデータベースに保存する処理
+    new_tags.each do |new_name|
+      task_tag = Tag.find_or_create_by(name: new_name)
+      self.tags << task_tag
+    end
+  end
+  
 end

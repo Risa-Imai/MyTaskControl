@@ -1,6 +1,6 @@
 class Admin::CustomersController < ApplicationController
   def index
-    @customers = Customer.all
+    @customers = Customer.page(params[:page])
   end
 
   def show
@@ -23,6 +23,7 @@ class Admin::CustomersController < ApplicationController
 
   def search
     @customers = Customer.search(params[:keyword])
+    @customers = @customers.page(params[:page])
     @keyword = params[:keyword]
     render :index
   end

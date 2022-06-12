@@ -6,7 +6,7 @@
         <tr>
           <td><h4><strong><%= @task.title %></strong></h4></td>
           <td class=<%= @status %>><%= @status_i18n %></td>
-          <td><%= link_to "削除", admin_task_path(@task), method: :delete, data: { confirm: "タスクを消しますか？消すと元に戻せません" }, class: "btn btn-outline-danger" %></td>
+          <td><%= link_to "削除", admin_task_path(@task), method: :delete, data: { confirm: "タスクを消しますか？" }, class: "btn btn-outline-danger" %></td>
           <td><%= @task.created_at.to_s(:datetime_jp) %></td>
         </tr>
       </table>
@@ -20,7 +20,7 @@
           <%= task_comment.comment %>
         </div>
         <div class="col-md-2">
-          <%= link_to "削除", admin_task_task_comment_path(task_comment.task, task_comment), method: :delete, class: "btn btn-sm btn-outline-danger" %>
+          <%= link_to "削除", admin_task_task_comment_path(task_comment.task, task_comment), method: :delete,data: { confirm: "#{task_comment.customer.full_name}さんのコメントを消しますか？" }, class: "btn btn-sm btn-outline-danger" %>
         </div>
       <% end %>
     </div>

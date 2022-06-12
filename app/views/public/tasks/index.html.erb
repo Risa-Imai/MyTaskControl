@@ -7,7 +7,11 @@
   <% end %>
   <span><%= @keyword %> で検索中</span>
   <h1 class="text-center mb-5">Members Tasks</h1>
-  <div class="row d-flex flex-wrap">
+  <% @tag_list.each do |tag| %>
+    <%= tag.name %>
+    (<%= tag.task_tags.count %>)
+  <% end %>
+  <div class="d-flex flex-wrap">
     <% @tasks.each do |task| %>
       <div class="card col-md-3" style="width: 16rem">
         <div class="card-body">
@@ -41,6 +45,12 @@
                 <% end %>
               </span>
             <% end %>
+            <div>
+              <!--投稿に紐付くタグを取り出す-->
+              <% task.tags.each do |tag| %>
+                <%= tag.name %>
+              <% end %>
+            </div>
           </div>
         </div>
       </div>

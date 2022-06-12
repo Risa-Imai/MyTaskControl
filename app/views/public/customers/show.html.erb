@@ -1,50 +1,60 @@
 <div class="container px-5 px-sm-0">
   <div class="row">
     <div class="col-md-5">
-      <h3>インフォメーション</h3>
+      <h3>Infomation</h3>
       <table class="table">
         <tr><%= image_tag @customer.get_customer_image(200,200) %></tr>
         <tr>
-          <th>名前</th>
+          <th>Name</th>
           <th><%= @customer.full_name %></th>
         </tr>
         <tr>
-          <th>自己紹介</th>
+          <th>Infomation</th>
           <th><%= @customer.introduction %></th>
         </tr>
       </table>
       <% if @customer == current_customer %>
         <% if @customer.email != "guest@example.com" %>
           <div class="row">
-            <%= link_to edit_customer_path(id: @customer), class: "btn btn-outline-secondary btn-block" do %>
+            <%= link_to edit_customer_path(id: @customer), class: "btn btn-outline-secondary btn-block col-5" do %>
               <i class="fas fa-user-cog"></i>
             <% end %>
           </div>
         <% end %>
       <% end %>
-      <p><%= link_to "いいね一覧", customer_favorites_path(customer_id: @customer), class: "btn btn-outline-success" %></p>
+      <p><%= link_to "いいね一覧", customer_favorites_path(customer_id: @customer), class: "btn btn-outline-success mt-3" %></p>
     </div>
 
     <div class="col-md-6">
+      <h3>New task</h3>
       <%= form_with model: @task do |f| %>
         <div class="form-group">
-          <h3>新しいタスク</h3>
           <%= f.text_field :title, class: "form-control col-5" %>
+        </div>
+        <div class="form-group">
+          <%= f.label "Create tag" %><br>
+          <%= f.label "例)Zoo,calligraphy,study" %>
+          <%= f.text_field :tag_name, class: "form-control col-5" %>
         </div>
         <div class="form-group">
           <%= f.select :progress_status, Task.progress_statuses_i18n.invert, {prompt: false}, class: "form-control col-5" %>
           <%= f.submit "投稿", class: "btn btn-outline-primary col-3 offset-1 mt-3" %>
         </div>
       <% end %>
-      <h3>タスク一覧</h3>
+      <h3>Tasks</h3>
+      <% @tag_list.each do |tag| %>
+        <%= tag.name %>
+        (<%= tag.task_tags.count %>)
+      <% end %>
       <table class="table table-hover table-inverse">
         <thead>
           <tr>
-            <th>タスク</th>
+            <th>Task</th>
             <th>進捗</th>
             <th>登録日</th>
             <th>コメント数</th>
             <th></th>
+            <th>Tag</th>
           </tr>
         </thead>
         <tbody>
@@ -67,6 +77,12 @@
                       <i class="far fa-heart" style="color: #FF367F"></i> <%= task.favorites.count %>
                     <% end %>
                   </p>
+                <% end %>
+              </td>
+              <td>
+                <!--投稿に紐付くタグを取り出す-->
+                <% task.tags.each do |tag| %>
+                  <%= tag.name %>
                 <% end %>
               </td>
             </tr>

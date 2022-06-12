@@ -5,13 +5,19 @@ class Public::TasksController < ApplicationController
   def create
     @task = Task.new(task_params)
     @task.customer_id = current_customer.id
+    # 送られたタグ情報をsplit(",")でカンマ区切り(配列化)
+    # deleteでタグの前後にある半角スペースと全角スペースを削除
+    tag_list = params[:task][:tag_name].delete(" ").delete("　").split(",") #.split(nil)
     if @task.save
+      # save_tasksはモデルで記述
+      @task.save_tasks(tag_list)
       redirect_to customer_path(current_customer), notice: "タスクを投稿しました！頑張りましょう！"
     else
-      redirect_to request.referer, notice: "タスクとステータスを入力してください"
-      #@customer = current_customer
-      #@tasks = current_customer.tasks
-      #render "public/customers/show", notice: "タスクとステータスを入力してください"
+      redirect_to request.referer, notice: "タスクを入力してください"
+      # renderだとURLがtasksになってしまい不格好の為コメントアウト(動作は問題なし)
+      # @customer = current_customer
+      # @tasks = current_customer.tasks
+      # render "public/customers/show", notice: "タスクとステータスを入力してください"
     end
   end
 
@@ -19,6 +25,7 @@ class Public::TasksController < ApplicationController
     @customer = current_customer
     @tasks = Task.page(params[:page])
     # @tasks = Task.all
+    @tag_list = Tag.all
   end
 
   def show
@@ -32,14 +39,17 @@ class Public::TasksController < ApplicationController
 
   def edit
     @task = Task.find(params[:id])
+    @tag_list = @task.tags.pluck(:name).join(",")
   end
 
   def update
     # コンソールでparamsの中身が見られるようになる
     p params
     @task = Task.find(params[:id])
+    tag_list = params[:task][:tag_name].delete(" ").delete("　").split(",")
     if @task.update(task_params)
-      redirect_to task_path(@task), notice: "進捗を更新しました"
+      @task.save_tasks(tag_list)
+      redirect_to task_path(@task), notice: "タスクを更新しました"
     else
       render :edit
     end
@@ -57,6 +67,7 @@ class Public::TasksController < ApplicationController
     # renderしているのでpageメソッドを渡している
     @tasks = @tasks.page(params[:page])
     @keyword = params[:keyword]
+    @tag_list = Tag.all
     # binding.pry
     render :index
   end

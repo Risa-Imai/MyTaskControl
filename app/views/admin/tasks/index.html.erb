@@ -14,7 +14,7 @@
       <% @tasks.each do |task| %>
         <tr>
           <td>
-            <%= link_to (task.customer) do %>
+            <%= link_to admin_customer_path(task.customer_id) do %>
             <%= image_tag task.customer.get_customer_image(100, 100) %>
             <%= task.customer.full_name %>
             <% end %>
