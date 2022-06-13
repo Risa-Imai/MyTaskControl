@@ -1,3 +1,4 @@
 $("#comments_area").html("<%= j(render "public/task_comments/index", task: @task, task_comment: @task_comment) %>")
 $("#comments_count").html("<%= j(render "public/task_comments/count", task: @task) %>")
-$("#task_comment_comment").val("");
+$("#task_comment_comment").val("")
+$("#flash_message").html("<%= j(render "layouts/flash") %>")

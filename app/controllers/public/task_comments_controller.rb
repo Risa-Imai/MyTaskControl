@@ -10,6 +10,7 @@ class Public::TaskCommentsController < ApplicationController
     # comment = current_customer.task_comments.new(task_comment_params)
     comment.task_id = task.id
     if comment.save
+      flash.now[:notice] = "コメントしました"
       # redirect_to request.referer, notice: "コメントしました"
     else
       redirect_to request.referer, alert: "2~140文字で入力してください"
@@ -21,6 +22,7 @@ class Public::TaskCommentsController < ApplicationController
     @task_comment = TaskComment.new
     task_comment = TaskComment.find_by(id: params[:id], task_id: params[:task_id])
     task_comment.destroy
+      flash.now[:notice] = "コメントを削除しました"
     # redirect_to request.referer
   end
 

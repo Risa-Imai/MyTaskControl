@@ -8,6 +8,6 @@
     <%= task_comment.comment %>
   </div>
   <div class="col-md-2">
-    <%= link_to "削除", task_task_comment_path(task_comment.task, task_comment), method: :delete, class: "btn btn-sm btn-outline-danger" %>
+    <%= link_to "削除", task_task_comment_path(task_comment.task, task_comment), method: :delete, remote: true, class: "btn btn-sm btn-outline-danger" %>
   </div>
 <% end %>
