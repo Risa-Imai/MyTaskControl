@@ -39,19 +39,9 @@
           <span><%= pluralize(task.task_comments.count, "comment") %></span>
         </div>
         <div>
-          <% if task.favorited_by?(current_customer) %>
-            <span>
-              <%= link_to task_favorites_path(task), method: :delete do %>
-                <i class="fas fa-heart" style="color: #FF367F"></i> <%= task.favorites.count %>
-              <% end %>
-            </span>
-          <% else %>
-            <span>
-              <%= link_to task_favorites_path(task), method: :post do %>
-                <i class="far fa-heart" style="color: #FF367F"></i> <%= task.favorites.count %>
-              <% end %>
-            </span>
-          <% end %>
+          <div id="favorite_btn_<%= task.id %>">
+            <%= render "public/favorites/favorite", task: task %>
+          </div>
           <div>
             <!--投稿に紐付くタグを取り出す-->
             <% task.tags.each do |tag| %>

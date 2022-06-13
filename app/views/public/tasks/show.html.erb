@@ -13,20 +13,8 @@
           <td><%= link_to "削除", task_path(@task), method: :delete, data: { confirm: "タスクを消しますか？消すと元に戻せません" }, class: "btn btn-outline-danger" %></td>
           <% end %>
           <td><%= @task.created_at.to_s(:datetime_jp) %></td>
-          <td>
-            <% if @task.favorited_by?(current_customer) %>
-              <p>
-                <%= link_to task_favorites_path(@task), method: :delete do %>
-                  <i class="fas fa-heart" style="color: #FF367F"></i> <%= @task.favorites.count %>いいね
-                <% end %>
-              </p>
-            <% else %>
-              <p>
-                <%= link_to task_favorites_path(@task), method: :post do %>
-                  <i class="far fa-heart" style="color: #FF367F"></i> <%= @task.favorites.count %>いいね
-                <% end %>
-              </p>
-            <% end %>
+          <td id="favorite_btn_<%= @task.id %>">
+            <%= render "public/favorites/favorite", task: @task %>
           </td>
         </tr>
       </table>
