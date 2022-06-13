@@ -1,18 +1,16 @@
-<div class="container mb-5">
-  <div class="text-center center-block">
-    <h1>ようこそ！<br>
-      <i class="fas fa-tasks"></i><strong>MyTaskControlへ</strong></h1>
-    <p>タスクを楽しく管理しましょう！</p>
-  </div>
-  <div class="btn-wrapper col-5 mx-auto">
-    <div class="row">
-      <%= link_to "ゲストログイン（閲覧用）", customers_guest_sign_in_path, class: "btn btn-secondary btn-sm btn-block mb-3", method: :post %>
-    </div>
-    <div class="row">
-      <%= link_to "ログイン", new_customer_session_path, class: "btn btn-info btn-sm btn-block mb-3" %>
-    </div>
-    <div class="row">
-      <%= link_to "アカウント作成", new_customer_registration_path, class: "btn btn-success btn-sm btn-block" %>
-    </div>
-  </div
+<div class="top text-center">
+    <h1>
+      <i class="fas fa-tasks"></i>
+      <strong>MyTaskControl</strong>
+    </h1>
+    <h3>For those of you who are not good at task management...</h3>
+    <h3>Enjoy task management!</h3>
+    <h3>Let's try it together!</h3>
+</div>
+<div class="row">
+  <%= link_to "Guest Log in（閲覧用）", customers_guest_sign_in_path, class: "btn btn-lg btn-secondary offset-4 col-4 my-5", method: :post %>
+</div>
+<div class="row">
+  <%= link_to "Log in", new_customer_session_path, class: "btn btn-lg btn-info offset-1 col-4" %>
+  <%= link_to "Create an account", new_customer_registration_path, class: "btn btn-lg btn-success offset-2 col-4" %>
 </div>

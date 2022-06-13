@@ -9,9 +9,11 @@
   <h1 class="text-center mb-5">Members Tasks</h1>
 
   <% @tag_list.each do |tag| %>
-    <%= link_to tag_search_path(tag_id: tag.id), class: "btn btn-outline-primary" do %>
-      <%= tag.name %>
-      (<%= tag.task_tags.count %>)
+    <% if tag.tasks.present? %>
+      <%= link_to tag_search_path(tag_id: tag.id), class: "btn btn-outline-primary" do %>
+        <%= tag.name %>
+        (<%= tag.tasks.count %>)
+      <% end %>
     <% end %>
   <% end %>
 

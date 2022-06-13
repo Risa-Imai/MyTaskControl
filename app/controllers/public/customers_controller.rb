@@ -14,9 +14,15 @@ class Public::CustomersController < ApplicationController
     @task = Task.new
     # 詳細を表示しているユーザーの投稿全てを取得
     @tasks = @customer.tasks.page(params[:page])
-    @customer_tasks = @customer.tasks
-    # @tag_list = Tag.all
-    # @tag_list = @customer.tasks.pluck
+
+    ## 会員のタグ一覧取得
+    # 会員のタスクのidをpluck(配列)で取得
+    customer_tasks_id = @customer.tasks.pluck(:id)
+    # 中間テーブルのタスクIDと取得したタスクIDが同じ同じものを取り出し、取り出したもののタグIDを配列化
+    # 取得したタスクIDに紐付くタグIDを配列で取り出す => 重複するタグがある場合はuniqで絞り込む
+    task_tags = TaskTag.where(task_id: customer_tasks_id).pluck(:tag_id).uniq
+    # 中間テーブルから取り出してきたタグIDでモデルから参照してタグを持ってきている
+    @customer_tag_list = Tag.where(id: task_tags)
   end
 
   def edit

@@ -14,30 +14,35 @@
  *= require_self
  */
 
- .notReady {
-  color: #C0C0C0;
- }
+.notReady {
+ color: #C0C0C0;
+}
 
- .Ready {
-  color: #DC143C;
- }
+.Ready {
+ color: #DC143C;
+}
 
- .Doing {
-  color: #1E90FF;
- }
+.Doing {
+ color: #1E90FF;
+}
 
- .Done {
-  color: #00CC66;
- }
+.Done {
+ color: #00CC66;
+}
 
- .footer-mb {
-  margin-bottom: 250px;
- }
+.footer-mb {
+ margin-bottom: 250px;
+}
 
- body {
-  font-family: cursive;
-  word-break: break-all;
- }
+body {
+ font-family: cursive;
+ word-break: break-all;
+}
+
+.top {
+ background-color: #ead9ff;
+ border-radius: 20px;
+}
 
 .field_with_errors {
   display: contents;

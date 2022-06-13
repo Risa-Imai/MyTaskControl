@@ -1,11 +1,11 @@
-<footer class="pt-5 pb-4 fixed-bottom", style="background-color: #9966FF">
+<footer class="fixed-bottom", style="background-color: #9966FF">
   <div class="container">
+    <div class="text-center">
+      <h5 class="text-light">©CopyRight</h5>
+    </div>
     <div class="row">
-      <div class="mx-auto">
-      <p class="text-light">©CopyRight</p>
-      <p><%= link_to "管理者ログイン", new_admin_session_path, class: "text-light" %></p>
-      <p><%= link_to "管理者ログアウト", destroy_admin_session_path, method: :delete, class: "text-light" %></p>
-      </div>
+      <%= link_to "管理者ログイン", new_admin_session_path, class: "text-light offset-4 col-2" %>
+      <%= link_to "管理者ログアウト", destroy_admin_session_path, method: :delete, class: "text-light col-2" %>
     </div>
   </div>
 </footer>

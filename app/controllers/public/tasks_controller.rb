@@ -7,7 +7,7 @@ class Public::TasksController < ApplicationController
     @task.customer_id = current_customer.id
     # 送られたタグ情報をsplit(",")でカンマ区切り(配列化)
     # deleteでタグの前後にある半角スペースと全角スペースを削除
-    tag_list = params[:task][:tag_name].delete(" ").delete("　").split(",") #.split(nil)
+    tag_list = params[:task][:tag_name].delete(" ").delete("　").split(",").uniq #.split(nil)
     if @task.save
       # save_tasksはモデルで記述
       @task.save_tasks(tag_list)
@@ -24,7 +24,7 @@ class Public::TasksController < ApplicationController
   def index
     @customer = current_customer
     @tasks = Task.page(params[:page])
-    # @tasks = Task.all
+    # viewで使用する
     @tag_list = Tag.all
   end
 
@@ -46,7 +46,7 @@ class Public::TasksController < ApplicationController
     # コンソールでparamsの中身が見られるようになる
     p params
     @task = Task.find(params[:id])
-    tag_list = params[:task][:tag_name].delete(" ").delete("　").split(",")
+    tag_list = params[:task][:tag_name].delete(" ").delete("　").split(",").uniq
     if @task.update(task_params)
       @task.save_tasks(tag_list)
       redirect_to task_path(@task), notice: "タスクを更新しました"
@@ -68,14 +68,13 @@ class Public::TasksController < ApplicationController
     @tasks = @tasks.page(params[:page])
     @keyword = params[:keyword]
     @tag_list = Tag.all
-    # binding.pry
     render :index
   end
 
   def tag_search
-    @tag_list = Tag.all
     @tag = Tag.find(params[:tag_id])
     @tasks = @tag.tasks.page(params[:page])
+    @tag_list = Tag.all
     # @tasks = Task.includes(:tags).where(tags: {id: @tag}).page(params[:page])
     render :index
   end
