@@ -1,45 +1,43 @@
-<div class="container px-5 px-sm-0">
+<h3>Infomation</h3>
   <div class="row">
-    <div class="col-md-5">
-      <h3>Infomation</h3>
-      <table class="table">
-        <tr><%= image_tag @customer.get_customer_image(200,200) %></tr>
-        <tr>
-          <th>Name</th>
-          <th><%= @customer.full_name %></th>
-        </tr>
-        <tr>
-          <th>Infomation</th>
-          <th><%= @customer.introduction %></th>
-        </tr>
-      </table>
-      <% if @customer == current_customer %>
-        <% if @customer.email != "guest@example.com" %>
-          <div class="row">
-            <%= link_to edit_customer_path(id: @customer), class: "btn btn-outline-secondary btn-block col-5" do %>
-              <i class="fas fa-user-cog"></i>
-            <% end %>
-          </div>
+    <div class="col-lg-6">
+      <div>
+        <%= image_tag @customer.get_customer_image(150, 150) %>
+      </div>
+      <div>
+        <h4>Name</h4>
+        <h5><%= @customer.full_name %></h5>
+      </div>
+      <div class="introduction">
+        <h4>Introduction</h4>
+        <span><%= @customer.introduction %></span>
+      </div>
+      <span>
+        <% if @customer == current_customer %>
+          <% if @customer.email != "guest@example.com" %>
+            <%= link_to "Edit", edit_customer_path(id: @customer), class: "btn btn-secondary" %>
+          <% end %>
         <% end %>
-      <% end %>
-      <p><%= link_to "いいね一覧", customer_favorites_path(customer_id: @customer), class: "btn btn-outline-success mt-3" %></p>
+        <%= link_to "いいね一覧", customer_favorites_path(customer_id: @customer), class: "btn btn-success" %>
+      </span>
     </div>
-    <div class="col-md-6">
+    <div class="offset-lg-1 col-lg-5">
       <h3>New task</h3>
       <%= form_with model: @task do |f| %>
         <div class="form-group">
-          <%= f.text_field :title, class: "form-control col-5" %>
+          <%= f.text_field :title, class: "form-control" %>
         </div>
         <div class="form-group">
           <%= f.label "Create tag" %><br>
           <%= f.label "例)Zoo,calligraphy,study" %>
-          <%= f.text_field :tag_name, class: "form-control col-5" %>
+          <%= f.text_field :tag_name, class: "form-control" %>
         </div>
         <div class="form-group">
-          <%= f.select :progress_status, Task.progress_statuses_i18n.invert, {prompt: false}, class: "form-control col-5" %>
-          <%= f.submit "投稿", class: "btn btn-outline-primary col-3 offset-1 mt-3" %>
+          <%= f.select :progress_status, Task.progress_statuses_i18n.invert, {prompt: false}, class: "form-control" %>
+          <%= f.submit "投稿", class: "btn btn-primary mt-3" %>
         </div>
       <% end %>
+    </div>
       <h3>Tasks</h3>
         <% if @customer_tag_list.present? %>
           <% @customer_tag_list.each do |tag| %>
@@ -92,6 +90,5 @@
         </tbody>
       </table>
     </div>
-  </div>
-</div>
+
 <%= paginate @tasks %>

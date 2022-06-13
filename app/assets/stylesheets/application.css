@@ -44,6 +44,12 @@ body {
  border-radius: 20px;
 }
 
+.introduction {
+ width: 400px;
+  height: auto;
+  padding: 0;
+ }
+
 .field_with_errors {
   display: contents;
 }
