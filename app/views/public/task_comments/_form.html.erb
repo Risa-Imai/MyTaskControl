@@ -1,0 +1,6 @@
+<%= form_with model: [task, task_comment], local: false do |f| %>
+  <div class="form-group row">
+    <%= f.text_area :comment, rows: "5", placeholder: "コメント", class: "justify-content-center form-control col-md-8" %>
+  </div>
+    <%= f.submit "送信", class: "btn btn-outline-success col-md-2 text-center" %>
+<% end %>

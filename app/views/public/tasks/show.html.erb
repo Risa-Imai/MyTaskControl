@@ -16,29 +16,19 @@
           <td id="favorite_btn_<%= @task.id %>">
             <%= render "public/favorites/favorite", task: @task %>
           </td>
+          <td id="comments_count">
+            <%= render "public/task_comments/count", task: @task %>
+          </td>
         </tr>
       </table>
     </div>
   </div>
-  <div class="row">
-    <% @task.task_comments.each do |task_comment| %>
-    <div class="col-md-2">
-      <% image_tag task_comment.customer.get_customer_image(100,100) %>
-      <%= task_comment.customer.full_name %>
-      <%= task_comment.created_at.to_s(:datetime_jp) %>
-    </div>
-    <div class="col-md-8">
-      <%= task_comment.comment %>
-    </div>
-    <div class="col-md-2">
-      <%= link_to "削除", task_task_comment_path(task_comment.task, task_comment), method: :delete, class: "btn btn-sm btn-outline-danger" %>
-    </div>
-    <% end %>
+  <div>
+    <%= render "public/task_comments/form", task: @task, task_comment: @task_comment %>
   </div>
-  <%= form_with model: [@task, @task_comment] do |f| %>
-    <div class="form-group row">
-      <%= f.text_area :comment, rows: "5", placeholder: "コメント", class: "justify-content-center form-control col-md-8" %>
-    </div>
-      <%= f.submit "送信", class: "btn btn-outline-success col-md-2 text-center" %>
-  <% end %>
+
+  <div id="comments_area">
+    <%= render "public/task_comments/index", task: @task %>
+  </div>
+
 </div>

@@ -2,22 +2,26 @@ class Public::TaskCommentsController < ApplicationController
   before_action :authenticate_customer!
 
   def create
+    @task = Task.find(params[:task_id])
+    @task_comment = TaskComment.new
     task = Task.find(params[:task_id])
     comment = TaskComment.new(task_comment_params)
     comment.customer_id = current_customer.id
     # comment = current_customer.task_comments.new(task_comment_params)
     comment.task_id = task.id
     if comment.save
-      redirect_to request.referer, notice: "コメントしました"
+      # redirect_to request.referer, notice: "コメントしました"
     else
       redirect_to request.referer, alert: "2~140文字で入力してください"
     end
   end
 
   def destroy
+    @task = Task.find(params[:task_id])
+    @task_comment = TaskComment.new
     task_comment = TaskComment.find_by(id: params[:id], task_id: params[:task_id])
     task_comment.destroy
-    redirect_to request.referer
+    # redirect_to request.referer
   end
 
   private

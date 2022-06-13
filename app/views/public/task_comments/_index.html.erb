@@ -1,0 +1,13 @@
+<% task.task_comments.each do |task_comment| %>
+  <div class="col-md-2">
+    <% image_tag task_comment.customer.get_customer_image(100,100) %>
+    <%= task_comment.customer.full_name %>
+    <%= task_comment.created_at.to_s(:datetime_jp) %>
+  </div>
+  <div class="col-md-8">
+    <%= task_comment.comment %>
+  </div>
+  <div class="col-md-2">
+    <%= link_to "削除", task_task_comment_path(task_comment.task, task_comment), method: :delete, class: "btn btn-sm btn-outline-danger" %>
+  </div>
+<% end %>
