@@ -1,94 +1,96 @@
-<h3>Infomation</h3>
-  <div class="row">
-    <div class="col-lg-6">
-      <div>
-        <%= image_tag @customer.get_customer_image(150, 150) %>
-      </div>
-      <div>
-        <h4>Name</h4>
-        <h5><%= @customer.full_name %></h5>
-      </div>
-      <div class="introduction">
-        <h4>Introduction</h4>
-        <span><%= @customer.introduction %></span>
-      </div>
-      <span>
+<h2>Infomation</h2>
+<div class="row">
+  <div class="info col-lg-6">
+    <div class="mt-3">
+      <%= image_tag @customer.get_customer_image(150, 150) %>
+    </div>
+    <div>
+      <h5>Name</h5>
+      <h4><strong><%= @customer.full_name %></strong></h4>
+    </div>
+    <div class="introduction">
+      <h5>Introduction</h5>
+      <p><%= @customer.introduction %></p>
+    </div>
+    <div class="my-3 text-right">
+      <p>
         <% if @customer == current_customer %>
           <% if @customer.email != "guest@example.com" %>
             <%= link_to "Edit", edit_customer_path(id: @customer), class: "btn btn-secondary" %>
           <% end %>
         <% end %>
-        <%= link_to "いいね一覧", customer_favorites_path(customer_id: @customer), class: "btn btn-success" %>
-      </span>
+        <%= link_to "Favorite Tasks", customer_favorites_path(customer_id: @customer), class: "btn btn-success" %>
+      </p>
     </div>
-    <div class="offset-lg-1 col-lg-5">
-      <h3>New task</h3>
-      <%= form_with model: @task do |f| %>
-        <div class="form-group">
-          <%= f.text_field :title, class: "form-control" %>
-        </div>
-        <div class="form-group">
-          <%= f.label "Create tag" %><br>
-          <%= f.label "例)Zoo,calligraphy,study" %>
-          <%= f.text_field :tag_name, class: "form-control" %>
-        </div>
-        <div class="form-group">
-          <%= f.select :progress_status, Task.progress_statuses_i18n.invert, {prompt: false}, class: "form-control" %>
-          <%= f.submit "投稿", class: "btn btn-primary mt-3" %>
-        </div>
+  </div>
+  <div class="new-task offset-lg-1 col-lg-5 pt-3">
+    <h3>New task</h3>
+    <%= form_with model: @task do |f| %>
+      <div class="form-group">
+        <%= f.text_field :title, class: "form-control" %>
+      </div>
+      <div class="form-group">
+        <h3>Create tag</h3>
+        <h4>例)Zoo,calligraphy,study</h4>
+        <%= f.text_field :tag_name, class: "form-control" %>
+      </div>
+      <div class="form-group text-right">
+        <%= f.select :progress_status, Task.progress_statuses_i18n.invert, {prompt: false}, class: "form-control" %>
+        <p><%= f.submit "Create", class: "btn btn-primary col-4 mt-3" %></p>
+      </div>
+    <% end %>
+  </div>
+</div>
+<div>
+<h2 class="text-center mt-3">Tasks</h2>
+<div class="my-3">
+    <% if @customer_tag_list.present? %>
+      <% @customer_tag_list.each do |tag| %>
+        <%= tag.name %>
+        (<%= tag.tasks.where(customer_id: @customer.id).count %>)
       <% end %>
-    </div>
-      <h3>Tasks</h3>
-        <% if @customer_tag_list.present? %>
-          <% @customer_tag_list.each do |tag| %>
-            <%= tag.name %>
-            (<%= tag.tasks.where(customer_id: @customer.id).count %>)
+    <% else %>
+    <% end %>
+  </div>
+  <div class="d-flex flex-wrap">
+    <% @tasks.each do |task| %>
+    <div class="card col-md-3" style="width: 16rem">
+      <div class="card-body">
+        <strong class="card-title"><%= link_to task.title, task_path(task.id) %></strong>
+        <div class=<%= task.progress_status %>>
+          <%= task.progress_status_i18n %>
+        </div>
+        <div>
+          <%= task.created_at.to_s(:datetime_jp) %>
+        </div>
+        <div>
+          <span><%= pluralize(task.task_comments.count, "comment") %></span>
+        </div>
+        <div>
+          <% if task.favorited_by?(current_customer) %>
+            <p>
+              <%= link_to task_favorites_path(task), method: :delete do %>
+                <i class="fas fa-heart" style="color: #FF367F"></i> <%= task.favorites.count %>
+              <% end %>
+            </p>
+          <% else %>
+            <p>
+              <%= link_to task_favorites_path(task), method: :post do %>
+                <i class="far fa-heart" style="color: #FF367F"></i> <%= task.favorites.count %>
+              <% end %>
+            </p>
           <% end %>
-        <% else %>
-        <% end %>
-      <table class="table table-hover table-inverse">
-        <thead>
-          <tr>
-            <th>Task</th>
-            <th>進捗</th>
-            <th>登録日</th>
-            <th>コメント数</th>
-            <th></th>
-            <th>Tag</th>
-          </tr>
-        </thead>
-        <tbody>
-          <% @tasks.each do |task| %>
-            <tr>
-              <td><strong><%= link_to task.title, task_path(task.id) %></strong></td>
-              <td class=<%= task.progress_status %>><%= task.progress_status_i18n %></td>
-              <td><%= task.created_at.to_s(:datetime_jp) %></td>
-              <td><%= task.task_comments.count %></td>
-              <td>
-                <% if task.favorited_by?(current_customer) %>
-                  <p>
-                    <%= link_to task_favorites_path(task), method: :delete do %>
-                      <i class="fas fa-heart" style="color: #FF367F"></i> <%= task.favorites.count %>
-                    <% end %>
-                  </p>
-                <% else %>
-                  <p>
-                    <%= link_to task_favorites_path(task), method: :post do %>
-                      <i class="far fa-heart" style="color: #FF367F"></i> <%= task.favorites.count %>
-                    <% end %>
-                  </p>
-                <% end %>
-              </td>
-              <td>
-                <!--投稿に紐付くタグを取り出す-->
-                <% task.tags.each do |tag| %>
-                  <%= tag.name %>
-                <% end %>
-              </td>
-            </tr>
+        </div>
+        <div>
+          <!--投稿に紐付くタグを取り出す-->
+          <% task.tags.each do |tag| %>
+            <p class="badge badge-primary"><%= tag.name %></p>
           <% end %>
-        </tbody>
-      </table>
+        </div>
+      </div>
     </div>
+    <% end %>
+  </div>
+</div>
 
 <%= paginate @tasks %>

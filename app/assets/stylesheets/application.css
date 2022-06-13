@@ -46,9 +46,14 @@ body {
 
 .introduction {
  width: 400px;
-  height: auto;
-  padding: 0;
+ height: auto;
+ padding: 0;
  }
+
+.new-task,.info {
+ background-color: #fff0f5;
+ border-radius: 20px
+}
 
 .field_with_errors {
   display: contents;
