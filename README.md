@@ -40,13 +40,3 @@ https://docs.google.com/spreadsheets/d/1InfBQjmryNwUS11olB_9l6PfwO-YuYUFObsVhKvZ
 ## 使用素材
 トップページ画像
 https://o-dan.net/ja/
-
-customers/show
-<div id="favorite_btn_<%= task.id %>">
-  <%= render "public/favorites/favorite", task: task %>
-</div>
-
-tasks/index
-<div id="favorite_btn_<%= task.id %>">
-  <%= render "public/favorites/favorite", task: task %>
-</div>
