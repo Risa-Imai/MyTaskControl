@@ -1,28 +1,26 @@
 <div class="container">
   <div class="row">
-    <div class="col-sm-12 col-md-8 col-lg-5 px-5 px-sm-0 mx-auto">
     <%= render "layouts/errors", model: @customer %>
-    <h2>プロフィール編集</h2>
+  </div>
+  <h2 class="text-center">Profile Edit</h2>
+  <div class="container">
+    <div class="card card-container card-class">
     <%= form_with model: @customer, method: :patch do |f| %>
       <div class="form-group">
-        <%= f.label "姓" %>
-        <%= f.text_field :last_name, class: "form-control last_name" %>
+        <%= f.text_field :last_name, class: "form-control" %>
+        <%= f.text_field :first_name, class: "form-control" %>
       </div>
       <div class="form-group">
-        <%= f.label "名" %>
-        <%= f.text_field :first_name, class: "form-control first_name" %>
+        <%= f.label "profile image" %>
+        <%= f.file_field :customer_image, class: "form-control-image", accept: "image/*" %>
       </div>
       <div class="form-group">
-        <%= f.label "プロフィール画像" %>
-        <%= f.file_field :customer_image, class: "form-control-file user_image", accept: "image/*" %>
+        <%= f.label "introduction" %>
+        <%= f.text_area :introduction, class: "form-control" %>
       </div>
       <div class="form-group">
-        <%= f.label "自己紹介" %>
-        <%= f.text_area :introduction, class: "form-control introduction" %>
-      </div>
-      <div class="form-group">
-        <%= f.submit "変更を保存", class: "btn btn-outline-secondary" %>
-        <%= link_to "退会する", customer_unsubscribe_path(@customer), class: "btn btn-outline-danger" %>
+        <%= f.submit "変更を保存", class: "btn btn-secondary" %>
+        <%= link_to "退会する", customer_unsubscribe_path(@customer), class: "btn btn-danger" %>
       </div>
     <% end %>
   </div>

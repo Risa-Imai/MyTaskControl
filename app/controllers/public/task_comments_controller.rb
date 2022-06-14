@@ -5,6 +5,7 @@ class Public::TaskCommentsController < ApplicationController
     # 非同期する時に必要なデータ
     @task = Task.find(params[:task_id])
     @task_comment = TaskComment.new
+    @task_comments = @task.task_comments.latest
     # コメント投稿
     task = Task.find(params[:task_id])
     comment = TaskComment.new(task_comment_params)
@@ -23,6 +24,7 @@ class Public::TaskCommentsController < ApplicationController
     # 非同期する時に必要なデータ
     @task = Task.find(params[:task_id])
     @task_comment = TaskComment.new
+    @task_comments = @task.task_comments.latest
     # コメント削除
     task_comment = TaskComment.find_by(id: params[:id], task_id: params[:task_id])
     task_comment.destroy

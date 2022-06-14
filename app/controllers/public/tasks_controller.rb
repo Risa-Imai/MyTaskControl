@@ -23,7 +23,7 @@ class Public::TasksController < ApplicationController
 
   def index
     @customer = current_customer
-    @tasks = Task.page(params[:page])
+    @tasks = Task.latest.page(params[:page])
     # viewで使用する
     @tag_list = Tag.all
   end
@@ -32,6 +32,7 @@ class Public::TasksController < ApplicationController
     @task = Task.find(params[:id])
     # コメント非同期通信した時に必要
     @task_comment = TaskComment.new
+    @task_comments = @task.task_comments.order(created_at: "DESC")
     # ステータス毎に文字色を変更する為のクラスをあてがう
     @status = @task.progress_status
     # 日本語化の表記
@@ -66,7 +67,7 @@ class Public::TasksController < ApplicationController
   def search
     @tasks = Task.search(params[:keyword])
     # renderしているのでpageメソッドを渡している
-    @tasks = @tasks.page(params[:page])
+    @tasks = Task.latest.page(params[:page])
     @keyword = params[:keyword]
     @tag_list = Tag.all
     render :index
@@ -74,7 +75,7 @@ class Public::TasksController < ApplicationController
 
   def tag_search
     @tag = Tag.find(params[:tag_id])
-    @tasks = @tag.tasks.page(params[:page])
+    @tasks = @tag.tasks.latest.page(params[:page])
     @tag_list = Tag.all
     # @tasks = Task.includes(:tags).where(tags: {id: @tag}).page(params[:page])
     render :index

@@ -20,7 +20,7 @@ class Task < ApplicationRecord
   def self.search(keyword)
     where(["title like?", "%#{keyword}%"])
   end
-  
+
   # タグ機能について
   def save_tasks(tags)
     # createアクションで保存した@taskに紐付くタグが存在する場合
@@ -40,5 +40,7 @@ class Task < ApplicationRecord
       self.tags << task_tag
     end
   end
-  
+
+  # 並べ替え
+  scope :latest, -> { order(created_at: :desc) }
 end
