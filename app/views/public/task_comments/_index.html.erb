@@ -1,11 +1,15 @@
 <% task.task_comments.each do |task_comment| %>
-  <%= image_tag task_comment.customer.get_customer_image(100,100) %>
-  <%= task_comment.customer.full_name %>
-  <%= task_comment.created_at.to_s(:datetime_jp) %>
-  <div>
-  <%= task_comment.comment %>
-  <% if task_comment.customer == current_customer %>
-    <%= link_to "削除", task_task_comment_path(task_comment.task, task_comment), method: :delete, data: { confirm: "コメントを削除しますか？" }, remote: true, class: "btn btn-danger" %>
-  <% end %>
+  <div class="comment_index">
+    <div class="mb-3">
+      <%= image_tag task_comment.customer.get_customer_image(100,100) %>
+      <%= task_comment.customer.full_name %><br>
+      <%= task_comment.created_at.to_s(:datetime_jp) %>
+      <% if task_comment.customer == current_customer %>
+        <%= link_to "削除", task_task_comment_path(task_comment.task, task_comment), method: :delete, data: { confirm: "コメントを削除しますか？" }, remote: true, class: "btn btn-danger ml-3" %>
+      <% end %>
+    </div>
+    <div>
+      <%= task_comment.comment %>
+    </div>
   </div>
 <% end %>

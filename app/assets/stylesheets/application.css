@@ -19,8 +19,13 @@
 }
 
 .task_show {
-border: ridge;
-padding: 5px;
+ border: ridge;
+ padding: 5px;
+}
+
+.comment_index {
+ width: 100%;
+ border: ridge;
 }
 
 .status {
