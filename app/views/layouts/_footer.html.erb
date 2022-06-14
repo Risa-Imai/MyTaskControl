@@ -3,9 +3,9 @@
     <div class="text-center">
       <h5 class="text-light">©CopyRight</h5>
     </div>
-    <div class="row">
-      <%= link_to "管理者ログイン", new_admin_session_path, class: "text-light offset-4 col-2" %>
-      <%= link_to "管理者ログアウト", destroy_admin_session_path, method: :delete, class: "text-light col-2" %>
+    <div class="row text-center">
+      <span><%= link_to "Admin Log in", new_admin_session_path, class: "text-light" %></span>
+      <span><%= link_to "Admin Log out", destroy_admin_session_path, method: :delete, class: "text-light" %></span>
     </div>
   </div>
 </footer>

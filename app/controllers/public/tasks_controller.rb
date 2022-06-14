@@ -30,6 +30,7 @@ class Public::TasksController < ApplicationController
 
   def show
     @task = Task.find(params[:id])
+    # コメント非同期通信した時に必要
     @task_comment = TaskComment.new
     # ステータス毎に文字色を変更する為のクラスをあてがう
     @status = @task.progress_status
