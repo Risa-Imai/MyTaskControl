@@ -10,64 +10,64 @@
         <% if customer_signed_in? %>
           <li>
             <%= link_to customer_path(current_customer.id), class: "nav-link text-light" do %>
-              <button type="button" class="btn btn-outline-light">My page</button>
+              <button type="button" class="btn btn-outline-light"><i class="fas fa-user-circle"></i>My page</button>
             <% end %>
           </li>
           <li>
             <%= link_to customer_path(current_customer.id), class: "nav-link text-light" do %>
-              <button type="button" class="btn btn-outline-light">New task</button>
+              <button type="button" class="btn btn-outline-light"><i class="fas fa-plus-circle"></i>New task</button>
             <% end %>
           </li>
           <li>
             <%= link_to tasks_path, class: "nav-link text-light" do %>
-              <button type="button" class="btn btn-outline-light">Tasks</button>
+              <button type="button" class="btn btn-outline-light"><i class="fas fa-tasks"></i>Tasks</button>
             <% end %>
           </li>
           <li>
             <%= link_to customers_path, class: 'nav-link text-light' do %>
-              <button type="button" class="btn btn-outline-light">Members</button>
+              <button type="button" class="btn btn-outline-light"><i class="fas fa-users"></i>Members</button>
             <% end %>
           </li>
           <li>
             <%= link_to destroy_customer_session_path, method: :delete, class: 'nav-link text-light' do %>
-              <button type="button" class="btn btn-outline-light">Log out</button>
+              <button type="button" class="btn btn-outline-light"><i class="fas fa-sign-out-alt"></i>Log out</button>
             <% end %>
           </li>
         <% elsif admin_signed_in? %>
            <li>
             <%= link_to admin_tasks_path, class: "nav-link text-light" do %>
-              <button type="button" class="btn btn-outline-light">Tasks</button>
+              <button type="button" class="btn btn-outline-light"><i class="fas fa-tasks"></i>Tasks</button>
             <% end %>
           </li>
           <li>
             <%= link_to admin_customers_path, class: "nav-link text-light" do %>
-              <button type="button" class="btn btn-outline-light">Members</button>
+              <button type="button" class="btn btn-outline-light"><i class="fas fa-users"></i>Members</button>
             <% end %>
           </li>
           <li>
             <%= link_to destroy_customer_session_path, method: :delete, class: "nav-link text-light" do %>
-              <button type="button" class="btn btn-outline-light">Log out</button>
+              <button type="button" class="btn btn-outline-light"><i class="fas fa-sign-out-alt"></i>Log out</button>
             <% end %>
           </li>
         <% else %>
           <li>
             <%= link_to root_path, class: "nav-link text-light" do %>
-              <button type="button" class="btn btn-outline-light">Home</button>
+              <button type="button" class="btn btn-outline-light"><i class="fas fa-home"></i>Home</button>
             <% end %>
           </li>
           <li>
             <%= link_to about_path, class: "nav-link text-light" do %>
-              <button type="button" class="btn btn-outline-light">About</button>
+              <button type="button" class="btn btn-outline-light"><i class="fas fa-question-circle"></i>About</button>
             <% end %>
           </li>
           <li>
             <%= link_to new_customer_registration_path, class: "nav-link text-light" do %>
-              <button type="button" class="btn btn-outline-light">Create an account</button>
+              <button type="button" class="btn btn-outline-light"><i class="fas fa-user-plus"></i>Sign up</button>
             <% end %>
           </li>
           <li>
             <%= link_to new_customer_session_path, class: "nav-link text-light" do %>
-              <button type="button" class="btn btn-outline-light">Log in</button>
+              <button type="button" class="btn btn-outline-light"><i class="fas fa-sign-in-alt"></i>Log in</button>
             <% end %>
           </li>
         <% end %>
