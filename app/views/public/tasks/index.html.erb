@@ -20,17 +20,19 @@
 
   <div class="d-flex flex-wrap">
     <% @tasks.each do |task| %>
-    <div class="card col-md-3" style="width: 16rem">
-      <div class="card-body">
-        <%= link_to (task.customer) do %>
-        <%= image_tag task.customer.get_customer_image(50, 50), class: "card-link" %>
-        <%= task.customer.full_name %>
-        <% end %>
-        <div>
-          <strong>title:<%= link_to task.title, task_path(task.id) %></strong>
+    <div class="card border-dark mb-3 mx-auto text-center" style="width: 16rem">
+      <div class="card-body text-dark">
+        <div class="mb-3">
+          <%= link_to (task.customer) do %>
+          <%= image_tag task.customer.get_customer_image(50, 50), class: "card-link rounded-circle" %>
+          <%= task.customer.full_name %>
+          <% end %>
         </div>
         <div>
-          <span class=<%= task.progress_status %>><%= task.progress_status_i18n %></span>
+          <h5><strong><%= link_to task.title, task_path(task.id) %></strong></h5>
+        </div>
+        <div class=<%= task.progress_status %>>
+          <p><%= task.progress_status_i18n %></p>
         </div>
         <div>
           <%= task.created_at.to_s(:datetime_jp) %>

@@ -12,19 +12,21 @@
     </thead>
     <tbody>
       <% @favorite_tasks.each do |task| %>
-      <tr>
-        <td>
-          <%= link_to customer_path(task.customer_id) do %>
-            <%= image_tag task.customer.get_customer_image(100,100) %>
-          <% end %>
-        </td>
-        <td><%= task.customer.full_name %></td>
-        <td><%= link_to task.title, task_path(task.id) %></td>
-        <td class=<%= task.progress_status %>><%= task.progress_status_i18n %></td>
-        <td><%= task.created_at.to_s(:datetime_jp) %></td>
-        <td><i class="fas fa-heart" style="color: #FF367F"></i><%= task.favorites.length %></td>
-        <td><%= link_to "詳細", customer_path(@customer.id) %></td>
-      </tr>
+        <tr>
+          <td>
+            <%= link_to customer_path(task.customer_id) do %>
+              <%= image_tag task.customer.get_customer_image(100,100) %>
+            <% end %>
+          </td>
+          <td><%= task.customer.full_name %></td>
+          <td><%= link_to task.title, task_path(task.id) %></td>
+          <td class=<%= task.progress_status %>><%= task.progress_status_i18n %></td>
+          <td><%= task.created_at.to_s(:datetime_jp) %></td>
+          <td id="favorite_btn_<%= task.id %>">
+            <%= render "public/favorites/favorite", task: task %>
+          </td>
+          <td><%= link_to "詳細", customer_path(@customer.id) %></td>
+        </tr>
       <% end %>
     </tbody>
   </table>

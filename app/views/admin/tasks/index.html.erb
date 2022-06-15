@@ -12,14 +12,12 @@
     </thead>
     <tbody>
       <% @tasks.each do |task| %>
-        <tr>
+        <tr onclick="window.location.href='<%= admin_task_path(task.id) %>'" onmouseover="this.style.backgroundColor='#dcc2ff'" onmouseout="this.style.backgroundColor='#fff'">
           <td>
-            <%= link_to admin_customer_path(task.customer_id) do %>
-            <%= image_tag task.customer.get_customer_image(100, 100) %>
+            <%= image_tag task.customer.get_customer_image(100, 100) %><br>
             <%= task.customer.full_name %>
-            <% end %>
           </td>
-          <td><h5><strong><%= link_to task.title, admin_task_path(task.id) %></strong></h5></td>
+          <td><%= task.title %></td>
           <td class=<%= task.progress_status %>><%= task.progress_status_i18n %></td>
           <td><%= task.created_at.to_s(:datetime_jp) %></td>
           <td><%= task.task_comments.count %></td>
@@ -35,3 +33,4 @@
     </tbody>
   </table>
 </div>
+<%= paginate @tasks %>

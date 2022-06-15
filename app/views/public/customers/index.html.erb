@@ -9,24 +9,22 @@
   <h1 class="text-center mb-5">Members</h1>
   <div class="row">
     <table class="table">
-      <thead class="text-center">
-        <th scope="col">Name</th>
-        <th scope="col">Tasks</th>
-        <th scope="col"></th>
+      <thead>
+        <th>Name</th>
+        <th>Tasks</th>
       </thead>
       <tbody>
         <% @customers.each do |customer| %>
           <tr onclick="window.location.href='<%= customer_path(customer.id) %>'" onmouseover="this.style.backgroundColor='#dcc2ff'" onmouseout="this.style.backgroundColor='#fff'">
-            <td class="text-center customer_index">
+            <td class="customer_index">
               <%= image_tag customer.get_customer_image(100,100) %><br>
               <%= customer.full_name %>
             </td>
             <td>
               <%= link_to customer_path(customer.id) do %>
-                <p><%= customer.tasks.count %></p>
+                <%= customer.tasks.count %>
               <% end %>
             </td>
-            <td><p><%= link_to "Show", customer_path(customer.id) %></p></td>
           </tr>
         <% end %>
       </tbody>

@@ -1,29 +1,29 @@
-<div class="container px-5 px-sm-0">
+<div class="container">
+  <%= form_with url: admin_customer_search_path, method: :get do |f| %>
   <div class="form-group">
-    <%= form_with url: admin_customer_search_path, method: :get do |f| %>
-      <%= f.text_field :keyword, class: "form-control col-md-3", placeholder: "#{@keyword}" %>
-      <%= f.submit "Search", class: "btn btn-outline-dark" %>
-    <% end %>
-    <%= @keyword %> で検索中
+    <%= f.text_field :keyword, class: "form-control col-md-3", placeholder: "#{@keyword}" %>
   </div>
-  <h2 class="text-center">Members</h2>
+  <%= f.submit "Search", class: "btn btn-outline-dark" %>
+  <% end %>
+  <span><%= @keyword %> で検索中</span>
+  <h1 class="text-center mb-5">Members</h1>
   <div class="row">
-    <table class="table">
-      <thead>
-        <th></th>
-        <th>名前</th>
-        <th colspan="3"></th>
-      </thead>
-      <tbody>
-      <% @customers.each do |customer| %>
-        <tr>
-          <td><%= image_tag customer.get_customer_image(100,100) %></td>
-          <td><%= customer.full_name %></td>
-          <td><%= link_to "詳細", admin_customer_path(customer.id) %></td>
-        </tr>
-      <% end %>
-      </tbody>
-    </table>
-  </div>
+  <table class="table">
+    <thead>
+      <th></th>
+      <th>Name</th>
+      <th></th>
+    </thead>
+    <tbody>
+    <% @customers.each do |customer| %>
+      <tr onclick="window.location.href='<%= admin_customer_path(customer.id) %>'" onmouseover="this.style.backgroundColor='#dcc2ff'" onmouseout="this.style.backgroundColor='#fff'">
+        <td><%= image_tag customer.get_customer_image(100,100) %></td>
+        <td><%= customer.full_name %></td>
+        <td><%= link_to "詳細", admin_customer_path(customer.id) %></td>
+      </tr>
+    <% end %>
+    </tbody>
+  </table>
+</div>
 </div>
 <%= paginate @customers %>
