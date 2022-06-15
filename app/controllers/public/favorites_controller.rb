@@ -1,4 +1,5 @@
 class Public::FavoritesController < ApplicationController
+  before_action :authenticate_customer!
   def create
     # 非同期した時に必要なデータ
     @task = Task.find(params[:task_id])
