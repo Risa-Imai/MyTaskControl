@@ -1,4 +1,8 @@
 Rails.application.routes.draw do
+  namespace :public do
+    get 'relationships/followings'
+    get 'relationships/followers'
+  end
   # 顧客用
   # URL /customers/dign_in ...
   devise_for :customers, skip: [:passwords], controllers: {
@@ -24,12 +28,19 @@ Rails.application.routes.draw do
   scope module: :public do
   get "customer_search" => "customers#search"
     resources :customers, only: [:index, :show, :edit, :update] do
-      #退会確認画面
+      # 退会確認画面
       get "unsubscribe" => "customers#unsubscribe"
-      #退会処理 is_deleteをtrueに変更
+      # 退会処理 is_deleteをtrueに変更
       patch "withdraw" => "customers#withdraw"
-      #会員がいいねした一覧を表示
+      # 会員がいいねした一覧を表示
       get "favorites" => "customers#favorites"
+      # フォロー登録・解除
+      resource :relationships, only: [:create, :destroy]
+      # フォロー一覧ページ
+      get "followings" => "relationships#followings", as: "followings"
+      # フォロワー一覧ページ
+      get "followers" => "relationships#followers", as: "followers"
+
     end
 
   get "task_search" => "tasks#search"
