@@ -8,9 +8,9 @@
         <p><%= link_to "削除", admin_task_path(@task), method: :delete, data: { confirm: "#{@task.customer.full_name}さんのタスクを消しますか？" }, class: "btn btn-danger" %></p>
       </div>
       <div>コメント一覧</div>
-      <div class="task_show">
-        <% if @task.task_comments.present? %>
-          <% @task.task_comments.each do |task_comment| %>
+      <% if @task.task_comments.present? %>
+        <% @task.task_comments.each do |task_comment| %>
+          <div class="task_show">
             <div>
               <%= image_tag task_comment.customer.get_customer_image(100,100) %>
               <%= task_comment.customer.full_name %>
@@ -22,11 +22,11 @@
             <div>
               <%= link_to "削除", admin_task_task_comment_path(task_comment.task, task_comment), method: :delete,data: { confirm: "#{task_comment.customer.full_name}さんのコメントを消しますか？" }, class: "btn btn-sm btn-danger" %>
             </div>
-          <% end %>
-        <% else %>
-          <div class="text-center">投稿されたコメントはありません</div>
+          </div>
         <% end %>
-      </div>
+      <% else %>
+        <div class="text-center task_show">投稿されたコメントはありません</div>
+      <% end %>
     </div>
   </div>
 </div>
