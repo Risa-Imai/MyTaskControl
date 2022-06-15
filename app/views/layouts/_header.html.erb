@@ -24,12 +24,12 @@
             <% end %>
           </li>
           <li>
-            <%= link_to customers_path, class: 'nav-link text-light' do %>
+            <%= link_to customers_path, class: "nav-link text-light" do %>
               <button type="button" class="btn btn-outline-light"><i class="fas fa-users"></i>Members</button>
             <% end %>
           </li>
           <li>
-            <%= link_to destroy_customer_session_path, method: :delete, class: 'nav-link text-light' do %>
+            <%= link_to destroy_customer_session_path, method: :delete, class: "nav-link text-light" do %>
               <button type="button" class="btn btn-outline-light"><i class="fas fa-sign-out-alt"></i>Log out</button>
             <% end %>
           </li>
@@ -45,7 +45,7 @@
             <% end %>
           </li>
           <li>
-            <%= link_to destroy_customer_session_path, method: :delete, class: "nav-link text-light" do %>
+            <%= link_to destroy_admin_session_path, method: :delete, class: "nav-link text-light" do %>
               <button type="button" class="btn btn-outline-light"><i class="fas fa-sign-out-alt"></i>Log out</button>
             <% end %>
           </li>
