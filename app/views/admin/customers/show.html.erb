@@ -1,22 +1,33 @@
-<div class="container px-5 px-sm-0">
+<div class="container">
   <div class="row">
-    <div class="mx-auto col-md-5 mb-3">
-      <table class="table">
-        <tr>
-          <%= image_tag @customer.get_customer_image(200,200) %>
-        </tr>
-        <tr>
-          <th>名前</th>
-          <th><%= @customer.full_name %></th>
-        </tr>
-        <tr>
-          <th>自己紹介</th>
-          <th><%= @customer.introduction %></th>
-        </tr>
-      </table>
-      <%= link_to edit_admin_customer_path(@customer), class: "btn btn-outline-secondary btn-block" do %>
-        <i class="fas fa-user-cog"></i>
+    <div class="mx-auto mb-3">
+      <%= image_tag @customer.get_customer_image(200,200) %>
+    </div>
+  </div>
+  <div class="p-3" style="background-color: #eee">
+    <div class="border">
+      <h4>会員ID:<%= @customer.id %></h4>
+    </div>
+    <div class="border">
+      <% if @customer.is_delete == false %>
+        <h4><strong class="text-success">有効</strong></h4>
+      <% else %>
+        <h4><strong class="text-danger">退会済み</strong></h4>
       <% end %>
+    </div>
+    <div class="border">
+      <h4>名前:<%= @customer.full_name %></h4>
+    </div>
+    <div class="border">
+      <h4>メールアドレス:<%= @customer.email %></h4>
+    </div>
+    <div class="border">
+      <h4>自己紹介:</h4>
+      <p><%= @customer.introduction %></p>
+    </div>
+    <div class="border text-center">
+      <%= link_to "編集", edit_admin_customer_path(@customer), class: "btn btn-secondary m-2" %>
+      <%= link_to "戻る", admin_customers_path, class: "btn btn-primary m-2" %>
     </div>
   </div>
 </div>
