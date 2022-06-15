@@ -9,13 +9,13 @@
   <h1 class="text-center mb-5">Members</h1>
   <div class="row">
     <table class="table">
-      <thead>
+      <thead class="table-center">
         <th>Name</th>
         <th>Tasks</th>
       </thead>
       <tbody>
         <% @customers.each do |customer| %>
-          <tr onclick="window.location.href='<%= customer_path(customer.id) %>'" onmouseover="this.style.backgroundColor='#dcc2ff'" onmouseout="this.style.backgroundColor='#fff'">
+          <tr class="table-center" onclick="window.location.href='<%= customer_path(customer.id) %>'" onmouseover="this.style.backgroundColor='#dcc2ff'" onmouseout="this.style.backgroundColor='#fff'">
             <td class="customer_index">
               <%= image_tag customer.get_customer_image(100,100) %><br>
               <%= customer.full_name %>

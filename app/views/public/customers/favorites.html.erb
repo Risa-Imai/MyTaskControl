@@ -2,30 +2,29 @@
   <h1 class="text-center">Favorite Tasks</h1>
   <table class="table table-hover table-inverse">
     <thead>
-      <tr>
-        <th></th>
-        <th>Name</th>
+      <tr class="table-center">
+        <th>投稿者</th>
         <th>Task</th>
         <th>進捗</th>
-        <th colspan="3"></th>
+        <th>登録日</th>
+        <th></th>
       </tr>
     </thead>
     <tbody>
       <% @favorite_tasks.each do |task| %>
-        <tr>
+        <tr class="table-center">
           <td>
             <%= link_to customer_path(task.customer_id) do %>
-              <%= image_tag task.customer.get_customer_image(100,100) %>
+              <%= image_tag task.customer.get_customer_image(100, 100) %><br>
+              <%= task.customer.full_name %></td>
             <% end %>
           </td>
-          <td><%= task.customer.full_name %></td>
           <td><%= link_to task.title, task_path(task.id) %></td>
           <td class=<%= task.progress_status %>><%= task.progress_status_i18n %></td>
           <td><%= task.created_at.to_s(:datetime_jp) %></td>
           <td id="favorite_btn_<%= task.id %>">
             <%= render "public/favorites/favorite", task: task %>
           </td>
-          <td><%= link_to "詳細", customer_path(@customer.id) %></td>
         </tr>
       <% end %>
     </tbody>

@@ -8,22 +8,20 @@
   <span><%= @keyword %> で検索中</span>
   <h1 class="text-center mb-5">Members</h1>
   <div class="row">
-  <table class="table">
-    <thead>
-      <th></th>
-      <th>Name</th>
-      <th></th>
-    </thead>
-    <tbody>
-    <% @customers.each do |customer| %>
-      <tr onclick="window.location.href='<%= admin_customer_path(customer.id) %>'" onmouseover="this.style.backgroundColor='#dcc2ff'" onmouseout="this.style.backgroundColor='#fff'">
-        <td><%= image_tag customer.get_customer_image(100,100) %></td>
-        <td><%= customer.full_name %></td>
-        <td><%= link_to "詳細", admin_customer_path(customer.id) %></td>
-      </tr>
-    <% end %>
-    </tbody>
-  </table>
-</div>
+    <table class="table">
+      <thead class="table-center">
+        <th></th>
+        <th>Name</th>
+      </thead>
+      <tbody>
+      <% @customers.each do |customer| %>
+        <tr class="table-center" onclick="window.location.href='<%= admin_customer_path(customer.id) %>'" onmouseover="this.style.backgroundColor='#dcc2ff'" onmouseout="this.style.backgroundColor='#fff'">
+          <td><%= image_tag customer.get_customer_image(100,100) %></td>
+          <td><%= customer.full_name %></td>
+        </tr>
+      <% end %>
+      </tbody>
+    </table>
+  </div>
 </div>
 <%= paginate @customers %>
