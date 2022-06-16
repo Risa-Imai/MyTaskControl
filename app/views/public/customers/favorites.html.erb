@@ -1,33 +1,39 @@
-<div class="container px-5 px-sm-0">
-  <h1 class="text-center">Favorite Tasks</h1>
-  <table class="table table-hover table-inverse">
-    <thead>
-      <tr class="table-center">
-        <th>投稿者</th>
-        <th>Task</th>
-        <th>進捗</th>
-        <th>登録日</th>
-        <th></th>
-      </tr>
-    </thead>
-    <tbody>
-      <% @favorite_tasks.each do |task| %>
-        <tr class="table-center">
-          <td>
-            <%= link_to customer_path(task.customer_id) do %>
-              <%= image_tag task.customer.get_customer_image(100, 100) %><br>
-              <%= task.customer.full_name %></td>
+<div class="container">
+  <div class="row">
+    <h1 class="col-12 text-center">Favorite Tasks</h1>
+  </div>
+  <div class="d-flex flex-wrap">
+    <% @favorite_tasks.each do |task| %>
+      <div class="card border-dark mb-3 mx-auto text-center" style="width: 16rem">
+        <div class="card-body text-dark">
+          <div class="mb-3">
+            <%= link_to customer_path(task.customer_id),class: "text-dark" do %>
+              <%= image_tag task.customer.get_customer_image(100, 100), class: "card-link rounded-circle" %><br>
+              <%= task.customer.full_name %>
             <% end %>
-          </td>
-          <td class="pt-4"><%= link_to task.title, task_path(task.id) %></td>
-          <td class="<%= task.progress_status %> pt-4"><%= task.progress_status_i18n %></td>
-          <td class="pt-4"><%= task.created_at.to_s(:datetime_jp) %></td>
-          <td id="favorite_btn_<%= task.id %>", class="pt-4">
+          </div>
+        <%= link_to task_path(task.id), class: "text-dark" do %>
+          <div>
+            <h5><strong><%= task.title %></strong></h5>
+          </div>
+          <div>
+            <% task.tags.each do |tag| %>
+              <p class="badge badge-primary"><i class="fas fa-tags"></i><%= tag.name %></p>
+            <% end %>
+          </div>
+          <div class=<%= task.progress_status %>>
+            <%= task.progress_status_i18n %>
+          </div>
+          <div>
+            <%= task.created_at.to_s(:datetime_jp) %>
+          </div>
+          <div id="favorite_btn_<%= task.id %>">
             <%= render "public/favorites/favorite", task: task %>
-          </td>
-        </tr>
-      <% end %>
-    </tbody>
-  </table>
+          </div>
+        <% end %>
+        </div>
+      </div>
+    <% end %>
+  </div>
 </div>
 <%= paginate @favorites %>

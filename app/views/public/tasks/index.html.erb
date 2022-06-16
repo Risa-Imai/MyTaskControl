@@ -24,7 +24,7 @@
         <div class="card-body text-dark">
           <div class="mb-3">
             <%= link_to customer_path(task.customer.id), class: "text-dark" do %>
-              <%= image_tag task.customer.get_customer_image(50, 50), class: "card-link rounded-circle" %>
+              <%= image_tag task.customer.get_customer_image(100, 100), class: "card-link rounded-circle" %><br>
               <%= task.customer.full_name %>
             <% end %>
           </div>
@@ -32,29 +32,22 @@
           <div>
             <h5><strong><%= task.title %></strong></h5>
           </div>
+          <!--投稿に紐付くタグを取り出す-->
+          <% task.tags.each do |tag| %>
+            <p class="badge badge-primary"><i class="fas fa-tags"></i><%= tag.name %></p>
+          <% end %>
           <div class=<%= task.progress_status %>>
-            <p><%= task.progress_status_i18n %></p>
+            <%= task.progress_status_i18n %>
           </div>
           <div>
             <%= task.created_at.to_s(:datetime_jp) %>
           </div>
-          <div>
-            <span><%= pluralize(task.task_comments.count, "comment") %></span>
+          <div id="favorite_btn_<%= task.id %>">
+            <%= render "public/favorites/favorite", task: task %>
           </div>
-          <div>
-            <div id="favorite_btn_<%= task.id %>">
-              <%= render "public/favorites/favorite", task: task %>
-            </div>
-            <div>
-              <!--投稿に紐付くタグを取り出す-->
-              <% task.tags.each do |tag| %>
-                <p class="badge badge-primary"><i class="fas fa-tags"></i><%= tag.name %></p>
-              <% end %>
-            </div>
-          </div>
+        <% end %>
         </div>
       </div>
-      <% end %>
     <% end %>
   </div>
 </div>

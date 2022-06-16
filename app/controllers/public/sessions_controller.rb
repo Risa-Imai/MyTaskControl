@@ -36,7 +36,9 @@ class Public::SessionsController < Devise::SessionsController
     return if !@customer
     ## 処理2 取得したアカウントのパスワードと入力されたパスワードが一致しているかを判断
     if @customer.valid_password?(params[:customer][:password]) && (@customer.is_delete == true)
-      redirect_to new_customer_registration_path
+      redirect_to new_customer_registration_path, notice: "退会済みです"
+    else
+      flash.now[:notice] = "emailとpasswordを入力してください"
     end
   end
 
