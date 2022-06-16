@@ -15,21 +15,21 @@
       <div class="row">
         <% if @following_customers.exists? %>
           <% @following_customers.each do |customer| %>
-            <div class="col-3 text-center p-2">
-              <%= image_tag customer.get_customer_image(150, 150) %><br>
-              <%= customer.full_name %>
+            <div class="col-md-3 text-center p-2">
+              <%= link_to customer_path(customer.id), class: "text-dark" do %>
+                <%= image_tag customer.get_customer_image(150, 150) %><br>
+                <%= customer.full_name %>
+              <% end %>
             </div>
-            <div class="col-6 text-center">
+            <div class="col-md-6 text-center pt-5">
               <%= truncate(customer.introduction, length:20) %>
             </div>
-            <div class="col-3 text-center pt-5">
-              <% unless current_customer.email == "guest@example.com" %>
-                <% if current_customer.id == @customer.id %>
-                  <% if current_customer.following?(customer) %>
-                    <%= link_to "フォローをやめる", customer_relationships_path(customer.id), method: :delete, class: "btn btn-success" %>
-                  <% else %>
-                    <%= link_to "フォローする", customer_relationships_path(customer.id), method: :post, class: "btn btn-success" %>
-                  <% end %>
+            <div class="col-md-3 text-center pt-5">
+              <% if current_customer.id == @customer.id %>
+                <% if current_customer.following?(customer) %>
+                  <%= link_to "フォローをやめる", customer_relationships_path(customer.id), method: :delete, class: "btn btn-success" %>
+                <% else %>
+                  <%= link_to "フォローする", customer_relationships_path(customer.id), method: :post, class: "btn btn-success" %>
                 <% end %>
               <% end %>
             </div>
@@ -47,21 +47,21 @@
       <div class="row">
         <% if @follower_customers.exists? %>
           <% @follower_customers.each do |customer| %>
-            <div class="col-3 text-center p-2">
-              <%= image_tag customer.get_customer_image(150, 150) %><br>
-              <%= customer.full_name %>
+            <div class="col-md-3 text-center p-2">
+              <%= link_to customer_path(customer.id), class: "text-dark" do %>
+                <%= image_tag customer.get_customer_image(150, 150) %><br>
+                <%= customer.full_name %>
+              <% end %>
             </div>
-            <div class="col-6 text-center">
+            <div class="col-md-6 text-center pt-5">
               <%= truncate(customer.introduction, length:20) %>
             </div>
-            <div class="col-3 text-center pt-5">
-              <% unless current_customer.email == "guest@example.com" %>
-                <% if current_customer.id == @customer.id %>
-                  <% if current_customer.following?(customer) %>
-                    <%= link_to "フォローをやめる", customer_relationships_path(customer.id), method: :delete, class: "btn btn-success" %>
-                  <% else %>
-                    <%= link_to "フォローする", customer_relationships_path(customer.id), method: :post, class: "btn btn-success" %>
-                  <% end %>
+            <div class="col-md-3 text-center pt-5">
+              <% if current_customer.id == @customer.id %>
+                <% if current_customer.following?(customer) %>
+                  <%= link_to "フォローをやめる", customer_relationships_path(customer.id), method: :delete, class: "btn btn-success" %>
+                <% else %>
+                  <%= link_to "フォローする", customer_relationships_path(customer.id), method: :post, class: "btn btn-success" %>
                 <% end %>
               <% end %>
             </div>
