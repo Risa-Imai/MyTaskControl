@@ -13,6 +13,11 @@
  *= require_tree .
  *= require_self
  */
+ 
+a {
+ text-decoration:none !important;
+}
+
 .table-center {
  text-align: center;
 }

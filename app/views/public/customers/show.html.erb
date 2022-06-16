@@ -21,6 +21,14 @@
         <% end %>
         <%= link_to "Favorite Tasks", customer_favorites_path(customer_id: @customer), class: "btn btn-success" %>
       </p>
+      <p>
+        <%= link_to customer_followings_path(customer_id: @customer), class: "mr-2" do %>
+          フォロー数:<%= @customer.followings.count %>
+        <% end %>
+        <%= link_to customer_followers_path(customer_id: @customer) do %>
+          フォロワー数:<%= @customer.followers.count %>
+        <% end %>
+      </p>
     </div>
   </div>
   <div class="new-task offset-lg-1 col-lg-5 pt-3">
@@ -36,7 +44,7 @@
       </div>
       <div class="form-group text-right">
         <%= f.select :progress_status, Task.progress_statuses_i18n.invert, {prompt: false}, class: "form-control" %>
-        <p><%= f.submit "Create", class: "btn btn-primary col-4 mt-3" %></p>
+        <p><%= f.submit "Create", class: "btn btn-primary col-4 my-3" %></p>
       </div>
     <% end %>
   </div>

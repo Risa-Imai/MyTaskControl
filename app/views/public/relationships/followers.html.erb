@@ -1,2 +1,21 @@
-<h1>Public::Relationships#followers</h1>
-<p>Find me in app/views/public/relationships/followers.html.erb</p>
+<div class="container">
+  <h3 class="text-center">フォロワー一覧</h3>
+  <div class="row">
+    <% if @customers.exists? %>
+      <% @customers.each do |customer| %>
+        <div class="col-4 text-center p-2">
+          <%= image_tag customer.get_customer_image(150, 150) %><br>
+          <%= customer.full_name %>
+        </div>
+        <div class="col-4 text-center pt-5">
+          フォロー数: <%= customer.followings.count %>
+        </div>
+        <div class="col-4 text-center pt-5">
+          フォロワー数: <%= customer.followers.count %>
+        </div>
+      <% end %>
+    <% else %>
+      <p class="text-center">ユーザーはいません</p>
+    <% end %>
+  </div>
+</div>
