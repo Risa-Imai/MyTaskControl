@@ -17,7 +17,9 @@
           <%= render "public/favorites/favorite", task: @task %>
         </div>
       </div>
-      <div class="text-right">登録日：<%= @task.created_at.to_s(:datetime_jp) %>
+      <div class="text-right">
+        登録日：<%= @task.created_at.to_s(:datetime_jp) %><br>
+        投稿者：<%= @task.customer.full_name %>
         <div id="comments_count">
           <%= render "public/task_comments/count", task: @task %>
         </div>

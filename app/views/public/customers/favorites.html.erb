@@ -19,10 +19,10 @@
               <%= task.customer.full_name %></td>
             <% end %>
           </td>
-          <td><%= link_to task.title, task_path(task.id) %></td>
-          <td class=<%= task.progress_status %>><%= task.progress_status_i18n %></td>
-          <td><%= task.created_at.to_s(:datetime_jp) %></td>
-          <td id="favorite_btn_<%= task.id %>">
+          <td class="pt-4"><%= link_to task.title, task_path(task.id) %></td>
+          <td class="<%= task.progress_status %> pt-4"><%= task.progress_status_i18n %></td>
+          <td class="pt-4"><%= task.created_at.to_s(:datetime_jp) %></td>
+          <td id="favorite_btn_<%= task.id %>", class="pt-4">
             <%= render "public/favorites/favorite", task: task %>
           </td>
         </tr>

@@ -22,11 +22,11 @@
         <%= link_to "Favorite Tasks", customer_favorites_path(customer_id: @customer), class: "btn btn-success" %>
       </p>
       <p>
-        <%= link_to customer_followings_path(customer_id: @customer), class: "mr-2" do %>
-          フォロー数:<%= @customer.followings.count %>
+        <%= link_to customer_followings_path(customer_id: @customer), class: "btn btn-info text-light mr-2" do %>
+          フォロー数：<%= @customer.followings.count %>
         <% end %>
-        <%= link_to customer_followers_path(customer_id: @customer) do %>
-          フォロワー数:<%= @customer.followers.count %>
+        <%= link_to customer_followers_path(customer_id: @customer), class: "btn btn-info text-light" do %>
+          フォロワー数：<%= @customer.followers.count %>
         <% end %>
       </p>
     </div>
@@ -50,11 +50,11 @@
   </div>
 </div>
 <div>
-<h2 class="text-center mt-3">Tasks</h2>
-<div class="my-3">
+  <h2 class="text-center mt-3">Tasks</h2>
+  <div class="my-3 text-center">
     <% if @customer_tag_list.present? %>
       <% @customer_tag_list.each do |tag| %>
-        <%= tag.name %>
+        <i class="fas fa-tags"></i><%= tag.name %>
         (<%= tag.tasks.where(customer_id: @customer.id).count %>)
       <% end %>
     <% else %>
@@ -73,7 +73,7 @@
         <div>
           <!--投稿に紐付くタグを取り出す-->
           <% task.tags.each do |tag| %>
-            <p class="badge badge-primary"><%= tag.name %></p>
+            <p class="badge badge-primary"><i class="fas fa-tags"></i><%= tag.name %></p>
           <% end %>
         </div>
         <div>
