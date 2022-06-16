@@ -26,6 +26,7 @@ class Public::TasksController < ApplicationController
     @tasks = Task.latest.page(params[:page])
     # viewで使用する
     @tag_list = Tag.all
+    # @tag_list = Tag.find(TaskTag.group(:tag_id).order("count(task_id) desc").limit(7).pluck(:tag_id))
   end
 
   def show

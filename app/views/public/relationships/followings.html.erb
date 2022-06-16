@@ -1,21 +1,75 @@
-<div class="container">
-  <h3 class="text-center">フォロー一覧</h3>
-  <div class="row">
-    <% if @customers.exists? %>
-      <% @customers.each do |customer| %>
-        <div class="col-4 text-center p-2">
-          <%= image_tag customer.get_customer_image(150, 150) %><br>
-          <%= customer.full_name %>
-        </div>
-        <div class="col-4 text-center pt-5">
-          フォロー数: <%= customer.followings.count %>
-        </div>
-        <div class="col-4 text-center pt-5">
-          フォロワー数: <%= customer.followers.count %>
-        </div>
-      <% end %>
-    <% else %>
-      <p class="text-center">ユーザーはいません</p>
-    <% end %>
+<!--タブ部分-->
+<ul class="nav nav-tabs" id="tabs">
+  <li class="tab tab-active text-center">
+    フォロー一覧
+  </li>
+  <li class="tab text-center">
+    フォロワー一覧
+  </li>
+</ul>
+<!--タブで選択された要素部分-->
+<div class="tabbox-contents">
+  <div class="tabbox box-show">
+    <div class="container">
+      <h3 class="text-center">フォロー一覧</h3>
+      <div class="row">
+        <% if @following_customers.exists? %>
+          <% @following_customers.each do |customer| %>
+            <div class="col-3 text-center p-2">
+              <%= image_tag customer.get_customer_image(150, 150) %><br>
+              <%= customer.full_name %>
+            </div>
+            <div class="col-6 text-center">
+              <%= truncate(customer.introduction, length:20) %>
+            </div>
+            <div class="col-3 text-center pt-5">
+              <% unless current_customer.email == "guest@example.com" %>
+                <% if current_customer.id == @customer.id %>
+                  <% if current_customer.following?(customer) %>
+                    <%= link_to "フォローをやめる", customer_relationships_path(customer.id), method: :delete, class: "btn btn-success" %>
+                  <% else %>
+                    <%= link_to "フォローする", customer_relationships_path(customer.id), method: :post, class: "btn btn-success" %>
+                  <% end %>
+                <% end %>
+              <% end %>
+            </div>
+          <% end %>
+        <% else %>
+          <p class="col-12 text-center">ユーザーはいません</p>
+        <% end %>
+      </div>
+    </div>
+  </div>
+
+  <div class="tabbox">
+    <div class="container">
+      <h3 class="text-center">フォロワー一覧</h3>
+      <div class="row">
+        <% if @follower_customers.exists? %>
+          <% @follower_customers.each do |customer| %>
+            <div class="col-3 text-center p-2">
+              <%= image_tag customer.get_customer_image(150, 150) %><br>
+              <%= customer.full_name %>
+            </div>
+            <div class="col-6 text-center">
+              <%= truncate(customer.introduction, length:20) %>
+            </div>
+            <div class="col-3 text-center pt-5">
+              <% unless current_customer.email == "guest@example.com" %>
+                <% if current_customer.id == @customer.id %>
+                  <% if current_customer.following?(customer) %>
+                    <%= link_to "フォローをやめる", customer_relationships_path(customer.id), method: :delete, class: "btn btn-success" %>
+                  <% else %>
+                    <%= link_to "フォローする", customer_relationships_path(customer.id), method: :post, class: "btn btn-success" %>
+                  <% end %>
+                <% end %>
+              <% end %>
+            </div>
+          <% end %>
+        <% else %>
+          <p class="col-12 text-center">ユーザーはいません</p>
+        <% end %>
+      </div>
+    </div>
   </div>
 </div>
