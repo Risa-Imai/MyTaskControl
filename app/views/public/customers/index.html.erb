@@ -12,7 +12,6 @@
       <thead class="table-center">
         <th>Name</th>
         <th>Introduction</th>
-        <th>Follow</th>
       </thead>
       <tbody>
         <% @customers.each do |customer| %>
@@ -23,15 +22,6 @@
             </td>
             <td class="pt-4">
               <%= truncate(customer.introduction, length:20) %>
-            </td>
-            <td class="pt-4">
-              <% unless current_customer.id == customer.id %>
-                <% if current_customer.following?(customer) %>
-                  <%= link_to "フォローをやめる", customer_relationships_path(customer.id), method: :delete, class: "btn btn-success" %>
-                <% else %>
-                  <%= link_to "フォローする", customer_relationships_path(customer.id), method: :post, class: "btn btn-success" %>
-                <% end %>
-              <% end %>
             </td>
           </tr>
         <% end %>

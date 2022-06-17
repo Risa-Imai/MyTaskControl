@@ -22,7 +22,10 @@
         <%= link_to "Favorite Tasks", customer_favorites_path(customer_id: @customer), class: "btn btn-success" %>
       </p>
       <p>
-        <%= link_to customer_followings_path(customer_id: @customer), class: "btn btn-info text-light mr-2" do %>
+        <div id="follow_btn">
+          <%= render "public/relationships/follow_btn", customer: @customer %>
+        </div>
+        <%= link_to customer_followings_path(customer_id: @customer), class: "btn btn-info text-light" do %>
           フォロー数：<%= @customer.followings.count %>
         <% end %>
         <%= link_to customer_followers_path(customer_id: @customer), class: "btn btn-info text-light" do %>
