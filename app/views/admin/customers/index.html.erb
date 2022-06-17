@@ -11,13 +11,17 @@
     <table class="table">
       <thead class="table-center">
         <th></th>
-        <th>Name</th>
+        <th>名前</th>
+        <th>自己紹介</th>
+        <th>コメント数</th>
       </thead>
       <tbody>
       <% @customers.each do |customer| %>
-        <tr class="table-center" onclick="window.location.href='<%= admin_customer_path(customer.id) %>'" onmouseover="this.style.backgroundColor='#dcc2ff'" onmouseout="this.style.backgroundColor='#fff'">
+        <tr class="table-center" style="cursor: pointer" onclick="window.location.href='<%= admin_customer_path(customer.id) %>'" onmouseover="this.style.backgroundColor='#dcc2ff'" onmouseout="this.style.backgroundColor='#fff'">
           <td><%= image_tag customer.get_customer_image(100,100) %></td>
-          <td><%= customer.full_name %></td>
+          <td class="pt-4"><%= customer.full_name %></td>
+          <td class="pt-4"><%= truncate(customer.introduction, length:20) %></td>
+          <td class="pt-4 count"><%= customer.task_comments.count %></td>
         </tr>
       <% end %>
       </tbody>

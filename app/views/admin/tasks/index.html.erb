@@ -12,16 +12,16 @@
     </thead>
     <tbody>
       <% @tasks.each do |task| %>
-        <tr class="table-center" onclick="window.location.href='<%= admin_task_path(task.id) %>'" onmouseover="this.style.backgroundColor='#dcc2ff'" onmouseout="this.style.backgroundColor='#fff'">
+        <tr class="table-center"  style="cursor: pointer" onclick="window.location.href='<%= admin_task_path(task.id) %>'" onmouseover="this.style.backgroundColor='#dcc2ff'" onmouseout="this.style.backgroundColor='#fff'">
           <td>
             <%= image_tag task.customer.get_customer_image(100, 100) %><br>
             <%= task.customer.full_name %>
           </td>
-          <td><%= task.title %></td>
-          <td class=<%= task.progress_status %>><%= task.progress_status_i18n %></td>
-          <td><%= task.created_at.to_s(:datetime_jp) %></td>
-          <td><%= task.task_comments.count %></td>
-          <td>
+          <td class="pt-5"><%= task.title %></td>
+          <td class="<%= task.progress_status %> pt-5"><%= task.progress_status_i18n %></td>
+          <td class="pt-5"><%= task.created_at.to_s(:datetime_jp) %></td>
+          <td class="pt-5 count"><%= task.task_comments.count %></td>
+          <td class="pt-5 count">
             <% unless task.favorites.count == 0 %>
               <p><i class="fas fa-heart" style="color: #FF367F"></i> <%= task.favorites.count %></p>
             <% else %>

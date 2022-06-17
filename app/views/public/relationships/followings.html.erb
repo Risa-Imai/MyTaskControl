@@ -26,7 +26,9 @@
             </div>
             <div class="col-md-3 text-center pt-5">
               <% if current_customer.id == @customer.id %>
-                <%= render "public/relationships/follow_btn", customer: customer %>
+                <p id="follow_btn">
+                  <%= render "public/relationships/follow_btn", customer: customer %>
+                </p>
               <% end %>
             </div>
           <% end %>
@@ -54,7 +56,9 @@
             </div>
             <div class="col-md-3 text-center pt-5">
               <% if current_customer.id == @customer.id %>
-                <%= render "public/relationships/follow_btn", customer: customer %>
+                <p id="follow_btn">
+                  <%= render "public/relationships/follow_btn", customer: customer %>
+                </p>
               <% end %>
             </div>
           <% end %>

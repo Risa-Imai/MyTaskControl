@@ -16,15 +16,15 @@
         <% if @follower_customers.exists? %>
           <% @follower_customers.each do |customer| %>
             <div class="col-md-3 text-center p-2">
-            <%= link_to customer_path(customer.id), class: "text-dark" do %>
-              <%= image_tag customer.get_customer_image(150, 150) %><br>
-              <%= customer.full_name %>
-            <% end %>
+              <%= link_to customer_path(customer.id), class: "text-dark" do %>
+                <%= image_tag customer.get_customer_image(150, 150) %><br>
+                <%= customer.full_name %>
+              <% end %>
             </div>
             <div class="col-md-6 text-center pt-5">
               <%= truncate(customer.introduction, length:20) %>
             </div>
-            <div class="col-md-3 text-center pt-5">
+            <div id="follow_btn" class="col-md-3 text-center pt-5">
               <% if current_customer.id == @customer.id %>
                 <%= render "public/relationships/follow_btn", customer: customer %>
               <% end %>
@@ -36,8 +36,9 @@
       </div>
     </div>
   </div>
-    <div class="tabbox">
-      <div class="container">
+
+  <div class="tabbox">
+    <div class="container">
       <h3 class="text-center">フォロー一覧</h3>
       <div class="row">
         <% if @following_customers.exists? %>
@@ -51,7 +52,7 @@
             <div class="col-md-6 text-center pt-5">
               <%= truncate(customer.introduction, length:20) %>
             </div>
-            <div class="col-md-3 text-center pt-5">
+            <div id="follow_btn" class="col-md-3 text-center pt-5">
               <% if current_customer.id == @customer.id %>
                 <%= render "public/relationships/follow_btn", customer: customer %>
               <% end %>
