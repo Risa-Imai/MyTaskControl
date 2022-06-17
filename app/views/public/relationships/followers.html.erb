@@ -1,67 +1,25 @@
-<!--タブ部分-->
-<ul class="nav nav-tabs" id="tabs">
-  <li class="tab tab-active text-center">
-    フォロワー一覧
-  </li>
-  <li class="tab text-center">
-    フォロー一覧
-  </li>
-</ul>
-<!--タブで選択された要素部分-->
-<div class="tabbox-contents">
-  <div class="tabbox box-show">
-    <div class="container">
-      <h3 class="text-center">フォロワー一覧</h3>
-      <div class="row">
-        <% if @follower_customers.exists? %>
-          <% @follower_customers.each do |customer| %>
-            <div class="col-md-3 text-center p-2">
-              <%= link_to customer_path(customer.id), class: "text-dark" do %>
-                <%= image_tag customer.get_customer_image(150, 150) %><br>
-                <%= customer.full_name %>
-              <% end %>
-            </div>
-            <div class="col-md-6 text-center pt-5">
-              <%= truncate(customer.introduction, length:20) %>
-            </div>
-            <div id="follow_btn" class="col-md-3 text-center pt-5">
-              <% if current_customer.id == @customer.id %>
-                <%= render "public/relationships/follow_btn", customer: customer %>
-              <% end %>
-            </div>
+<div class="container">
+  <h3 class="text-center">フォロワー一覧</h3>
+  <div class="row">
+    <% if @follower_customers.exists? %>
+      <% @follower_customers.each do |customer| %>
+        <div class="col-md-3 text-center p-2">
+          <%= link_to customer_path(customer.id), class: "text-dark" do %>
+            <%= image_tag customer.get_customer_image(150, 150) %><br>
+            <%= customer.full_name %>
           <% end %>
-        <% else %>
-          <p class="col-12 text-center">ユーザーはいません</p>
+        </div>
+        <div class="col-md-6 text-center pt-5">
+          <%= truncate(customer.introduction, length:20) %>
+        </div>
+        <% if current_customer.id == @customer.id %>
+          <div id="follow_btn_<%= customer.id %>" class="col-md-3 text-center pt-5">
+            <%= render "public/relationships/follow_btn", customer: customer %>
+          </div>
         <% end %>
-      </div>
-    </div>
-  </div>
-
-  <div class="tabbox">
-    <div class="container">
-      <h3 class="text-center">フォロー一覧</h3>
-      <div class="row">
-        <% if @following_customers.exists? %>
-          <% @following_customers.each do |customer| %>
-            <div class="col-md-3 text-center p-2">
-              <%= link_to customer_path(customer.id), class: "text-dark" do %>
-                <%= image_tag customer.get_customer_image(150, 150) %><br>
-                <%= customer.full_name %>
-              <% end %>
-            </div>
-            <div class="col-md-6 text-center pt-5">
-              <%= truncate(customer.introduction, length:20) %>
-            </div>
-            <div id="follow_btn" class="col-md-3 text-center pt-5">
-              <% if current_customer.id == @customer.id %>
-                <%= render "public/relationships/follow_btn", customer: customer %>
-              <% end %>
-            </div>
-          <% end %>
-        <% else %>
-          <p class="col-12 text-center">ユーザーはいません</p>
-        <% end %>
-      </div>
-    </div>
+      <% end %>
+    <% else %>
+      <p class="col-12 text-center">ユーザーはいません</p>
+    <% end %>
   </div>
 </div>

@@ -1,3 +1,4 @@
 $("#follow_btn").html("<%= j(render "public/relationships/follow_btn", customer: @customer) %>")
 $("#followings_count").html("<%= j(render "public/relationships/followings_count", customer: @customer) %>")
 $("#followers_count").html("<%= j(render "public/relationships/followers_count", customer: @customer) %>")
+$("#follow_btn_<%= @customer.id %>").html("<%= j(render "public/relationships/follow_btn", customer: @customer) %>")
