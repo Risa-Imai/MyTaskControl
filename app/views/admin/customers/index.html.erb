@@ -6,7 +6,7 @@
   <%= f.submit "Search", class: "btn btn-outline-dark" %>
   <% end %>
   <span><%= @keyword %> で検索中</span>
-  <h1 class="text-center mb-5">Members</h1>
+  <h1 class="text-center mb-5">会員一覧</h1>
   <div class="row">
     <table class="table">
       <thead class="table-center">
@@ -14,6 +14,7 @@
         <th>名前</th>
         <th>自己紹介</th>
         <th>コメント数</th>
+        <th>ステータス</th>
       </thead>
       <tbody>
       <% @customers.each do |customer| %>
@@ -22,6 +23,13 @@
           <td class="pt-4"><%= customer.full_name %></td>
           <td class="pt-4"><%= truncate(customer.introduction, length:20) %></td>
           <td class="pt-4 count"><%= customer.task_comments.count %></td>
+          <td class="pt-4">
+            <% if customer.is_delete == false %>
+              <b class="text-success">有効</b>
+            <% else %>
+              <b class="text-danger">退会</b>
+            <% end %>
+          </td>
         </tr>
       <% end %>
       </tbody>

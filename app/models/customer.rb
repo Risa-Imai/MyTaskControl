@@ -53,10 +53,18 @@ class Customer < ApplicationRecord
   end
 
   def self.search(keyword)
+    # if keyword == "有効"
+    #   status = false
+    # elsif keyword == "退会"
+    #   status = true
+    # end
+
     # whereだと完全一致 likeだとあいまいな検索が出来る
     # ORはどちらか一方にでも検索キーワードが部分一致すれば出力する
     # ANDを用いる時は両方にヒットした場合のみ
-    where(["first_name like? OR last_name like?", "%#{keyword}%", "%#{keyword}"])
+    where(["first_name like? OR last_name like?", "%#{keyword}%", "%#{keyword}%"])
+    # where(is_delete: status)
+
   end
 
   # フォローしたときの処理
