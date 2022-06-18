@@ -16,6 +16,7 @@ class Public::TaskCommentsController < ApplicationController
       flash.now[:notice] = "コメントしました"
       # redirect_to request.referer, notice: "コメントしました"
     else
+      # render "error"
       redirect_to request.referer, alert: "2~140文字で入力してください"
     end
   end

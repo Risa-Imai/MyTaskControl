@@ -12,11 +12,9 @@
         <div class="col-md-6 text-center pt-5">
           <%= truncate(customer.introduction, length:20) %>
         </div>
-        <% if current_customer.id == @customer.id %>
-          <div id="follow_btn_<%= customer.id %>" class="col-md-3 text-center pt-5">
-            <%= render "public/relationships/follow_btn", customer: customer %>
-          </div>
-        <% end %>
+        <div id="follow_btn_<%= customer.id %>" class="col-md-3 text-center pt-5">
+          <%= render "public/relationships/follow_btn", customer: customer %>
+        </div>
       <% end %>
     <% else %>
       <p class="col-12 text-center">ユーザーはいません</p>
