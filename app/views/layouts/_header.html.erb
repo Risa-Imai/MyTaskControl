@@ -36,17 +36,17 @@
         <% elsif admin_signed_in? %>
            <li>
             <%= link_to admin_tasks_path, class: "nav-link text-light" do %>
-              <button type="button" class="btn btn-outline-light"><i class="fas fa-clipboard-list"></i>Tasks</button>
+              <button type="button" class="btn btn-outline-light"><i class="fas fa-clipboard-list"></i>タスク一覧</button>
             <% end %>
           </li>
           <li>
             <%= link_to admin_customers_path, class: "nav-link text-light" do %>
-              <button type="button" class="btn btn-outline-light"><i class="fas fa-users"></i>Members</button>
+              <button type="button" class="btn btn-outline-light"><i class="fas fa-users"></i>会員一覧</button>
             <% end %>
           </li>
           <li>
             <%= link_to destroy_admin_session_path, method: :delete, class: "nav-link text-light" do %>
-              <button type="button" class="btn btn-outline-light"><i class="fas fa-sign-out-alt"></i>Log out</button>
+              <button type="button" class="btn btn-outline-light"><i class="fas fa-sign-out-alt"></i>ログアウト</button>
             <% end %>
           </li>
         <% else %>
