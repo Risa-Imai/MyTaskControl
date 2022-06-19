@@ -1,11 +1,10 @@
 <footer class="fixed-bottom", style="background-color: #9966FF">
   <div class="container">
     <div class="text-center">
-      <h5 class="text-light">©CopyRight</h5>
+      <h5 class="text-light pt-5">©CopyRight</h5>
     </div>
-    <div class="row text-center">
-      <span><%= link_to "Admin Log in", new_admin_session_path, class: "text-light" %></span>
-      <span><%= link_to "Admin Log out", destroy_admin_session_path, method: :delete, class: "text-light" %></span>
+    <div class="text-right">
+      <span><%= link_to "Admin Log in", new_admin_session_path, style: "color: #9966ff" %></span>
     </div>
   </div>
 </footer>
