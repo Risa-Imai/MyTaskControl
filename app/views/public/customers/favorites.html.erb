@@ -8,7 +8,7 @@
         <div class="card-body text-dark">
           <div class="mb-3">
             <%= link_to customer_path(task.customer_id),class: "text-dark" do %>
-              <%= image_tag task.customer.get_customer_image(100, 100), class: "card-link rounded-circle" %><br>
+              <%= image_tag task.customer.get_customer_image(100, 100), class: "card-link rounded-circle" %>
               <%= task.customer.full_name %>
             <% end %>
           </div>

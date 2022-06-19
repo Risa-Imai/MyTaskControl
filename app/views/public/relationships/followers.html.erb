@@ -3,18 +3,20 @@
   <div class="row">
     <% if @follower_customers.exists? %>
       <% @follower_customers.each do |customer| %>
-        <div class="col-md-3 text-center p-2">
+        <div class="offset-md-1 col-md-3 text-center p-2 bg-light">
           <%= link_to customer_path(customer.id), class: "text-dark" do %>
-            <%= image_tag customer.get_customer_image(150, 150) %><br>
+            <%= image_tag customer.get_customer_image(100, 100) %><br>
             <%= customer.full_name %>
           <% end %>
+          <div id="follow_btn_<%= customer.id %>" class="text-center">
+            <%= render "public/relationships/follow_btn", customer: customer %>
+          </div>
         </div>
-        <div class="col-md-6 text-center pt-5">
-          <%= truncate(customer.introduction, length:20) %>
+        <div class="col-md-4 text-center pt-2">
+          <p>introduction</p>
+          <%= truncate(customer.introduction, length:100) %>
         </div>
-        <div id="follow_btn_<%= customer.id %>" class="col-md-3 text-center pt-5">
-          <%= render "public/relationships/follow_btn", customer: customer %>
-        </div>
+        <div class="col-md-4"></div>
       <% end %>
     <% else %>
       <p class="col-12 text-center">ユーザーはいません</p>

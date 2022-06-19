@@ -6,6 +6,7 @@ class Customer < ApplicationRecord
 
   validates :last_name, presence: true, length: { minimum: 1, maximum: 10 }
   validates :first_name, presence: true, length: { minimum: 1, maximum: 10 }
+  validates :introduction, length: {maximum: 150 }
 
   has_many :tasks, dependent: :destroy
   has_many :task_comments, dependent: :destroy
