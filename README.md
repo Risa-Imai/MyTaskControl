@@ -38,3 +38,7 @@ https://docs.google.com/spreadsheets/d/1InfBQjmryNwUS11olB_9l6PfwO-YuYUFObsVhKvZ
 ## 使用素材
 アバウトページ画像
 https://o-dan.net/ja/
+コメント欄のデザイン参考
+https://saruwakakun.com/html-css/reference/speech-bubble
+会員登録・編集画面のデザイン参考
+https://sounansa.net/archives/1522
