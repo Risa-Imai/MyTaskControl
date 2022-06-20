@@ -1,5 +1,6 @@
 <% if notice %>
-  <p id="notice" class="text-center mx-auto", style="background-color: #ccccff"><%= notice %></p>
-<% else %>
-  <p id="alert" class="text-center mx-auto", style="background-color: #ccccff"><%= alert %></p>
+  <p id="notice" class="text-center mb-0", style="background-color: #ccccff"><%= notice %></p>
+<% end %>
+<% if alert %>
+  <p id="alert" class="text-center mb-0", style="background-color: #ccccff"><%= alert %></p>
 <% end %>

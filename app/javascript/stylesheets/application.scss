@@ -1,5 +1,6 @@
 @import "~bootstrap/scss/bootstrap";
 @import "~@fortawesome/fontawesome-free/scss/fontawesome";
+@import "skippr";
 
 .count {
  font-size: 20px;
@@ -92,7 +93,6 @@ body {
  background: #FFEBE8;
  text-align: center;
  border: 2px solid #990000;
- padding: 12px;
 }
 
 ul {
