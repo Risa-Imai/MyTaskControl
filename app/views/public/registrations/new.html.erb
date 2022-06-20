@@ -7,17 +7,17 @@
       <img class="profile-img-card" src="//ssl.gstatic.com/accounts/ui/avatar_2x.png" />
       <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
     <div class="form-group">
-      <%= f.label "Name" %>
+      <%= f.label "名前" %>
       <%= f.text_field :last_name, autocomplete: "last_name", autofocus: true, placeholder: "田中", class: "form-control mb-2" %>
       <%= f.text_field :first_name, autocomplete: "first_name",autofocus: true, placeholder: "太郎", class: "form-control" %>
     </div>
     <div class="form-group">
-      <%= f.label "Email" %>
+      <%= f.label "メールアドレス" %>
       <%= f.email_field :email, autocomplete: "email", autofocus: true, placeholder: "sample@example.com", class: "form-control" %>
     </div>
     <div class="form-group">
       <div class="password-form">
-        <%= f.label "Password" %>
+        <%= f.label "パスワード" %>
         <% if @minimum_password_length %>
         <em>(<%= @minimum_password_length %>文字以上)</em>
         <% end %>
@@ -25,11 +25,11 @@
       <%= f.password_field :password, autocomplete: "new-password", class: "form-control" %>
     </div>
     <div class="form-group">
-      <%= f.label "Password(確認用)" %>
+      <%= f.label "パスワード(確認用)" %>
       <%= f.password_field :password_confirmation, autocomplete: "new-password", class: "form-control" %>
     </div>
     <div>
-      <%= f.submit "Sign up", class: "btn btn-block btn-success btn-signin" %>
+      <%= f.submit "会員登録", class: "btn btn-block btn-success btn-signin" %>
     </div>
   <% end %>
     <p>
