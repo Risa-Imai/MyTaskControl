@@ -32,18 +32,18 @@ ja:
       confirmed: メールアドレスが確認できました。
       new:
         resend_confirmation_instructions: アカウント確認メール再送
-      send_instructions: アカウントの有効化について数分以内にメールでご連絡します。
-      send_paranoid_instructions: メールアドレスが登録済みの場合、本人確認用のメールが数分以内に送信されます。
+      send_instructions: アカウントの有効化について数分以内にメールでご連絡します
+      send_paranoid_instructions: メールアドレスが登録済みの場合、本人確認用のメールが数分以内に送信されます
     failure:
-      already_authenticated: すでにログインしています。
+      already_authenticated: すでにログインしています
       inactive: アカウントが有効化されていません。メールに記載された手順にしたがって、アカウントを有効化してください。
       invalid: "%{authentication_keys}またはパスワードが違います。"
-      last_attempt: もう一回誤るとアカウントがロックされます。
-      locked: アカウントはロックされています。
+      last_attempt: もう一回誤るとアカウントがロックされます
+      locked: アカウントはロックされています
       not_found_in_database: "%{authentication_keys}またはパスワードが違います。"
       timeout: セッションがタイムアウトしました。もう一度ログインしてください。
-      unauthenticated: ログインもしくはアカウント登録してください。
-      unconfirmed: メールアドレスの本人確認が必要です。
+      unauthenticated: ログインもしくはアカウント登録してください
+      unconfirmed: メールアドレスの本人確認が必要です
     mailer:
       confirmation_instructions:
         action: メールアドレスの確認
@@ -57,7 +57,7 @@ ja:
         subject: メール変更完了
       password_change:
         greeting: "%{recipient}様"
-        message: パスワードが再設定されました。
+        message: パスワードが再設定されました
         subject: パスワードの変更について
       reset_password_instructions:
         action: パスワード変更
@@ -88,7 +88,7 @@ ja:
       send_instructions: パスワードの再設定について数分以内にメールでご連絡いたします。
       send_paranoid_instructions: メールアドレスが登録済みの場合、パスワード再設定用のメールが数分以内に送信されます。
       updated: パスワードが正しく変更されました。
-      updated_not_active: パスワードが正しく変更されました。
+      updated_not_active: パスワードが正しく変更されました
     registrations:
       destroyed: アカウントを削除しました。またのご利用をお待ちしております。
       edit:
@@ -102,19 +102,19 @@ ja:
         we_need_your_current_password_to_confirm_your_changes: 変更を反映するには現在のパスワードを入力してください
       new:
         sign_up: アカウント登録
-      signed_up: アカウント登録が完了しました。
-      signed_up_but_inactive: ログインするためには、アカウントを有効化してください。
-      signed_up_but_locked: アカウントがロックされているためログインできません。
-      signed_up_but_unconfirmed: 本人確認用のメールを送信しました。メール内のリンクからアカウントを有効化させてください。
+      signed_up: アカウント登録が完了しました
+      signed_up_but_inactive: ログインするためには、アカウントを有効化してください
+      signed_up_but_locked: アカウントがロックされているためログインできません
+      signed_up_but_unconfirmed: 本人確認用のメールを送信しました。メール内のリンクからアカウントを有効化させてください
       update_needs_confirmation: アカウント情報を変更しました。変更されたメールアドレスの本人確認のため、本人確認用メールより確認処理をおこなってください。
-      updated: アカウント情報を変更しました。
-      updated_but_not_signed_in: あなたのアカウントは正常に更新されましたが、パスワードが変更されたため、再度ログインしてください。
+      updated: アカウント情報を変更しました
+      updated_but_not_signed_in: あなたのアカウントは正常に更新されましたが、パスワードが変更されたため、再度ログインしてください
     sessions:
-      already_signed_out: 既にログアウト済みです。
+      already_signed_out: ログアウト済みです
       new:
         sign_in: ログイン
-      signed_in: ログインしました。
-      signed_out: ログアウトしました。
+      signed_in: ログインしました
+      signed_out: ログアウトしました
     shared:
       links:
         back: 戻る
@@ -139,5 +139,5 @@ ja:
       not_found: は見つかりませんでした。
       not_locked: はロックされていません。
       not_saved:
-        one: エラーが発生したため %{resource} は保存されませんでした。
+        one: エラーが発生したため %{resource} は保存されませんでした
         other: "%{count} 件のエラーが発生しました"

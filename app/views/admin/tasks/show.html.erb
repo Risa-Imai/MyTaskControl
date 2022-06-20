@@ -20,13 +20,11 @@
               <%= task_comment.comment %>
             </div>
             <div>
-              <%= link_to "削除", admin_task_task_comment_path(task_comment.task, task_comment), method: :delete,data: { confirm: "#{task_comment.customer.full_name}さんのコメントを消しますか？" }, class: "btn btn-sm btn-danger" %>
+              <%= link_to "削除", admin_task_task_comment_path(task_comment.task, task_comment), method: :delete, data: { confirm: "#{task_comment.customer.full_name}さんのコメントを消しますか？" }, class: "btn btn-sm btn-danger" %>
             </div>
           </div>
         <% end %>
-      <% else %>
-        <div class="text-center task_show">投稿されたコメントはありません</div>
-      <% end %>
+
     </div>
   </div>
 </div>

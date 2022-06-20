@@ -9,8 +9,10 @@
 </div>
 <% if customer_signed_in? %>
   <div class="row">
-    <%= link_to "My page", customer_path(current_customer.id), class: "mt-5 offset-4 col-4 text-center btn btn-lg btn-info" %>
+    <%= link_to "マイページ", customer_path(current_customer.id), class: "mt-5 offset-4 col-4 text-center btn btn-lg btn-info" %>
   </div>
+<% elsif admin_signed_in? %>
+    <%= link_to "会員一覧", admin_customers_path, class: "mt-5 offset-4 col-4 btn btn-lg btn-info" %>
 <% else %>
   <div class="row">
     <%= link_to "ゲストログイン（閲覧用）", customers_guest_sign_in_path, class: "btn btn-lg btn-secondary offset-4 col-4 my-5", method: :post %>

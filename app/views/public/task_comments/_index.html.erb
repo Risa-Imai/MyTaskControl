@@ -1,3 +1,4 @@
+<% if @task.task_comments.present? %>
 <% task_comments.each do |task_comment| %>
   <div class="balloon5">
     <div class="faceicon">
@@ -18,4 +19,7 @@
       <% end %>
     </div>
   </div>
+<% end %>
+<% else %>
+  <div class="text-center task_show">投稿されたコメントはありません</div>
 <% end %>

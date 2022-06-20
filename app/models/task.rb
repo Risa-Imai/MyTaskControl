@@ -41,10 +41,9 @@ class Task < ApplicationRecord
       # if task_tag.valid?
         self.tags << task_tag
       else
-        p task_tag.errors
+        # p task_tag.errors
       end
       # else
-
       #end
     end
   end
