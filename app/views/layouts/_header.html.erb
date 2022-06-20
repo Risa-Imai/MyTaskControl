@@ -10,27 +10,27 @@
         <% if customer_signed_in? %>
           <li>
             <%= link_to customer_path(current_customer.id), class: "nav-link text-light" do %>
-              <button type="button" class="btn btn-outline-light"><i class="fas fa-user-circle"></i>My page</button>
+              <button type="button" class="btn btn-outline-light"><i class="fas fa-user-circle"></i>マイぺージ</button>
             <% end %>
           </li>
           <li>
             <%= link_to customer_path(current_customer.id), class: "nav-link text-light" do %>
-              <button type="button" class="btn btn-outline-light"><i class="fas fa-plus-circle"></i>New task</button>
+              <button type="button" class="btn btn-outline-light"><i class="fas fa-plus-circle"></i>新規投稿</button>
             <% end %>
           </li>
           <li>
             <%= link_to tasks_path, class: "nav-link text-light" do %>
-              <button type="button" class="btn btn-outline-light"><i class="fas fa-clipboard-list"></i>Tasks</button>
+              <button type="button" class="btn btn-outline-light"><i class="fas fa-clipboard-list"></i>タスク一覧</button>
             <% end %>
           </li>
           <li>
             <%= link_to customers_path, class: "nav-link text-light" do %>
-              <button type="button" class="btn btn-outline-light"><i class="fas fa-users"></i>Members</button>
+              <button type="button" class="btn btn-outline-light"><i class="fas fa-users"></i>会員一覧</button>
             <% end %>
           </li>
           <li>
             <%= link_to destroy_customer_session_path, method: :delete, class: "nav-link text-light" do %>
-              <button type="button" class="btn btn-outline-light"><i class="fas fa-sign-out-alt"></i>Log out</button>
+              <button type="button" class="btn btn-outline-light"><i class="fas fa-sign-out-alt"></i>ログアウト</button>
             <% end %>
           </li>
         <% elsif admin_signed_in? %>
@@ -62,12 +62,12 @@
           </li>
           <li>
             <%= link_to new_customer_registration_path, class: "nav-link text-light" do %>
-              <button type="button" class="btn btn-outline-light"><i class="fas fa-user-plus"></i>Sign up</button>
+              <button type="button" class="btn btn-outline-light"><i class="fas fa-user-plus"></i>会員登録</button>
             <% end %>
           </li>
           <li>
             <%= link_to new_customer_session_path, class: "nav-link text-light" do %>
-              <button type="button" class="btn btn-outline-light"><i class="fas fa-sign-in-alt"></i>Log in</button>
+              <button type="button" class="btn btn-outline-light"><i class="fas fa-sign-in-alt"></i>ログイン</button>
             <% end %>
           </li>
         <% end %>

@@ -8,7 +8,7 @@
           <%= f.text_field :title, class: "form-control" %>
         </div>
         <div class="form-group">
-          <%= f.label "タグ" %>
+          <%= f.label :tag %>
           <!-- 登録されているタグをフォームに初期値として表示 -->
           <%= f.text_field :tag_name, value: @task.tags.pluck(:name).join(","), class: "form-control" %>
         </div>
@@ -17,7 +17,7 @@
           <%= f.select :progress_status, Task.progress_statuses_i18n.invert, {prompt: false}, class: "form-control" %>
         </div>
         <div class="text-center">
-          <%= f.submit "Update", class: "btn btn-primary" %>
+          <%= f.submit "更新", class: "btn btn-primary" %>
         </div>
       <% end %>
     </div>

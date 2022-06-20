@@ -13,10 +13,10 @@
   </div>
 <% else %>
   <div class="row">
-    <%= link_to "Guest Log in（閲覧用）", customers_guest_sign_in_path, class: "btn btn-lg btn-secondary offset-4 col-4 my-5", method: :post %>
+    <%= link_to "ゲストログイン（閲覧用）", customers_guest_sign_in_path, class: "btn btn-lg btn-secondary offset-4 col-4 my-5", method: :post %>
   </div>
   <div class="row">
-    <%= link_to "Log in", new_customer_session_path, class: "btn btn-lg btn-info offset-1 col-4" %>
-    <%= link_to "Sign up", new_customer_registration_path, class: "btn btn-lg btn-success offset-2 col-4" %>
+    <%= link_to "ログイン", new_customer_session_path, class: "btn btn-lg btn-info offset-1 col-4" %>
+    <%= link_to "会員登録", new_customer_registration_path, class: "btn btn-lg btn-success offset-2 col-4" %>
   </div>
 <% end %>
