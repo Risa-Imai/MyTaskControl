@@ -55,7 +55,7 @@ class Public::CustomersController < ApplicationController
   def favorites
     @customer = Customer.find(params[:customer_id])
     # pluckは指定したカラムを配列で取得する
-    @favorites = @customer.favorites.page(params[:page])
+    @favorites = @customer.favorites.page(params[:page]).order(created_at: :DESC)
     # whereはカラムの中が一致してるものを探してる
     # @favorites = Favorite.where(customer_id: @customer.id).page(params[:page])
     # ページネーションの変数は@favorites
