@@ -8,14 +8,15 @@ class Public::TasksController < ApplicationController
     # 送られたタグ情報をsplit(",")でカンマ区切り(配列化)
     # deleteでタグの前後にある半角スペースと全角スペースを削除
     tag_list = params[:task][:tag_name].delete(" ").delete("　").split(",").uniq #.split(nil)
+    flash[:alert] = "タグが10文字以上のものは削除しました" if tag_list.any? { |tag| tag.length >= 10 }
     if @task.save
       # save_tasksはモデルで記述
       @task.save_tasks(tag_list)
-      tag_list.each do |t|
-        if t.size >= 10
-          flash[:alert] = "タグが10文字以上のものは削除しました"
-        end
-      end
+     # tag_list.each do |t|
+     #   if t.size >= 10
+      #    flash[:alert] = "タグが10文字以上のものは削除しました"
+     #   end
+     # end
       redirect_to customer_path(current_customer), notice: "タスクを投稿しました！頑張りましょう！"
     else
       redirect_to request.referer, notice: "タスクを入力してください"
