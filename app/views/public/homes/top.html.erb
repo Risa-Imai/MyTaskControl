@@ -7,10 +7,16 @@
   <h3>Enjoy task management!</h3>
   <h3>Let's try it together!</h3>
 </div>
-<div class="row">
-  <%= link_to "Guest Log in（閲覧用）", customers_guest_sign_in_path, class: "btn btn-lg btn-secondary offset-4 col-4 my-5", method: :post %>
-</div>
-<div class="row">
-  <%= link_to "Log in", new_customer_session_path, class: "btn btn-lg btn-info offset-1 col-4" %>
-  <%= link_to "Sign up", new_customer_registration_path, class: "btn btn-lg btn-success offset-2 col-4" %>
-</div>
+<% if customer_signed_in? %>
+  <div class="row">
+    <%= link_to "My page", customer_path(current_customer.id), class: "mt-5 offset-4 col-4 text-center btn btn-lg btn-info" %>
+  </div>
+<% else %>
+  <div class="row">
+    <%= link_to "Guest Log in（閲覧用）", customers_guest_sign_in_path, class: "btn btn-lg btn-secondary offset-4 col-4 my-5", method: :post %>
+  </div>
+  <div class="row">
+    <%= link_to "Log in", new_customer_session_path, class: "btn btn-lg btn-info offset-1 col-4" %>
+    <%= link_to "Sign up", new_customer_registration_path, class: "btn btn-lg btn-success offset-2 col-4" %>
+  </div>
+<% end %>
