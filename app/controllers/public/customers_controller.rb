@@ -13,7 +13,7 @@ class Public::CustomersController < ApplicationController
     # Task.new(task_params)を持ってくる方法が分からない
     @task = Task.new
     # 詳細を表示しているユーザーの投稿全てを取得
-    @tasks = @customer.tasks.page(params[:page])
+    @tasks = @customer.tasks.order(created_at: :DESC).page(params[:page])
 
     ## 会員のタグ一覧取得
     # 会員のタスクのidをpluck(配列)で取得
