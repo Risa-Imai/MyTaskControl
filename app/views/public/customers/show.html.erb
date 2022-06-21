@@ -83,6 +83,14 @@
         <div class=<%= task.progress_status %>>
           <%= task.progress_status_i18n %>
         </div>
+      <% end %>
+      <% if task.customer == current_customer %>
+        <%= form_with model: task, method: :patch do |f| %>
+          <%= f.hidden_field :tag_name, value: task.tags %>
+          <%= f.select :progress_status, Task.progress_statuses_i18n.invert, {prompt: false}, class: "form-control col-7 mx-auto" %>
+          <%= f.submit "更新", class: "btn btn-sm btn-primary mt-1" %>
+        <% end %>
+      <% end %>
         <div>
           <%= task.created_at.to_s(:datetime_jp) %>
         </div>
@@ -94,7 +102,7 @@
             <%= link_to "削除", task_path(task.id), method: :delete, data: { confirm: "タスクを消しますか？消すと元に戻せません" }, class: "btn btn-sm btn-danger mb-3" %>
           <% end %>
         </div>
-      <% end %>
+
       </div>
     </div>
     <% end %>
