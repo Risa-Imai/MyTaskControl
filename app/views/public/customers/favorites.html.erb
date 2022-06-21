@@ -1,14 +1,14 @@
 <div class="container">
   <div class="row">
-    <h1 class="col-12 text-center">Favorite Tasks</h1>
+    <h1 class="col-12 text-center">お気に入りのタスク</h1>
   </div>
   <div class="d-flex flex-wrap">
     <% @favorite_tasks.each do |task| %>
-      <div class="card border-dark mb-3 mx-auto text-center" style="width: 16rem">
+      <div class="card border-dark shadow mb-4 mx-auto text-center" style="width: 16rem">
         <div class="card-body text-dark">
           <div class="mb-3">
             <%= link_to customer_path(task.customer_id),class: "text-dark" do %>
-              <%= image_tag task.customer.get_customer_image(100, 100), class: "card-link rounded-circle" %>
+              <%= image_tag task.customer.get_customer_image(100, 100), class: "card-link rounded-circle" %><br>
               <%= task.customer.full_name %>
             <% end %>
           </div>
