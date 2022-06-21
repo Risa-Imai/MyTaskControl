@@ -6,7 +6,7 @@
   <%= f.submit "Search", class: "btn btn-outline-dark" %>
   <% end %>
   <span><%= @keyword %> で検索中</span>
-  <h1 class="text-center mb-5">Members Tasks</h1>
+  <h1 class="text-center mb-5">みんなのタスク</h1>
   <div class="my-3">
     <% @tag_list.each do |tag| %>
       <% if tag.tasks.present? %>
