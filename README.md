@@ -27,6 +27,10 @@
 https://app.diagrams.net/#G1lVOmljxnVcKm8I_Xvr1dtAdRbXwmScr2
 - テーブル定義書
 https://docs.google.com/spreadsheets/d/1InfBQjmryNwUS11olB_9l6PfwO-YuYUFObsVhKvZ3BM/edit#gid=1373217982
+- アプリケーション詳細設計
+https://docs.google.com/spreadsheets/d/1p7OklsPGD_QZ7RoXRr0TspCP-l-P3G0c4H39daVym-s/edit#gid=2133469642
+- テスト仕様書
+https://docs.google.com/spreadsheets/d/1v06W8MdqngSkl_uCs_RAZ5mpIE5KlMNA/edit#gid=2072448154
 
 ## 開発環境
 - OS：Linux(CentOS)
