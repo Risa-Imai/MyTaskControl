@@ -29,7 +29,7 @@ class Public::TaskCommentsController < ApplicationController
     # コメント削除
     task_comment = TaskComment.find_by(id: params[:id], task_id: params[:task_id])
     task_comment.destroy
-      flash.now[:notice] = "コメントを削除しました"
+      flash.now[:alert] = "コメントを削除しました"
     # redirect_to request.referer
   end
 

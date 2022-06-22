@@ -11,15 +11,15 @@
       <% if @task.task_comments.present? %>
         <% @task.task_comments.each do |task_comment| %>
           <div class="task_show">
-            <div>
+            <div class="m-3">
               <%= image_tag task_comment.customer.get_customer_image(100,100) %>
               <%= task_comment.customer.full_name %>
               <%= task_comment.created_at.to_s(:datetime_jp) %>
             </div>
-            <div>
+            <div class="ml-3">
               <%= task_comment.comment %>
             </div>
-            <div>
+            <div class="m-3">
               <%= link_to "削除", admin_task_task_comment_path(task_comment.task, task_comment), method: :delete,data: { confirm: "#{task_comment.customer.full_name}さんのコメントを消しますか？" }, class: "btn btn-sm btn-danger" %>
             </div>
           </div>

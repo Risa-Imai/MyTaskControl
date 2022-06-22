@@ -8,7 +8,7 @@ class Public::TasksController < ApplicationController
     # 送られたタグ情報をsplit(",")でカンマ区切り(配列化)
     # deleteでタグの前後にある半角スペースと全角スペースを削除
     tag_list = params[:task][:tag_name].delete(" ").delete("　").split(",").uniq #.split(nil)
-    flash[:alert] = "タグが10文字以上のものは削除しました" if tag_list.any? { |tag| tag.length > 15 }
+    flash[:alert] = "タグが16文字以上のものは削除しました" if tag_list.any? { |tag| tag.length > 15 }
     if @task.save
       # save_tasksはモデルで記述
       @task.save_tasks(tag_list)
@@ -19,7 +19,7 @@ class Public::TasksController < ApplicationController
      # end
       redirect_to customer_path(current_customer), notice: "タスクを投稿しました！頑張りましょう！"
     else
-      redirect_to request.referer, notice: "タスクを入力してください"
+      redirect_to request.referer, alert: "タイトルを入力してください"
       # renderだとURLがtasksになってしまい不格好の為コメントアウト(動作は問題なし)
       # @customer = current_customer
       # @tasks = current_customer.tasks
@@ -56,6 +56,7 @@ class Public::TasksController < ApplicationController
     p params
     @task = Task.find(params[:id])
     tag_list = params[:task][:tag_name].delete(" ").delete("　").split(",").uniq
+    flash[:alert] = "タグが16文字以上のものは削除しました" if tag_list.any? { |tag| tag.length > 15 }
     if @task.update(task_params)
       @task.save_tasks(tag_list)
       redirect_to request.referer, notice: "タスクを更新しました"
@@ -67,7 +68,7 @@ class Public::TasksController < ApplicationController
   def destroy
     @task = Task.find(params[:id])
     if @task.destroy
-      redirect_to customer_path(current_customer), notice: "タスクを削除しました"
+      redirect_to customer_path(current_customer), alert: "タスクを削除しました"
     end
   end
 
@@ -97,7 +98,7 @@ class Public::TasksController < ApplicationController
   def ensure_correct_customer
     @task = Task.find(params[:id])
     if @task.customer != current_customer
-      redirect_to customer_path(current_customer), notice: "他ユーザーのタスクは編集できません"
+      redirect_to customer_path(current_customer), alert: "他ユーザーのタスクは編集できません"
     end
   end
 

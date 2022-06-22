@@ -12,7 +12,7 @@ class Admin::TasksController < ApplicationController
   def destroy
     @task = Task.find(params[:id])
     if @task.destroy
-      redirect_to admin_tasks_path, notice: "#{@task.customer.full_name}さんのタスクを削除しました"
+      redirect_to admin_tasks_path, alert: "#{@task.customer.full_name}さんのタスクを削除しました"
     end
   end
 end
