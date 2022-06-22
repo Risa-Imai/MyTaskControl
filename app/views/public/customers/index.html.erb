@@ -6,12 +6,12 @@
   <%= f.submit "Search", class: "btn btn-outline-dark" %>
   <% end %>
   <span><%= @keyword %> で検索中</span>
-  <h1 class="text-center mb-5">Members</h1>
+  <h1 class="text-center mb-5">会員一覧</h1>
   <div class="row">
     <table class="table">
       <thead class="table-center">
-        <th>Name</th>
-        <th>Introduction</th>
+        <th>名前</th>
+        <th>自己紹介</th>
       </thead>
       <tbody>
         <% @customers.each do |customer| %>

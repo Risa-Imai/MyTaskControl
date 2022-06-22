@@ -80,9 +80,8 @@ class Public::TasksController < ApplicationController
   end
 
   def search
-    @tasks = Task.search(params[:keyword])
+    @tasks = Task.search(params[:keyword]).latest.page(params[:page])
     # renderしているのでpageメソッドを渡している
-    @tasks = Task.latest.page(params[:page])
     @keyword = params[:keyword]
     @tag_list = Tag.all
     render :index
