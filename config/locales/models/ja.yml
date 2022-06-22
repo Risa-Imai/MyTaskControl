@@ -9,9 +9,12 @@ ja:
   activerecord:
     models:
       customer: ユーザー
+      task: タスク
     attributes:
       customer:
         last_name: 苗字
         first_name: 名前
         password: パスワード
         email: メールアドレス
+      task:
+        title: タイトル

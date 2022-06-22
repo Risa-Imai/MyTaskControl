@@ -53,15 +53,22 @@ class Public::TasksController < ApplicationController
 
   def update
     # コンソールでparamsの中身が見られるようになる
-    p params
+    # p params
     @task = Task.find(params[:id])
-    tag_list = params[:task][:tag_name].delete(" ").delete("　").split(",").uniq
-    flash[:alert] = "タグが16文字以上のものは削除しました" if tag_list.any? { |tag| tag.length > 15 }
-    if @task.update(task_params)
-      @task.save_tasks(tag_list)
+    if params[:task][:boolean]
+      @task.progress_status = params[:task][:progress_status]
+      @task.update(task_params)
       redirect_to request.referer, notice: "タスクを更新しました"
     else
-      render :edit
+      tag_list = params[:task][:tag_name].delete(" ").delete("　").split(",").uniq
+      flash[:alert] = "タグが16文字以上のものは削除しました" if tag_list.any? { |tag| tag.length > 15 }
+      if @task.update(task_params)
+        @task.save_tasks(tag_list)
+        redirect_to request.referer, notice: "タスクを更新しました"
+      else
+        flash[:alert] = "タイトルを入力してください"
+        render :edit
+      end
     end
   end
 
