@@ -8,14 +8,14 @@
   <span><%= @keyword %> で検索中</span>
   <h1 class="text-center mb-5">会員一覧</h1>
   <div class="row">
-    <table class="table">
-      <thead class="table-center">
+    <table class="table table-bordered">
+      <thead class="table-center bg-light">
         <th>名前</th>
         <th>自己紹介</th>
       </thead>
       <tbody>
         <% @customers.each do |customer| %>
-          <tr class="table-center" style="cursor: pointer" onclick="window.location.href='<%= customer_path(customer.id) %>'" onmouseover="this.style.backgroundColor='#dcc2ff'" onmouseout="this.style.backgroundColor='#fff'">
+          <tr class="table-center" style="cursor: pointer" onclick="window.location.href='<%= customer_path(customer.id) %>'" onmouseover="this.style.backgroundColor='#fff'" onmouseout="this.style.backgroundColor='transparent'">
             <td class="customer_index">
               <%= image_tag customer.get_customer_image(100,100) %><br>
               <%= customer.full_name %>

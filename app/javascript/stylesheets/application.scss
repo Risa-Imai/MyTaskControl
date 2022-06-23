@@ -2,6 +2,12 @@
 @import "~@fortawesome/fontawesome-free/scss/fontawesome";
 @import "skippr";
 
+body {
+ background-color: rgba(255,255,255,0.4);
+ background-blend-mode: lighten;
+ background-size: cover;
+}
+
 #alert {
  font-size: 20px;
  font-weight: bold;
@@ -11,7 +17,7 @@
 #notice{
  font-size: 20px;
  font-weight: bold;
- color: #00f9a9;
+ color: #0000ff;
 }
 .count {
  font-size: 20px;
