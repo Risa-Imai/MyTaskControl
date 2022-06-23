@@ -80,20 +80,20 @@ class Public::CustomersController < ApplicationController
   def ensure_guest_to_customer
     @customer = Customer.find(params[:id])
     if @customer.email == "guest@example.com"
-      redirect_to customer_path(current_customer), notice: "ゲストユーザーはプロフィール編集が出来ません"
+      redirect_to customer_path(current_customer), alert: "ゲストユーザーはプロフィール編集が出来ません"
     end
     if @customer != current_customer
-      redirect_to customer_path(current_customer), notice: "他ユーザーのプロフィール編集は出来ません"
+      redirect_to customer_path(current_customer), alert: "他ユーザーのプロフィール編集は出来ません"
     end
   end
 
   def collect_guest_to_customer
     @customer = Customer.find(params[:customer_id])
     if @customer.email == "guest@example.com"
-      redirect_to customer_path(current_customer), notice: "ゲストユーザーは退会出来ません"
+      redirect_to customer_path(current_customer), alert: "ゲストユーザーは退会出来ません"
     end
     if @customer != current_customer
-      redirect_to customer_path(current_customer), notice: "他ユーザーの退会は出来ません"
+      redirect_to customer_path(current_customer), alert: "他ユーザーの退会は出来ません"
     end
   end
 
