@@ -9,11 +9,11 @@
       </div>
       <div class="row">
         <div class="col-12 task_show">
-          <div class="my-1 text-center">
+          <div class="text-center my-3">
             <strong class="<%= @status %> status py-1 col-lg-3 col-md-3 col-sm-3 col-xs-3"><%= @status_i18n %></strong>
             <% if @task.customer == current_customer %>
-              <%= link_to "編集", edit_task_path(@task), class: "col-lg-1 col-md-3 col-sm-3 col-xs-3 btn btn-success" %>
-              <%= link_to "削除", task_path(@task), method: :delete, data: { confirm: "タスクを消しますか？消すと元に戻せません" }, class: "col-lg-1 col-md-3 col-sm-3 col-xs-3 btn btn-danger" %>
+              <%= link_to "編集", edit_task_path(@task), class: "my-3 col-lg-1 col-md-3 col-sm-3 col-xs-3 btn btn-success" %>
+              <%= link_to "削除", task_path(@task), method: :delete, data: { confirm: "タスクを消しますか？消すと元に戻せません" }, class: "my-3 col-lg-1 col-md-3 col-sm-3 col-xs-3 btn btn-danger" %>
             <% end %>
             <span class="col-1" id="favorite_btn_<%= @task.id %>">
               <%= render "public/favorites/favorite", task: @task %>
