@@ -5,9 +5,9 @@ require "rails_helper"
 RSpec.describe Customer, type: :model do
 
   describe "バリデーションチェック" do
-    # 遅延評価
-    let!(:other_customer) { create(:customer) }
     # 事前評価
+    let!(:other_customer) { create(:customer) }
+    # 遅延評価
     let(:customer) { FactoryBot.build(:customer) }
 
     it "姓、名、自己紹介、メール、パスワードがある場合、有効である" do
@@ -74,15 +74,71 @@ RSpec.describe Customer, type: :model do
         expect(customer.errors[:introduction]).to include("は150文字以内で入力してください")
       end
     end
+  end
 
-    context "メソッドチェック" do
+  describe "メソッドチェック" do
+    # 遅延評価
+    let(:customer) { FactoryBot.build(:customer) }
+    context "first_nameカラム last_nameカラム" do
       it "姓、名を登録すると、姓名が取得できること" do
         customer.first_name = "tarou"
         customer.last_name = "tanaka"
         expect(customer.full_name).to eq "tanaka tarou"
       end
     end
+    context "actibve_for_authentication?" do
+    subject { customer.active_for_authentication? }
+    let!(:customer) { create(:customer) }
+      it "退会していない場合" do
+        customer.is_delete = false
+        is_expected.to eq true
+      end
+      it "退会している場合" do
+        customer.is_delete = true
+        is_expected.to eq false
+      end
+    end
+    context "self.guest"
+  end
 
+  # describe "active_storageのチェック" do
+  #   # 事前評価
+  #   let!(:customer) { create(:customer) }
+  #   it "何も画像が登録されていない場合" do
+  #     expect(customer.get_customer_image).to eq "no_image.jpg"
+  #   end
+  #   it "画像が変更された場合" do
+  #     customer.customer_image = fixture_file_upload("test.jpg", content_type: "image/*")
+  #     expect(customer.get_customer_image.filename.to_s).to eq "test.jpg"
+  #   end
+  # end
+
+  describe "アソシエーションのテスト" do
+    context "Taskモデルとの関係" do
+      it "1:Nとなっている" do
+        expect(Customer.reflect_on_association(:tasks).macro).to eq :has_many
+      end
+    end
+    context "Task_Commentモデルとの関係" do
+      it "1:Nとなっている" do
+        expect(Customer.reflect_on_association(:task_comments).macro).to eq :has_many
+      end
+    end
+    context "Favoriteモデルとの関係" do
+      it "1:Nとなっている" do
+        expect(Customer.reflect_on_association(:favorites).macro).to eq :has_many
+      end
+    end
+    context "Relationshipモデルとの関係" do
+      it "N:Nとなっている" do
+        expect(Customer.reflect_on_association(:relationships).macro).to eq :has_many
+        expect(Customer.reflect_on_association(:reverse_of_relationships).macro).to eq :has_many
+      end
+      it "N:Nとなっている" do
+        expect(Customer.reflect_on_association(:followings).macro).to eq :has_many
+        expect(Customer.reflect_on_association(:followers).macro).to eq :has_many
+      end
+    end
   end
 
 end
