@@ -6,7 +6,11 @@
     </div>
     <div>
       <h5>名前</h5>
+      <% if @customer.is_delete == false %>
       <h4><strong><%= @customer.full_name %></strong></h4>
+      <% else %>
+      <h4 class="text-danger"><strong>退会済みです</strong></h4>
+      <% end %>
     </div>
     <div class="introduction">
       <h5>自己紹介</h5>
