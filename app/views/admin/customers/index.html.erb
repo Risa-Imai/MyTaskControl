@@ -10,20 +10,19 @@
   <div class="row">
     <table class="table table-bordered">
       <thead class="table-center bg-light">
-        <th></th>
         <th>名前</th>
         <th>自己紹介</th>
-        <th>コメント数</th>
         <th>ステータス</th>
       </thead>
       <tbody>
       <% @customers.each do |customer| %>
         <tr class="table-center" style="cursor: pointer" onclick="window.location.href='<%= admin_customer_path(customer.id) %>'" onmouseover="this.style.backgroundColor='#fff'" onmouseout="this.style.backgroundColor='transparent'">
-          <td><%= image_tag customer.get_customer_image(100,100) %></td>
-          <td class="pt-4"><%= customer.full_name %></td>
-          <td class="pt-4"><%= truncate(customer.introduction, length:20) %></td>
-          <td class="pt-4 count"><%= customer.task_comments.count %></td>
-          <td class="pt-4">
+          <td>
+            <%= image_tag customer.get_customer_image(100,100) %><br>
+            <%= customer.full_name %>
+          </td>
+          <td class="pt-5"><%= truncate(customer.introduction, length:20) %></td>
+          <td class="pt-5">
             <% if customer.is_delete == false %>
               <b class="text-success">有効</b>
             <% else %>

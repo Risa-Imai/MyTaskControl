@@ -245,3 +245,23 @@ ul {
  margin: 0;
  padding: 0;
 }
+
+/* タブレット横置きサイズ（1024px）以下の際に適用される設定 */
+@media screen and (max-width:1024px) {
+ .none {
+  display: none;
+ }
+
+}
+/* タブレット縦置きサイズ（768px）以下の際に適用される設定 */
+@media screen and (max-width:768px) {
+ .none {
+  display: none;
+ }
+}
+/* スマートフォンサイズ（425px）以下の際に適用される設定 */
+@media screen and (max-width:425px) {
+ .none {
+  display: none;
+ }
+}
