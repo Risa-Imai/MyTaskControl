@@ -25,6 +25,9 @@
       <h4>自己紹介:</h4>
       <p><%= @customer.introduction %></p>
     </div>
+    <div class="border">
+      <h4>投稿したコメント数:<%= @customer.task_comments.count %></h4>
+    </div>
     <div class="border text-center">
       <%= link_to "編集", edit_admin_customer_path(@customer), class: "btn btn-secondary m-2" %>
       <%= link_to "戻る", admin_customers_path, class: "btn btn-primary m-2" %>
