@@ -57,5 +57,7 @@ Rails.application.routes.draw do
     resources :tasks, only: [:index, :show, :destroy] do
       resources :task_comments, only: [:destroy]
     end
+  get "task_search" => "tasks#search"
+  get "tag_search" => "tasks#tag_search"
   end
 end

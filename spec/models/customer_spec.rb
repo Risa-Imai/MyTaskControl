@@ -101,17 +101,18 @@ RSpec.describe Customer, type: :model do
     context "self.guest"
   end
 
-  # describe "active_storageのチェック" do
-  #   # 事前評価
-  #   let!(:customer) { create(:customer) }
-  #   it "何も画像が登録されていない場合" do
-  #     expect(customer.get_customer_image).to eq "no_image.jpg"
-  #   end
-  #   it "画像が変更された場合" do
-  #     customer.customer_image = fixture_file_upload("test.jpg", content_type: "image/*")
-  #     expect(customer.get_customer_image.filename.to_s).to eq "test.jpg"
-  #   end
-  # end
+  describe "Activestorageのチェック" do
+    # 事前評価
+    let!(:customer) { create(:customer) }
+    it "何も画像が登録されていない場合" do
+      customer.get_customer_image(150, 150)
+      expect(customer.customer_image.filename.to_s).to eq "no_image.jpg"
+    end
+    it "画像が変更された場合" do
+      customer.customer_image = fixture_file_upload("test.jpg", content_type: "image/*")
+      expect(customer.customer_image.filename.to_s).to eq "test.jpg"
+    end
+  end
 
   describe "アソシエーションのテスト" do
     context "Taskモデルとの関係" do
