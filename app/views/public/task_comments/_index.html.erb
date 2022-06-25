@@ -3,8 +3,8 @@
   <div class="balloon5">
     <div class="faceicon">
     <%= link_to customer_path(task_comment.customer.id) do %>
-    <%= image_tag task_comment.customer.get_customer_image(100, 100) %>
-    <%= task_comment.customer.full_name %><br>
+      <%= image_tag task_comment.customer.get_customer_image(100, 100) %>
+      <%= task_comment.customer.full_name %><br>
     <% end %>
     </div>
     <div class="chatting">
