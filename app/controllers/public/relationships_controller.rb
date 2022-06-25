@@ -20,12 +20,10 @@ class Public::RelationshipsController < ApplicationController
   def followings
     @customer = Customer.find(params[:customer_id])
     @following_customers = @customer.followings
-    @follower_customers = @customer.followers
   end
   # フォロワー一覧
   def followers
     @customer = Customer.find(params[:customer_id])
     @follower_customers = @customer.followers
-    @following_customers = @customer.followings
   end
 end
