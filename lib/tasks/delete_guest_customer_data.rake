@@ -1,5 +1,5 @@
 namespace :delete_guest_customer_data do
-  desc "delete_guestcustomer_data"
+  desc "delete_guest_customer_data"
 	task destroy: :environment do
 		customer = Customer.find_by(email: "guest@example.com")
     customer.tasks.destroy_all
