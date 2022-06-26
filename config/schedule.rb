@@ -7,11 +7,10 @@ set :environment, rails_env
 # cronのログの吐き出し場所
 set :output, "#{Rails.root}/log/cron.log"
 
-#30分に一度、data_resetメゾッドが実行される記述
-#テストする際は下記を3.minuteとかに変えた方がいいかもしれません。
-# every 6.hours do
-every 5.minute do
+every 6.hours do
+# every 5.minute do
   begin
+    # bundle exec rake -Tで追加したtaskを確認して貼り付ける
     rake "delete_guest_customer_data:destroy"
   rescue => e
     Rails.logger.error("aborted rails runner")
