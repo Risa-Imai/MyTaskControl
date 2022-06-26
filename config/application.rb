@@ -22,8 +22,10 @@ module TaskPf
     # config.time_zone = "Central Time (US & Canada)"
     # config.eager_load_paths << Rails.root.join("extras")
 
-    # うまくいかなかった処理
+    # うまくいかなかった処理 rails5
     # config.paths.add 'lib', eager_load: true
+    # うまくいく↓ rails6
     config.autoload_paths += %W(#{config.root}/lib)
+    # config.autoload_paths += Dir["#{config.root}/lib"]
   end
 end
