@@ -3,7 +3,7 @@
 <% end %>
 <h2>Infomation</h2>
 <div class="row">
-  <div class="info col-lg-6">
+  <div class="info col-lg-6 mt-3">
     <div class="my-3">
       <%= image_tag @customer.get_customer_image(150, 150), class: "rounded-circle" %>
     </div>
@@ -41,7 +41,7 @@
         <% end %>
     </div>
   </div>
-  <div class="new-task offset-lg-1 col-lg-5 pt-3">
+  <div class="new-task offset-lg-1 col-lg-5 pt-3 mt-3">
     <h4>新規タスク</h4>
     <%= form_with model: @task do |f| %>
       <div class="form-group">
@@ -63,7 +63,7 @@
   </div>
 </div>
 <div>
-  <h2 class="text-center mt-3">マイタスク一覧</h2>
+  <h2 class="text-center mt-5">マイタスク一覧</h2>
   <div class="my-3 text-center">
     <% if @customer_tag_list.present? %>
       <% @customer_tag_list.each do |tag| %>
