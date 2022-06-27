@@ -12,15 +12,17 @@
     <script src="https://kit.fontawesome.com/1067ba15fc.js" crossorigin="anonymous"></script>
   </head>
   <body>
-    <%= render "layouts/header" %>
-    <main class="footer-mb">
-      <div id="flash_message">
-        <%= render "layouts/flash" %>
-      </div>
-      <div class="container mt-5">
-        <%= yield %>
-      </div>
-    </main>
-    <%= render "layouts/footer" %>
+    <div class="footerFixed">
+      <%= render "layouts/header" %>
+      <main class="footer-mb">
+        <div id="flash_message">
+          <%= render "layouts/flash" %>
+        </div>
+        <div class="container mt-5">
+          <%= yield %>
+        </div>
+      </main>
+      <%= render "layouts/footer" %>
+    </div>
   </body>
 </html>
