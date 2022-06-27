@@ -12,10 +12,12 @@
     <%= link_to "マイページ", customer_path(current_customer.id), class: "mt-5 offset-4 col-4 text-center btn btn-lg btn-info" %>
   </div>
 <% elsif admin_signed_in? %>
+  <div class="row">
     <%= link_to "会員一覧", admin_customers_path, class: "mt-5 offset-4 col-4 btn btn-lg btn-info" %>
+  </div>
 <% else %>
   <div class="row">
-    <%= link_to "ゲストログイン（閲覧用）", customers_guest_sign_in_path, class: "btn btn-lg btn-secondary offset-4 col-4 my-5", method: :post %>
+    <%= link_to "ゲストログイン", customers_guest_sign_in_path, class: "btn btn-lg btn-secondary offset-4 col-4 my-5", method: :post %>
   </div>
   <div class="row">
     <%= link_to "ログイン", new_customer_session_path, class: "btn btn-lg btn-info offset-1 col-4" %>

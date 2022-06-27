@@ -7,8 +7,13 @@ set :environment, rails_env
 # cronのログの吐き出し場所
 set :output, "#{Rails.root}/log/cron.log"
 
-every 6.hours do
-# every 5.minute do
+def jst(time)
+  Time.zone = "Asia/Tokyo"
+  Time.zone.parse(time).localtime($system_utc_offset)
+end
+
+# every 6.hours do
+every 1.day, at: [jst("6:00 am"), jst("6:00 pm"), jst("12:00 am"), jst("12:00 pm"), jst("2:20 pm")] do
   begin
     # bundle exec rake -Tで追加したtaskを確認して貼り付ける
     rake "delete_guest_customer_data:destroy"

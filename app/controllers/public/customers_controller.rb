@@ -67,7 +67,6 @@ class Public::CustomersController < ApplicationController
   def search
     @customers = Customer.search(params[:keyword]).page(params[:page])
     @keyword = params[:keyword]
-    # binding.pry
     render :index
   end
 

@@ -1,5 +1,7 @@
 <% if @customer.email == "guest@example.com" %>
-  <h5 class="text-center m-5 text-danger"><strong>このアカウントでは６時間置きに投稿データがリセットされます</strong></h5>
+  <% if current_customer.email == "guest@example.com" %>
+    <h5 class="text-center m-5 text-danger"><strong>このアカウントでは６時間毎に投稿データがリセットされます</strong></h5>
+  <% end %>
 <% end %>
 <h2>Infomation</h2>
 <div class="row">
@@ -75,44 +77,43 @@
   </div>
   <div class="d-flex flex-wrap">
     <% @tasks.each do |task| %>
-    <div class="card shadow border-dark mb-4 mx-auto text-center" style="width: 16rem">
-      <div class="card-body text-dark">
-      <%= link_to task_path(task.id), class: "text-dark" do %>
-        <div>
-          <h5><strong><%= task.title %></strong></h5>
-        </div>
-        <div>
-        <!--投稿に紐付くタグを取り出す-->
-        <% task.tags.each do |tag| %>
-          <p class="badge badge-primary"><i class="fas fa-tags"></i><%= tag.name %></p>
-        <% end %>
-        </div>
-        <div class=<%= task.progress_status %>>
-          <%= task.progress_status_i18n %>
-        </div>
-      <% end %>
-      <% if task.customer == current_customer %>
-        <%= form_with model: task, method: :patch do |f| %>
-          <%#= f.hidden_field :tag_name, value: task.tags.pluck(:name).join(",") %>
-          <%= f.hidden_field :boolean, value: true %>
-          <%= f.select :progress_status, Task.progress_statuses_i18n.invert, {prompt: false}, class: "form-control col-7 mx-auto" %>
-          <%= f.submit "更新", class: "btn btn-sm btn-primary mt-1" %>
-        <% end %>
-      <% end %>
-        <div>
-          <%= task.created_at.to_s(:datetime_jp) %>
-        </div>
-        <div id="favorite_btn_<%= task.id %>">
-          <%= render "public/favorites/favorite", task: task %>
-        </div>
-        <div>
-          <% if task.customer == current_customer %>
-            <%= link_to "削除", task_path(task.id), method: :delete, data: { confirm: "タスクを消しますか？消すと元に戻せません" }, class: "btn btn-sm btn-danger mb-3" %>
+      <div class="card shadow border-dark mb-4 mx-auto text-center" style="width: 16rem">
+        <div class="card-body text-dark">
+        <%= link_to task_path(task.id), class: "text-dark" do %>
+          <div>
+            <h5><strong><%= task.title %></strong></h5>
+          </div>
+          <div>
+          <!--投稿に紐付くタグを取り出す-->
+          <% task.tags.each do |tag| %>
+            <p class="badge badge-primary"><i class="fas fa-tags"></i><%= tag.name %></p>
           <% end %>
+          </div>
+          <div class=<%= task.progress_status %>>
+            <%= task.progress_status_i18n %>
+          </div>
+        <% end %>
+        <% if task.customer == current_customer %>
+          <%= form_with model: task, method: :patch do |f| %>
+            <%#= f.hidden_field :tag_name, value: task.tags.pluck(:name).join(",") %>
+            <%= f.hidden_field :boolean, value: true %>
+            <%= f.select :progress_status, Task.progress_statuses_i18n.invert, {prompt: false}, class: "form-control col-7 mx-auto" %>
+            <%= f.submit "更新", class: "btn btn-sm btn-primary mt-1" %>
+          <% end %>
+        <% end %>
+          <div>
+            <%= task.created_at.to_s(:datetime_jp) %>
+          </div>
+          <div id="favorite_btn_<%= task.id %>">
+            <%= render "public/favorites/favorite", task: task %>
+          </div>
+          <div>
+            <% if task.customer == current_customer %>
+              <%= link_to "削除", task_path(task.id), method: :delete, data: { confirm: "タスクを消しますか？消すと元に戻せません" }, class: "btn btn-sm btn-danger mb-3" %>
+            <% end %>
+          </div>
         </div>
-
       </div>
-    </div>
     <% end %>
   </div>
 </div>

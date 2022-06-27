@@ -38,16 +38,13 @@ class Task < ApplicationRecord
     new_tags.each do |new_name|
       task_tag = Tag.find_or_create_by(name: new_name)
       if task_tag.save
-      # if task_tag.valid?
         self.tags << task_tag
       else
-        # p task_tag.errors
+      # p task_tag.errors
       end
-      # else
-      #end
     end
   end
 
-  # 並べ替え
+  # 並べ替え(降順)
   scope :latest, -> { order(created_at: :desc) }
 end

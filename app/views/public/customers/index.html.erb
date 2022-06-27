@@ -10,21 +10,23 @@
   <div class="row">
     <table class="table table-bordered">
       <thead class="table-center bg-light">
-        <th>名前</th>
-        <th>自己紹介</th>
+        <tr>
+          <th>名前</th>
+          <th>自己紹介</th>
+        </tr>
       </thead>
       <tbody>
-        <% @customers.each do |customer| %>
-          <tr class="table-center" style="cursor: pointer" onclick="window.location.href='<%= customer_path(customer.id) %>'" onmouseover="this.style.backgroundColor='#fff'" onmouseout="this.style.backgroundColor='transparent'">
-            <td class="customer_index">
-              <%= image_tag customer.get_customer_image(100,100) %><br>
-              <%= customer.full_name %>
-            </td>
-            <td class="pt-4">
-              <%= truncate(customer.introduction, length:20) %>
-            </td>
-          </tr>
-        <% end %>
+      <% @customers.each do |customer| %>
+        <tr class="table-center" style="cursor: pointer" onclick="window.location.href='<%= customer_path(customer.id) %>'" onmouseover="this.style.backgroundColor='#fff'" onmouseout="this.style.backgroundColor='transparent'">
+          <td class="customer_index">
+            <%= image_tag customer.get_customer_image(100,100) %><br>
+            <%= customer.full_name %>
+          </td>
+          <td class="pt-4">
+            <%= truncate(customer.introduction, length:20) %>
+          </td>
+        </tr>
+      <% end %>
       </tbody>
     </table>
   </div>
