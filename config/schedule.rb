@@ -13,7 +13,7 @@ def jst(time)
 end
 
 # every 6.hours do
-every 1.day, at: [jst("6:00 am"), jst("6:00 pm"), jst("12:00 am"), jst("12:00 pm"), jst("2:20 pm")] do
+every 1.day, at: [jst("6:00 am"), jst("6:00 pm"), jst("12:00 am"), jst("12:00 pm")] do
   begin
     # bundle exec rake -Tで追加したtaskを確認して貼り付ける
     rake "delete_guest_customer_data:destroy"
