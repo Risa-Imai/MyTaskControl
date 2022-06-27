@@ -4,23 +4,30 @@
       <div class="text-center">
         <h3><%= @task.customer.full_name %>さんのタスク</h3><br>
         <h3><strong><%= @task.title %></strong></h3>
+        <div class="row">
+          <% @task.tags.each do |tag| %>
+            <p class="bg-primary text-light text-center mx-auto p-1 show_tag"><i class="fas fa-tags"></i><%= tag.name %></p>
+          <% end %>
+        </div>
         <p>登録日:<%= @task.created_at.to_s(:datetime_jp) %></p>
         <p><%= link_to "削除", admin_task_path(@task), method: :delete, data: { confirm: "#{@task.customer.full_name}さんのタスクを消しますか？" }, class: "btn btn-danger" %></p>
       </div>
-      <div>コメント一覧</div>
+      <div>コメント一覧(<%= @task.task_comments.count %>)</div>
       <% if @task.task_comments.present? %>
         <% @task.task_comments.each do |task_comment| %>
-          <div class="task_show">
+          <div class="d-flex task_show">
             <div class="m-3">
-              <%= image_tag task_comment.customer.get_customer_image(100,100) %>
-              <%= task_comment.customer.full_name %>
-              <%= task_comment.created_at.to_s(:datetime_jp) %>
+              <%= link_to admin_customer_path(task_comment.customer.id) do %>
+                <%= image_tag task_comment.customer.get_customer_image(80,80) %><br>
+                <%= task_comment.customer.full_name %><br>
+                <%= task_comment.created_at.to_s(:datetime_jp) %>
+              <% end %>
             </div>
-            <div class="ml-3">
-              <%= task_comment.comment %>
-            </div>
-            <div class="m-3">
+            <div class="m-3 pt-5" style="width: 15%">
               <%= link_to "削除", admin_task_task_comment_path(task_comment.task, task_comment), method: :delete,data: { confirm: "#{task_comment.customer.full_name}さんのコメントを消しますか？" }, class: "btn btn-sm btn-danger" %>
+            </div>
+            <div class="m-3">
+              <%= task_comment.comment %>
             </div>
           </div>
         <% end %>

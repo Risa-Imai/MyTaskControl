@@ -12,11 +12,11 @@ class Public::TasksController < ApplicationController
     if @task.save
       # save_tasksはモデルで記述
       @task.save_tasks(tag_list)
-     # tag_list.each do |t|
-     #   if t.size >= 10
+      # tag_list.each do |t|
+      #   if t.size >= 10
       #    flash[:alert] = "タグが10文字以上のものは削除しました"
-     #   end
-     # end
+      #   end
+      # end
       redirect_to customer_path(current_customer), notice: "タスクを投稿しました！頑張りましょう！"
     else
       redirect_to request.referer, alert: "タイトルを入力してください"
@@ -80,9 +80,11 @@ class Public::TasksController < ApplicationController
   end
 
   def search
+    # render後にpageメソッドを渡している
     @tasks = Task.search(params[:keyword]).latest.page(params[:page])
-    # renderしているのでpageメソッドを渡している
+
     @keyword = params[:keyword]
+    # render後にtag全部のデータを渡している
     @tag_list = Tag.all
     render :index
   end

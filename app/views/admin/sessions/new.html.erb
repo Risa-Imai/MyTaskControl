@@ -4,8 +4,8 @@
   </div>
   <div class="container">
     <div class="card card-container card-class">
-      <img id="profile-img" class="profile-img-card" src="//ssl.gstatic.com/accounts/ui/avatar_2x.png" />
-      <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+      <img id="profile-img" class="profile-img-card" src="//ssl.gstatic.com/accounts/ui/avatar_2x.png">
+      <%= form_with model: @admin, url: new_admin_session_path do |f| %>
         <div class="form-group">
           <%= f.email_field :email, autofocus: true, autocomplete: "email", placeholder: "sample@example.com", class: "form-control" %>
         </div>
