@@ -14,6 +14,9 @@
       <div class="form-group">
         <%= f.text_field :first_name, class: "form-control" %>
       </div>
+      <div>
+        <span>メールアドレス：<b><%= @customer.email %></b></span>
+      </div>
       <div class="form-group">
         <%= f.label "プロフィール画像" %>
         <%= f.file_field :customer_image, class: "form-control-file", accept: "image/*" %>
