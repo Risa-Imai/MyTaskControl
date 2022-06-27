@@ -6,19 +6,20 @@
       <%= form_with model: @task, method: :patch do |f| %>
         <div class="form-group">
           <%= f.label "タスク" %>
-          <%= f.text_field :title, class: "form-control" %>
+          <%= f.text_field :title, class: "form-control form-control-lg", style: "width: 500px" %>
         </div>
         <div class="form-group">
           <%= f.label "タグ" %>
           <!-- 登録されているタグをフォームに初期値として表示 -->
-          <%= f.text_field :tag_name, value: @task.tags.pluck(:name).join(","), class: "form-control" %>
+          <%= f.text_field :tag_name, value: @task.tags.pluck(:name).join(","), class: "form-control form-control-lg", style: "width: 500px" %>
         </div>
         <div class="form-group">
           <%= f.label "進捗" %>
-          <%= f.select :progress_status, Task.progress_statuses_i18n.invert, {prompt: false}, class: "form-control" %>
+          <%= f.select :progress_status, Task.progress_statuses_i18n.invert, {prompt: false}, class: "form-control form-control-lg", style: "width: 500px" %>
         </div>
         <div class="text-center">
-          <%= f.submit "更新", class: "btn btn-primary" %>
+          <%= f.submit "更新", class: "btn btn-secondary" %>
+          <%= link_to "戻る", task_path(@task), class: "btn btn-primary" %>
         </div>
       <% end %>
     </div>

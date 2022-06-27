@@ -29,25 +29,25 @@
       </tr>
     </thead>
     <tbody>
-      <% @tasks.each do |task| %>
-        <tr class="table-center"  style="cursor: pointer" onclick="window.location.href='<%= admin_task_path(task.id) %>'" onmouseover="this.style.backgroundColor='#fff'" onmouseout="this.style.backgroundColor='transparent'">
-          <td>
-            <%= image_tag task.customer.get_customer_image(100, 100) %><br>
-            <%= task.customer.full_name %>
-          </td>
-          <td class="pt-5"><%= task.title %></td>
-          <td class="<%= task.progress_status %> pt-5 none"><%= task.progress_status_i18n %></td>
-          <td class="pt-5"><%= task.created_at.to_s(:datetime_jp) %></td>
-          <td class="pt-5 count none"><%= task.task_comments.count %></td>
-          <td class="pt-5 count none">
-            <% unless task.favorites.count == 0 %>
-              <p><i class="fas fa-heart" style="color: #FF367F"></i> <%= task.favorites.count %></p>
-            <% else %>
-              <p><i class="far fa-heart" style="color: #FF367F"></i> <%= task.favorites.count %></p>
-            <% end %>
-          </td>
-        </tr>
-      <% end %>
+    <% @tasks.each do |task| %>
+      <tr class="table-center"  style="cursor: pointer" onclick="window.location.href='<%= admin_task_path(task.id) %>'" onmouseover="this.style.backgroundColor='#fff'" onmouseout="this.style.backgroundColor='transparent'">
+        <td>
+          <%= image_tag task.customer.get_customer_image(100, 100) %><br>
+          <%= task.customer.full_name %>
+        </td>
+        <td class="pt-5"><%= task.title %></td>
+        <td class="<%= task.progress_status %> pt-5 none"><%= task.progress_status_i18n %></td>
+        <td class="pt-5"><%= task.created_at.to_s(:datetime_jp) %></td>
+        <td class="pt-5 count none"><%= task.task_comments.count %></td>
+        <td class="pt-5 count none">
+          <% unless task.favorites.count == 0 %>
+            <p><i class="fas fa-heart" style="color: #FF367F"></i> <%= task.favorites.count %></p>
+          <% else %>
+            <p><i class="far fa-heart" style="color: #FF367F"></i> <%= task.favorites.count %></p>
+          <% end %>
+        </td>
+      </tr>
+    <% end %>
     </tbody>
   </table>
 </div>

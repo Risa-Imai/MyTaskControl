@@ -5,7 +5,7 @@
   <div class="container">
     <div class="card card-container card-class">
       <img id="profile-img" class="profile-img-card" src="//ssl.gstatic.com/accounts/ui/avatar_2x.png" />
-      <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+      <%= form_with model: @customer, url: customer_session_path do |f| %>
         <div class="form-group">
           <%= f.email_field :email, autofocus: true, autocomplete: "email", placeholder: "sample@example.com", class: "form-control" %>
         </div>
@@ -16,7 +16,7 @@
           <%= f.submit "ログイン", class: "btn btn-primary btn-block btn-signin" %>
         </div>
       <% end %>
-      <p>
+      <p class="mt-3">
         <strong><%= render "public/shared/links" %></strong>
       </p>
     </div>
