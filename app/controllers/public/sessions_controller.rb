@@ -38,7 +38,7 @@ class Public::SessionsController < Devise::SessionsController
     if @customer.valid_password?(params[:customer][:password]) && (@customer.is_delete == true)
       redirect_to new_customer_registration_path, notice: "退会済みです"
     else
-      flash.now[:notice] = "emailとpasswordを入力してください"
+      flash.now[:alert] = "emailとpasswordを入力してください"
     end
   end
 
