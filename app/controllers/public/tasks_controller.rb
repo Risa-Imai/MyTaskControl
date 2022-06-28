@@ -32,8 +32,7 @@ class Public::TasksController < ApplicationController
     @tasks = Task.latest.page(params[:page])
     # viewで使用する
     # @tag_list = Tag.all
-    # @tag_list = TaskTag.task_count.first(20)
-    @tag_list = Tag.find(TaskTag.group(:tag_id).order("count(task_id) desc").limit(20).pluck(:tag_id))
+    @tag_list = Tag.find(TaskTag.tag_count.limit(20).pluck(:tag_id))
   end
 
   def show
@@ -62,6 +61,7 @@ class Public::TasksController < ApplicationController
       redirect_to request.referer, notice: "タスクを更新しました"
     else
       tag_list = params[:task][:tag_name].delete(" ").delete("　").split(",").uniq
+      # タスクが16文字で入力された時にフラッシュメッセージを表示
       flash[:alert] = "タグが16文字以上のものは削除しました" if tag_list.any? { |tag| tag.length > 15 }
       if @task.update(task_params)
         @task.save_tasks(tag_list)
@@ -85,7 +85,9 @@ class Public::TasksController < ApplicationController
     @tasks = Task.search(params[:keyword]).latest.page(params[:page])
 
     @keyword = params[:keyword]
-    @tag_list = Tag.find(TaskTag.group(:tag_id).order("count(task_id) desc").limit(20).pluck(:tag_id))
+    @tag_list = Tag.find(TaskTag.tag_count.limit(20).pluck(:tag_id))
+    # 並べ替え候補
+    # ◎@tag_list = Tag.find(TaskTag.group(:tag_id).order("count(task_id) desc").limit(20).pluck(:tag_id))
     # render後にtag全部のデータを渡している
     # @tag_list = Tag.all
     render :index
@@ -94,8 +96,11 @@ class Public::TasksController < ApplicationController
   def tag_search
     @tag = Tag.find(params[:tag_id])
     @tasks = @tag.tasks.latest.page(params[:page])
-    @tag_list = Tag.find(TaskTag.group(:tag_id).order("count(task_id) desc").limit(20).pluck(:tag_id))
-    # @tag_list = Tag.all
+    @tag_list = Tag.find(TaskTag.tag_count.limit(20).pluck(:tag_id))
+    # 並べ替え候補
+    # ◎@tag_list = Tag.find(TaskTag.group(:tag_id).order("count(task_id) desc").limit(20).pluck(:tag_id))
+    # ◎@tag_list = Tag.all.sort_by{|t|t.tasks.count}.reverse.first(20)
+    # ◎@tag_list = Tag.all
     # @tasks = Task.includes(:tags).where(tags: {id: @tag}).page(params[:page])
     render :index
   end
