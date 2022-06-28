@@ -31,8 +31,9 @@ class Public::TasksController < ApplicationController
     @customer = current_customer
     @tasks = Task.latest.page(params[:page])
     # viewで使用する
-    @tag_list = Tag.all
-    # @tag_list = Tag.find(TaskTag.group(:tag_id).order("count(task_id) desc").limit(7).pluck(:tag_id))
+    # @tag_list = Tag.all
+    # @tag_list = TaskTag.task_count.first(20)
+    @tag_list = Tag.find(TaskTag.group(:tag_id).order("count(task_id) desc").limit(20).pluck(:tag_id))
   end
 
   def show
@@ -84,15 +85,17 @@ class Public::TasksController < ApplicationController
     @tasks = Task.search(params[:keyword]).latest.page(params[:page])
 
     @keyword = params[:keyword]
+    @tag_list = Tag.find(TaskTag.group(:tag_id).order("count(task_id) desc").limit(20).pluck(:tag_id))
     # render後にtag全部のデータを渡している
-    @tag_list = Tag.all
+    # @tag_list = Tag.all
     render :index
   end
 
   def tag_search
     @tag = Tag.find(params[:tag_id])
     @tasks = @tag.tasks.latest.page(params[:page])
-    @tag_list = Tag.all
+    @tag_list = Tag.find(TaskTag.group(:tag_id).order("count(task_id) desc").limit(20).pluck(:tag_id))
+    # @tag_list = Tag.all
     # @tasks = Task.includes(:tags).where(tags: {id: @tag}).page(params[:page])
     render :index
   end
