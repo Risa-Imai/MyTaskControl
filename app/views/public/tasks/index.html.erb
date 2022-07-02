@@ -19,7 +19,7 @@
   </div>
   <div class="d-flex flex-wrap">
     <% @tasks.each do |task| %>
-      <div class="card shadow border-dark mb-4 mx-auto text-center" style="width: 16rem">
+      <div class="card border-dark mb-4 mx-auto text-center" style="width: 16rem">
         <div class="card-body text-dark">
           <div class="mb-3">
             <%= link_to customer_path(task.customer.id), class: "text-dark" do %>
