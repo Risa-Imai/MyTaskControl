@@ -23,14 +23,13 @@
 - タスクへのモチベーションが下がった時
 
 ## 設計書
-- ER図
-https://app.diagrams.net/#G1lVOmljxnVcKm8I_Xvr1dtAdRbXwmScr2
-- テーブル定義書
-https://docs.google.com/spreadsheets/d/1InfBQjmryNwUS11olB_9l6PfwO-YuYUFObsVhKvZ3BM/edit#gid=1373217982
-- アプリケーション詳細設計
-https://docs.google.com/spreadsheets/d/1p7OklsPGD_QZ7RoXRr0TspCP-l-P3G0c4H39daVym-s/edit#gid=2133469642
-- テスト仕様書
-https://docs.google.com/spreadsheets/d/1v06W8MdqngSkl_uCs_RAZ5mpIE5KlMNA/edit#gid=2072448154
+- [ER図](https://app.diagrams.net/#G1lVOmljxnVcKm8I_Xvr1dtAdRbXwmScr2)
+- [テーブル定義書](https://docs.google.com/spreadsheets/d/1InfBQjmryNwUS11olB_9l6PfwO-YuYUFObsVhKvZ3BM/edit#gid=1373217982)
+- [アプリケーション詳細設計](https://docs.google.com/spreadsheets/d/1p7OklsPGD_QZ7RoXRr0TspCP-l-P3G0c4H39daVym-s/edit#gid=2133469642)
+- [テスト仕様書](https://docs.google.com/spreadsheets/d/1v06W8MdqngSkl_uCs_RAZ5mpIE5KlMNA/edit#gid=2072448154)
+- AWS仮想ネットワーク構築<br>
+- [設計書](https://docs.google.com/spreadsheets/d/17cl1tL1YVytl0MHNszo0EC10rVe9QzdYKrYGxVPHYB4/edit#gid=0)
+- [構成図](https://app.diagrams.net/#G1cUWWM45Yv_7TuZzGJgfMk9O6Y89Yjoxt)
 
 ## 開発環境
 - OS：Linux(CentOS)
@@ -40,9 +39,7 @@ https://docs.google.com/spreadsheets/d/1v06W8MdqngSkl_uCs_RAZ5mpIE5KlMNA/edit#gi
 - IDE：Cloud9
 
 ## 使用素材
-アバウトページ画像
-https://o-dan.net/ja/
-コメント欄のデザイン参考
-https://saruwakakun.com/html-css/reference/speech-bubble
-会員登録・編集画面のデザイン参考
-https://sounansa.net/archives/1522
+- [アバウトページ画像](https://o-dan.net/ja/)
+- [コメント欄のデザイン参考](https://saruwakakun.com/html-css/reference/speech-bubble)
+- [会員登録・編集画面のデザイン参考](https://sounansa.net/archives/1522)
+- [ロゴ・ファビコンデザイン](https://hatchful.shopify.com/ja/)
