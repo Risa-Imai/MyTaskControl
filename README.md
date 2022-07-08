@@ -27,7 +27,7 @@
 - [テーブル定義書](https://docs.google.com/spreadsheets/d/1InfBQjmryNwUS11olB_9l6PfwO-YuYUFObsVhKvZ3BM/edit#gid=1373217982)
 - [アプリケーション詳細設計](https://docs.google.com/spreadsheets/d/1p7OklsPGD_QZ7RoXRr0TspCP-l-P3G0c4H39daVym-s/edit#gid=2133469642)
 - [テスト仕様書](https://docs.google.com/spreadsheets/d/1v06W8MdqngSkl_uCs_RAZ5mpIE5KlMNA/edit#gid=2072448154)
-- AWS仮想ネットワーク構築<br>
+AWS仮想ネットワーク構築<br>
 - [設計書](https://docs.google.com/spreadsheets/d/17cl1tL1YVytl0MHNszo0EC10rVe9QzdYKrYGxVPHYB4/edit#gid=0)
 - [構成図](https://app.diagrams.net/#G1cUWWM45Yv_7TuZzGJgfMk9O6Y89Yjoxt)
 
