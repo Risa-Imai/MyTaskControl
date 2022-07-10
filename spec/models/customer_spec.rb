@@ -86,7 +86,7 @@ RSpec.describe Customer, type: :model do
         expect(customer.full_name).to eq "tanaka tarou"
       end
     end
-    context "actibve_for_authentication?" do
+    context "active_for_authentication?" do
     subject { customer.active_for_authentication? }
     let!(:customer) { create(:customer) }
       it "退会していない場合" do
