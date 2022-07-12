@@ -2,7 +2,8 @@ class Customer < ApplicationRecord
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable, :registerable,
-         :recoverable, :rememberable, :validatable
+         :recoverable, :rememberable, :validatable,
+         :omniauthable, omniauth_providers: %i[google_oauth2]
 
   validates :last_name, presence: true, length: { minimum: 1, maximum: 10 }
   validates :first_name, presence: true, length: { minimum: 1, maximum: 10 }
@@ -81,4 +82,13 @@ class Customer < ApplicationRecord
     followings.include?(customer)
   end
 
+  # OAuth2導入
+  def self.from_omniauth(auth)
+    where(provider: auth.provider, uid: auth.uid).first_or_create do |customer|
+      customer.first_name = auth.info.first_name
+      customer.last_name = auth.info.last_name
+      customer.email = auth.info.email
+      customer.password = Devise.friendly_token[0,20]
+    end
+  end
 end
