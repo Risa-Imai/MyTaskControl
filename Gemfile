@@ -71,3 +71,5 @@ gem 'kaminari','~> 1.2.1'
 gem 'devise-i18n'
 gem 'jquery-rails'
 gem 'whenever', require: false
+gem 'omniauth', '1.9.1'
+gem 'omniauth-google-oauth2'

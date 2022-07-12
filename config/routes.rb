@@ -3,7 +3,9 @@ Rails.application.routes.draw do
   # URL /customers/dign_in ...
   devise_for :customers, skip: [:passwords], controllers: {
     registrations: "public/registrations",
-    sessions: "public/sessions"
+    sessions: "public/sessions",
+    # deviseの階層を編集した場合は適宜pathを編集してください
+    omniauth_callbacks: "public/omniauth_callbacks"
   }
 
   # 管理者用
