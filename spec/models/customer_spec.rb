@@ -141,5 +141,4 @@ RSpec.describe Customer, type: :model do
       end
     end
   end
-
 end
