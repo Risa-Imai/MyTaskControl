@@ -269,20 +269,28 @@ ul {
 
 /* タブレット横置きサイズ（1024px）以下の際に適用される設定 */
 @media screen and (max-width:1024px) {
- .none {
+  .none {
   display: none;
  }
-
 }
+
+/* タブレット横置きサイズ（991px）以下の際に適用される設定 */
+@media screen and (max-width: 991px) {
+  .navbar-nav {
+  display: inline-block;
+ }
+}
+
 /* タブレット縦置きサイズ（768px）以下の際に適用される設定 */
 @media screen and (max-width:768px) {
- .none {
+  .none {
   display: none;
  }
 }
+
 /* スマートフォンサイズ（425px）以下の際に適用される設定 */
 @media screen and (max-width:425px) {
- .none {
+  .none {
   display: none;
  }
 }
