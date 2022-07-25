@@ -1,25 +1,8 @@
 <div class="container">
   <h3 class="text-center mb-3">フォロー一覧</h3>
   <div class="row">
-    <% if @following_customers.exists? %>
-      <% @following_customers.each do |customer| %>
-        <div class="offset-md-1 col-md-3 text-center p-2 bg-light">
-          <%= link_to customer_path(customer.id), class: "text-dark" do %>
-            <%= image_tag customer.get_customer_image(100, 100) %><br>
-            <%= customer.full_name %>
-          <% end %>
-          <% if current_customer != customer %>
-            <div id="follow_btn_<%= customer.id %>" class="text-center">
-              <%= render "public/relationships/follow_btn", customer: customer %>
-            </div>
-          <% end %>
-        </div>
-        <div class="col-md-4 text-center pt-2 mb-5">
-          <p>自己紹介</p>
-          <%= truncate(customer.introduction, length:100) %>
-        </div>
-        <div class="col-md-4"></div>
-      <% end %>
+    <% if @customers.exists? %>
+      <%= render "public/relationships/customers", customers: @customers %>
     <% else %>
       <p class="col-12 text-center"><b>まだ誰もフォローしていません</b></p>
     <% end %>
