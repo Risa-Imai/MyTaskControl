@@ -1,0 +1,32 @@
+<li class="nav-link text-light" data-toggle="modal" data-target="#modal-example">
+  <button type="button" class="btn btn-outline-light"><i class="fas fa-plus-circle"></i>新規タスク</button>
+</li>
+<div class="modal" id="modal-example" tabindex="-1">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <%= form_with model: @task do |f| %>
+      <div class="modal-body">
+        <div class="form-group">
+          <h4>タスク</h4>
+          <%= f.text_field :title, class: "form-control" %>
+        </div>
+        <div class="form-group">
+          <h4>タグ</h4>
+          <small>カンマ(,)で区切ることで複数指定できます</small><br>
+          <%= f.text_field :tag_name, class: "form-control" %>
+        </div>
+        <div class="form-group">
+          <h4>進捗</h4>
+          <%= f.select :progress_status, Task.progress_statuses_i18n.invert, {prompt: false}, class: "form-control" %>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <div class="form-group">
+          <p class="btn btn-default" data-dismiss="modal">閉じる</p>
+          <p><%= f.submit "投稿", class: "btn btn-primary" %></p>
+        </div>
+      </div>
+      <% end %>
+    </div>
+  </div>
+</div>

@@ -6,6 +6,7 @@ class Public::CustomersController < ApplicationController
 
   def index
     @customers = Customer.page(params[:page])
+    @task = Task.new
   end
 
   def show
