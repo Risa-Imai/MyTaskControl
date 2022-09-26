@@ -6,45 +6,6 @@
 
 <h2>Infomation</h2>
 <div class="row">
-  <div class="info col-lg-4 mt-3">
-    <div class="my-3">
-      <%= image_tag @customer.get_customer_image(150, 150), class: "rounded-circle" %>
-    </div>
-    <div>
-      <h5>名前</h5>
-      <% if @customer.is_delete == false %>
-        <h4><strong><%= @customer.full_name %></strong></h4>
-      <% else %>
-        <h4 class="text-danger"><strong>退会済みです</strong></h4>
-      <% end %>
-    </div>
-    <div class="introduction">
-      <h5>自己紹介</h5>
-      <p style="word-wrap: break-word; width: 350px;"><%= @customer.introduction %></p>
-    </div>
-    <div class="my-3 text-right">
-      <p>
-        <% if @customer == current_customer %>
-          <% if @customer.email != "guest@example.com" %>
-            <%= link_to "会員情報編集", edit_customer_path(id: @customer), class: "btn btn-secondary" %>
-          <% end %>
-        <% end %>
-        <%= link_to "いいね一覧", customer_favorites_path(customer_id: @customer), class: "btn btn-success" %>
-      </p>
-        <% if current_customer.id != @customer.id %>
-          <p id="follow_btn">
-            <%= render "public/relationships/follow_btn", customer: @customer %>
-          </p>
-        <% end %>
-        <%= link_to customer_followings_path(customer_id: @customer), class: "btn btn-info text-light" do %>
-          <div id="followings_count"><%= render "public/relationships/followings_count", customer: @customer %></div>
-        <% end %>
-        <%= link_to customer_followers_path(customer_id: @customer), class: "btn btn-info text-light" do %>
-          <div id="followers_count"><%= render "public/relationships/followers_count", customer: @customer %></div>
-        <% end %>
-    </div>
-  </div>
-  <div>
   <h2 class="text-center mt-5">マイタスク一覧</h2>
     <div class="my-3 text-center">
       <% if @customer_tag_list.present? %>
@@ -96,6 +57,43 @@
         </div>
       <% end %>
     </div>
+    <div class="info col-lg-4 mt-3">
+      <div class="my-3">
+        <%= image_tag @customer.get_customer_image(150, 150), class: "rounded-circle" %>
+      </div>
+      <div>
+        <h5>名前</h5>
+        <% if @customer.is_delete == false %>
+          <h4><strong><%= @customer.full_name %></strong></h4>
+        <% else %>
+          <h4 class="text-danger"><strong>退会済みです</strong></h4>
+        <% end %>
+      </div>
+      <div class="introduction">
+        <h5>自己紹介</h5>
+        <p style="word-wrap: break-word; width: 350px;"><%= @customer.introduction %></p>
+      </div>
+      <div class="my-3 text-right">
+        <p>
+          <% if @customer == current_customer %>
+            <% if @customer.email != "guest@example.com" %>
+              <%= link_to "会員情報編集", edit_customer_path(id: @customer), class: "btn btn-secondary" %>
+            <% end %>
+          <% end %>
+          <%= link_to "いいね一覧", customer_favorites_path(customer_id: @customer), class: "btn btn-success" %>
+        </p>
+          <% if current_customer.id != @customer.id %>
+            <p id="follow_btn">
+              <%= render "public/relationships/follow_btn", customer: @customer %>
+            </p>
+          <% end %>
+          <%= link_to customer_followings_path(customer_id: @customer), class: "btn btn-info text-light" do %>
+            <div id="followings_count"><%= render "public/relationships/followings_count", customer: @customer %></div>
+          <% end %>
+          <%= link_to customer_followers_path(customer_id: @customer), class: "btn btn-info text-light" do %>
+            <div id="followers_count"><%= render "public/relationships/followers_count", customer: @customer %></div>
+          <% end %>
+      </div>
+    </div>
   </div>
-</div>
 <%= paginate @tasks %>
