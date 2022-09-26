@@ -5,95 +5,95 @@
 <% end %>
 
 <h2>Infomation</h2>
-<div class="row">
-  <h2 class="text-center mt-5">マイタスク一覧</h2>
-    <div class="my-3 text-center">
-      <% if @customer_tag_list.present? %>
-        <% @customer_tag_list.each do |tag| %>
-          <i class="fas fa-tags"></i><%= tag.name %>
-          (<%= tag.tasks.where(customer_id: @customer.id).count %>)
+<h2 class="text-center mt-5">マイタスク一覧</h2>
+<div class="my-3 text-center">
+  <% if @customer_tag_list.present? %>
+    <% @customer_tag_list.each do |tag| %>
+      <i class="fas fa-tags"></i><%= tag.name %>
+      (<%= tag.tasks.where(customer_id: @customer.id).count %>)
+    <% end %>
+  <% else %>
+  <% end %>
+</div>
+<div class="d-flex flex-wrap">
+  <% @tasks.each do |task| %>
+    <div class="card border-dark mb-4 mx-auto text-center" style="width: 16rem">
+      <div class="card-body text-dark">
+      <%= link_to task_path(task.id), class: "text-dark" do %>
+        <div>
+          <h5><strong><%= task.title %></strong></h5>
+        </div>
+        <div>
+        <!--投稿に紐付くタグを取り出す-->
+        <% task.tags.each do |tag| %>
+          <p class="badge badge-primary"><i class="fas fa-tags"></i><%= tag.name %></p>
         <% end %>
-      <% else %>
-      <% end %>
-    </div>
-    <div class="d-flex flex-wrap">
-      <% @tasks.each do |task| %>
-        <div class="card border-dark mb-4 mx-auto text-center" style="width: 16rem">
-          <div class="card-body text-dark">
-          <%= link_to task_path(task.id), class: "text-dark" do %>
-            <div>
-              <h5><strong><%= task.title %></strong></h5>
-            </div>
-            <div>
-            <!--投稿に紐付くタグを取り出す-->
-            <% task.tags.each do |tag| %>
-              <p class="badge badge-primary"><i class="fas fa-tags"></i><%= tag.name %></p>
-            <% end %>
-            </div>
-            <div class=<%= task.progress_status %>>
-              <%= task.progress_status_i18n %>
-            </div>
-          <% end %>
-          <% if task.customer == current_customer %>
-            <%= form_with model: task, method: :patch do |f| %>
-              <%#= f.hidden_field :tag_name, value: task.tags.pluck(:name).join(",") %>
-              <%= f.hidden_field :boolean, value: true %>
-              <%= f.select :progress_status, Task.progress_statuses_i18n.invert, {prompt: false}, class: "form-control col-7 mx-auto" %>
-              <%= f.submit "更新", class: "btn btn-sm btn-primary mt-1" %>
-            <% end %>
-          <% end %>
-            <div>
-              <%= task.created_at.to_s(:datetime_jp) %>
-            </div>
-            <div id="favorite_btn_<%= task.id %>">
-              <%= render "public/favorites/favorite", task: task %>
-            </div>
-            <div>
-              <% if task.customer == current_customer %>
-                <%= link_to "削除", task_path(task.id), method: :delete, data: { confirm: "タスクを消しますか？消すと元に戻せません" }, class: "btn btn-sm btn-danger mb-3" %>
-              <% end %>
-            </div>
-          </div>
+        </div>
+        <div class=<%= task.progress_status %>>
+          <%= task.progress_status_i18n %>
         </div>
       <% end %>
-    </div>
-    <div class="info col-lg-4 mt-3">
-      <div class="my-3">
-        <%= image_tag @customer.get_customer_image(150, 150), class: "rounded-circle" %>
-      </div>
-      <div>
-        <h5>名前</h5>
-        <% if @customer.is_delete == false %>
-          <h4><strong><%= @customer.full_name %></strong></h4>
-        <% else %>
-          <h4 class="text-danger"><strong>退会済みです</strong></h4>
+      <% if task.customer == current_customer %>
+        <%= form_with model: task, method: :patch do |f| %>
+          <%#= f.hidden_field :tag_name, value: task.tags.pluck(:name).join(",") %>
+          <%= f.hidden_field :boolean, value: true %>
+          <%= f.select :progress_status, Task.progress_statuses_i18n.invert, {prompt: false}, class: "form-control col-7 mx-auto" %>
+          <%= f.submit "更新", class: "btn btn-sm btn-primary mt-1" %>
         <% end %>
+      <% end %>
+        <div>
+          <%= task.created_at.to_s(:datetime_jp) %>
+        </div>
+        <div id="favorite_btn_<%= task.id %>">
+          <%= render "public/favorites/favorite", task: task %>
+        </div>
+        <div>
+          <% if task.customer == current_customer %>
+            <%= link_to "削除", task_path(task.id), method: :delete, data: { confirm: "タスクを消しますか？消すと元に戻せません" }, class: "btn btn-sm btn-danger mb-3" %>
+          <% end %>
+        </div>
       </div>
-      <div class="introduction">
-        <h5>自己紹介</h5>
-        <p style="word-wrap: break-word; width: 350px;"><%= @customer.introduction %></p>
-      </div>
-      <div class="my-3 text-right">
-        <p>
-          <% if @customer == current_customer %>
-            <% if @customer.email != "guest@example.com" %>
-              <%= link_to "会員情報編集", edit_customer_path(id: @customer), class: "btn btn-secondary" %>
-            <% end %>
+    </div>
+  <% end %>
+</div>
+<div class="row">
+  <div class="info col-lg-4 mt-3">
+    <div class="my-3">
+      <%= image_tag @customer.get_customer_image(150, 150), class: "rounded-circle" %>
+    </div>
+    <div>
+      <h5>名前</h5>
+      <% if @customer.is_delete == false %>
+        <h4><strong><%= @customer.full_name %></strong></h4>
+      <% else %>
+        <h4 class="text-danger"><strong>退会済みです</strong></h4>
+      <% end %>
+    </div>
+    <div class="introduction">
+      <h5>自己紹介</h5>
+      <p style="word-wrap: break-word; width: 350px;"><%= @customer.introduction %></p>
+    </div>
+    <div class="my-3 text-right">
+      <p>
+        <% if @customer == current_customer %>
+          <% if @customer.email != "guest@example.com" %>
+            <%= link_to "会員情報編集", edit_customer_path(id: @customer), class: "btn btn-secondary" %>
           <% end %>
-          <%= link_to "いいね一覧", customer_favorites_path(customer_id: @customer), class: "btn btn-success" %>
-        </p>
-          <% if current_customer.id != @customer.id %>
-            <p id="follow_btn">
-              <%= render "public/relationships/follow_btn", customer: @customer %>
-            </p>
-          <% end %>
-          <%= link_to customer_followings_path(customer_id: @customer), class: "btn btn-info text-light" do %>
-            <div id="followings_count"><%= render "public/relationships/followings_count", customer: @customer %></div>
-          <% end %>
-          <%= link_to customer_followers_path(customer_id: @customer), class: "btn btn-info text-light" do %>
-            <div id="followers_count"><%= render "public/relationships/followers_count", customer: @customer %></div>
-          <% end %>
-      </div>
+        <% end %>
+        <%= link_to "いいね一覧", customer_favorites_path(customer_id: @customer), class: "btn btn-success" %>
+      </p>
+        <% if current_customer.id != @customer.id %>
+          <p id="follow_btn">
+            <%= render "public/relationships/follow_btn", customer: @customer %>
+          </p>
+        <% end %>
+        <%= link_to customer_followings_path(customer_id: @customer), class: "btn btn-info text-light" do %>
+          <div id="followings_count"><%= render "public/relationships/followings_count", customer: @customer %></div>
+        <% end %>
+        <%= link_to customer_followers_path(customer_id: @customer), class: "btn btn-info text-light" do %>
+          <div id="followers_count"><%= render "public/relationships/followers_count", customer: @customer %></div>
+        <% end %>
     </div>
   </div>
+</div>
 <%= paginate @tasks %>
