@@ -5,7 +5,9 @@
   </div>
   <%= f.submit "Search", class: "btn btn-outline-dark" %>
   <% end %>
-  <span><%= @keyword %> で検索中</span>
+  <% if @keyword %>
+    <span><%= @keyword %> で検索中</span>
+  <% end %>
   <h1 class="text-center mb-5">みんなのタスク</h1>
   <div class="my-3">
     <% @tag_list.each do |tag| %>

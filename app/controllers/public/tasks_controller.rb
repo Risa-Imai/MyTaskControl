@@ -28,6 +28,7 @@ class Public::TasksController < ApplicationController
   end
 
   def index
+    @task = Task.new
     @customer = current_customer
     @tasks = Task.latest.page(params[:page])
     # viewで使用する
