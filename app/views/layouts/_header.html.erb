@@ -13,11 +13,7 @@
               <button type="button" class="btn btn-outline-light"><i class="fas fa-user-circle"></i>マイぺージ</button>
             <% end %>
           </li>
-          <li>
-            <%= link_to customer_path(current_customer.id), class: "nav-link text-light" do %>
-              <button type="button" class="btn btn-outline-light"><i class="fas fa-plus-circle"></i>新規投稿</button>
-            <% end %>
-          </li>
+            <%= render "public/tasks/newtask", task: task %>
           <li>
             <%= link_to tasks_path, class: "nav-link text-light" do %>
               <button type="button" class="btn btn-outline-light"><i class="fas fa-clipboard-list"></i>タスク一覧</button>
